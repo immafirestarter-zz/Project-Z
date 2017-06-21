@@ -23,6 +23,9 @@ class GameScene: SKScene {
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
     let standTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_stand"))
     var jumpAction = SKAction()
+    let halfStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk1"))
+    let fullStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk2"))
+    var walkAction = SKAction()
     var isTouching = false
     var movingRight = false
     var movingLeft = false
@@ -34,12 +37,13 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         print("ive moved here")
         jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
+        walkAction = SKAction.sequence([halfStep, fullStep])
         let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         borderBody.friction = 0
         self.physicsBody = borderBody
         //        physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
     }
-    //test
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
@@ -53,28 +57,33 @@ class GameScene: SKScene {
             print("ive been touched")
             print(player.physicsBody?.velocity.dy)
             player.run(jumpAction)
-            //        } else if buttonRight.contains(touchlocation){
-            //            isTouching = true
-            //            movingRight = true
-            //        } else if buttonLeft.contains(touchlocation){
-            //            isTouching = true
-            //            movingLeft = true
-            //        }
+                    } else if buttonRight.contains(touchlocation){
+                    print("right")
+                        isTouching = true
+                        movingRight = true
+                    } else if buttonLeft.contains(touchlocation){
+                    print("left")
+                        isTouching = true
+                        movingLeft = true
+                    }
         }
         
-        //    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //        isTouching = false
-        //        movingRight = false
-        //        movingLeft = false
-        //    }
-        //
+            override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+                isTouching = false
+                movingRight = false
+                movingLeft = false
+            }
         
-        //    override func update(_ currentTime: TimeInterval) {
-        //        let player = childNode(withName: "Spaceship") as! SKSpriteNode
-        //        if isTouching && movingRight{
-        //            player.run(moveRight)
-        //        } else if isTouching && movingLeft{
-        //            player.run(moveLeft)
-        //        }
+    
+            override func update(_ currentTime: TimeInterval) {
+                let player = childNode(withName: "zombie") as! SKSpriteNode
+                if isTouching && movingRight{
+                    player.run(moveRight)
+                    player.run(walkAction)
+                    
+                } else if isTouching && movingLeft{
+                    player.run(moveLeft)
+                }
     }
+
 }
