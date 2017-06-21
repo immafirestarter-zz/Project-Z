@@ -18,7 +18,7 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     
     let jump = SKAction.moveBy(x: 0, y: 100, duration: 0.2)
-    let moveRight = SKAction.moveBy(x: 3, y: 0, duration: 0.1)
+    let moveRight = SKAction.moveBy(x: 15, y: 0, duration: 0.1)
     let moveLeft = SKAction.moveBy(x: -3, y: 0, duration: 0.1)
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
     let standTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_stand"))
@@ -29,6 +29,13 @@ class GameScene: SKScene {
     var isTouching = false
     var movingRight = false
     var movingLeft = false
+    let textureArray = SKAction.animate(with: [
+        SKTexture(imageNamed: "zombie_walk1"),
+        SKTexture(imageNamed: "zombie_walk2")
+        ], timePerFrame: 0.09)
+    
+    
+    
     
     override func sceneDidLoad() {
         
@@ -37,7 +44,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         print("ive moved here")
         jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
-        walkAction = SKAction.sequence([halfStep, fullStep])
+        walkAction = SKAction.group([moveRight, textureArray])
         let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         borderBody.friction = 0
         self.physicsBody = borderBody
@@ -56,6 +63,7 @@ class GameScene: SKScene {
         if buttonJump.contains(touchlocation) && player.physicsBody?.velocity.dy == 0 {
             print("ive been touched")
             print(player.physicsBody?.velocity.dy)
+            print(player .hasActions())
             player.run(jumpAction)
                     } else if buttonRight.contains(touchlocation){
                     print("right")
@@ -77,10 +85,11 @@ class GameScene: SKScene {
     
             override func update(_ currentTime: TimeInterval) {
                 let player = childNode(withName: "zombie") as! SKSpriteNode
-                if isTouching && movingRight{
-                    player.run(moveRight)
+                
+                if isTouching && movingRight && !player .hasActions() {
+                    print(player .hasActions())
                     player.run(walkAction)
-                    
+               
                 } else if isTouching && movingLeft{
                     player.run(moveLeft)
                 }
