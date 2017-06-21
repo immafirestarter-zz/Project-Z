@@ -49,7 +49,7 @@ class GameScene: SKScene {
         //      let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
         //     let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
         //
-        if buttonJump.contains(touchlocation) && player.physicsBody?.velocity.dy == 0 {
+        if buttonJump.contains(touchlocation) {
             print("ive been touched")
             print(player.physicsBody?.velocity.dy)
             player.run(jumpAction)
