@@ -45,36 +45,39 @@ class GameScene: SKScene {
         let touch = touches.first
         let touchlocation = touch!.location(in: self)
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
-        let player = childNode(withName: "Spaceship") as! SKSpriteNode
-        //      let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
-        //     let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
-        //
+        let player = childNode(withName: "zombie") as! SKSpriteNode
+        let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
+        let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
+
         if buttonJump.contains(touchlocation) && player.physicsBody?.velocity.dy == 0 {
             print("ive been touched")
             print(player.physicsBody?.velocity.dy)
             player.run(jumpAction)
-            //        } else if buttonRight.contains(touchlocation){
-            //            isTouching = true
-            //            movingRight = true
-            //        } else if buttonLeft.contains(touchlocation){
-            //            isTouching = true
-            //            movingLeft = true
-            //        }
+                    } else if buttonRight.contains(touchlocation){
+                    print("right")
+                        isTouching = true
+                        movingRight = true
+                    } else if buttonLeft.contains(touchlocation){
+                    print("left")
+                        isTouching = true
+                        movingLeft = true
+                    }
         }
         
-        //    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //        isTouching = false
-        //        movingRight = false
-        //        movingLeft = false
-        //    }
-        //
+            override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+                isTouching = false
+                movingRight = false
+                movingLeft = false
+            }
         
-        //    override func update(_ currentTime: TimeInterval) {
-        //        let player = childNode(withName: "Spaceship") as! SKSpriteNode
-        //        if isTouching && movingRight{
-        //            player.run(moveRight)
-        //        } else if isTouching && movingLeft{
-        //            player.run(moveLeft)
-        //        }
+    
+            override func update(_ currentTime: TimeInterval) {
+                let player = childNode(withName: "zombie") as! SKSpriteNode
+                if isTouching && movingRight{
+                    player.run(moveRight)
+                } else if isTouching && movingLeft{
+                    player.run(moveLeft)
+                }
     }
+
 }
