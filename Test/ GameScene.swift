@@ -32,7 +32,7 @@ class GameScene: SKScene {
     let textureArray = SKAction.animate(with: [
         SKTexture(imageNamed: "zombie_walk1"),
         SKTexture(imageNamed: "zombie_walk2")
-        ], timePerFrame: 0.09)
+        ], timePerFrame: 0.03)
     
     
     
