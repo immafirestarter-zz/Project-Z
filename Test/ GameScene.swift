@@ -10,6 +10,9 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var thePlayer:Player = Player()
+
+    
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
@@ -22,41 +25,49 @@ class GameScene: SKScene {
     let moveLeft = SKAction.moveBy(x: -3, y: 0, duration: 0.1)
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
     let standTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_stand"))
-    var jumpAction = SKAction()
     let halfStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk1"))
     let fullStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk2"))
+    var jumpAction = SKAction()
     var walkAction = SKAction()
+    var walkForever = SKAction()
     var isTouching = false
     var movingRight = false
     var movingLeft = false
+    var animatedWalkRight = SKAction()
     
     override func sceneDidLoad() {
         
     }
     
     override func didMove(to view: SKView) {
-        print("ive moved here")
+        if (self.childNode(withName: "Player") != nil){
+            thePlayer = self.childNode(withName: "Player") as! Player
+            thePlayer.setUpPlayer()
+        }
         jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
-        walkAction = SKAction.sequence([halfStep, fullStep])
+        walkAction = SKAction.sequence([halfStep, fullStep, moveRight])
+        walkForever = SKAction.repeatForever(walkAction)
         let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         borderBody.friction = 0
         self.physicsBody = borderBody
-        //        physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
     }
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (self.childNode(withName: "Player") != nil){
+            thePlayer = self.childNode(withName: "Player") as! Player
+        }
+
         let touch = touches.first
         let touchlocation = touch!.location(in: self)
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
-        let player = childNode(withName: "zombie") as! SKSpriteNode
         let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
 
-        if buttonJump.contains(touchlocation) && player.physicsBody?.velocity.dy == 0 {
+        if buttonJump.contains(touchlocation) {
             print("ive been touched")
-            print(player.physicsBody?.velocity.dy)
-            player.run(jumpAction)
+            print(thePlayer.physicsBody?.velocity.dy)
+            thePlayer.run(jumpAction)
                     } else if buttonRight.contains(touchlocation){
                     print("right")
                         isTouching = true
@@ -76,14 +87,21 @@ class GameScene: SKScene {
         
     
             override func update(_ currentTime: TimeInterval) {
-                let player = childNode(withName: "zombie") as! SKSpriteNode
+                if (self.childNode(withName: "Player") != nil){
+                    thePlayer = self.childNode(withName: "Player") as! Player
+
+                
+                }
                 if isTouching && movingRight{
-                    player.run(moveRight)
-                    player.run(walkAction)
+                    thePlayer.run(walkForever)
+                    
+                    
                     
                 } else if isTouching && movingLeft{
-                    player.run(moveLeft)
+                    thePlayer.run(moveLeft)
                 }
     }
 
 }
+
+
