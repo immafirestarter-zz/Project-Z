@@ -71,13 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theDoor.setUpDoor()
         }
         }
-        
-        jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
-        walkAction = SKAction.sequence([halfStep, fullStep, moveRight])
-        walkForever = SKAction.repeatForever(walkAction)
-        let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        borderBody.friction = 0
-        self.physicsBody = borderBody
+
     }
     
     

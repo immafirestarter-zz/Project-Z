@@ -36,14 +36,6 @@ class Player: SKSpriteNode {
         body.categoryBitMask = BodyType.player.rawValue
         body.contactTestBitMask = BodyType.door.rawValue
         
-//        self.xScale = 1
-        
-//        setUpJump()
-        setUpRunRight()
-        setUpRunLeft()
-    
-  
-        
     }
     
     
