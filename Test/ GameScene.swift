@@ -18,17 +18,16 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     
     let jump = SKAction.moveBy(x: 0, y: 100, duration: 0.2)
-    let moveRight = SKAction.moveBy(x: 15, y: 0, duration: 0.1)
-    let moveLeft = SKAction.moveBy(x: -3, y: 0, duration: 0.1)
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
     let standTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_stand"))
     var jumpAction = SKAction()
     let halfStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk1"))
     let fullStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk2"))
-    var walkAction = SKAction()
     var isTouching = false
     var movingRight = false
     var movingLeft = false
+    var xVelocity: CGFloat = 0
+    var directionHandling: CGFloat = 1
     let textureArray = SKAction.animate(with: [
         SKTexture(imageNamed: "zombie_walk1"),
         SKTexture(imageNamed: "zombie_walk2")
@@ -44,11 +43,9 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         print("ive moved here")
         jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
-        walkAction = SKAction.group([moveRight, textureArray])
         let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         borderBody.friction = 0
         self.physicsBody = borderBody
-        //        physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
     }
 
     
@@ -61,37 +58,45 @@ class GameScene: SKScene {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
 
         if buttonJump.contains(touchlocation) && player.physicsBody?.velocity.dy == 0 {
-            print("ive been touched")
-            print(player.physicsBody?.velocity.dy)
-            print(player .hasActions())
             player.run(jumpAction)
                     } else if buttonRight.contains(touchlocation){
                     print("right")
+                        directionHandling = 1
                         isTouching = true
                         movingRight = true
+                        xVelocity = 200
+            
                     } else if buttonLeft.contains(touchlocation){
                     print("left")
+                        directionHandling = -1
                         isTouching = true
                         movingLeft = true
+                        xVelocity = -200
                     }
-        }
+            }
         
             override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
                 isTouching = false
                 movingRight = false
                 movingLeft = false
+                xVelocity = 0
             }
         
     
             override func update(_ currentTime: TimeInterval) {
                 let player = childNode(withName: "zombie") as! SKSpriteNode
+                player.xScale = fabs(player.xScale) * directionHandling
+                let rate: CGFloat = 0.5
+                let playerVelocity = player.physicsBody?.velocity.dx
+                let relativeVelocity: CGVector = CGVector(dx:xVelocity - playerVelocity!, dy: 0)
                 
                 if isTouching && movingRight && !player .hasActions() {
-                    print(player .hasActions())
-                    player.run(walkAction)
+                    player.physicsBody?.velocity = CGVector(dx: playerVelocity! + relativeVelocity.dx*rate, dy: 0)
+                    player.run(textureArray)
                
-                } else if isTouching && movingLeft{
-                    player.run(moveLeft)
+                } else if isTouching && movingLeft && !player .hasActions() {
+                     player.physicsBody?.velocity = CGVector(dx: playerVelocity! + relativeVelocity.dx*rate, dy: 0)
+                    player.run(textureArray)
                 }
     }
 
