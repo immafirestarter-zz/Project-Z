@@ -78,7 +78,6 @@ class GameScene: SKScene {
         }
         
             override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-                print("stopped touching")
                 isTouching = false
                 movingRight = false
                 movingLeft = false
@@ -95,7 +94,12 @@ class GameScene: SKScene {
                     
                 } else if isTouching && movingLeft && !thePlayer .hasActions(){
                     thePlayer.walk(moveVelocity:-200)
-        }
+                    
+                } else if !isTouching {
+                    let zombieTexture = SKTexture(imageNamed: "zombie_stand")
+                    var textureIdle = SKAction.setTexture(zombieTexture)
+                    thePlayer.run(textureIdle)
+                }
     }
 
 }
