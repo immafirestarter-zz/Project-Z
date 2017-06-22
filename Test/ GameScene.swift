@@ -91,7 +91,7 @@ class GameScene: SKScene {
                 if isTouching && movingRight && !thePlayer .hasActions(){
                     thePlayer.walk(moveVelocity:200)
                     
-                } else if isTouching && movingLeft{
+                } else if isTouching && movingLeft && !thePlayer .hasActions(){
                     thePlayer.walk(moveVelocity:-200)
         }
     }
