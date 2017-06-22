@@ -27,7 +27,7 @@ class Player: SKSpriteNode {
         body.affectedByGravity = true
         body.allowsRotation = false
         
-        self.xScale = 1
+//        self.xScale = 1
         
 //        setUpJump()
         setUpRunRight()
@@ -56,8 +56,7 @@ class Player: SKSpriteNode {
         atlasTextures.append(texture1)
         atlasTextures.append(texture2)
         
-        let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10, resize:true,
-                                              restore:false)
+        let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
         walkAction = SKAction.repeatForever(atlasAnimation)
         
         

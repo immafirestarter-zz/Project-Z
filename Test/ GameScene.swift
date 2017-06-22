@@ -43,7 +43,9 @@ class GameScene: SKScene {
         if (self.childNode(withName: "Player") != nil){
             thePlayer = self.childNode(withName: "Player") as! Player
             thePlayer.setUpPlayer()
+            thePlayer.run(walkAction)
         }
+        
         jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
         walkAction = SKAction.sequence([halfStep, fullStep, moveRight])
         walkForever = SKAction.repeatForever(walkAction)
