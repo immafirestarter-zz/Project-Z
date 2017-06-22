@@ -60,6 +60,10 @@ class Player: SKSpriteNode {
         self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
     }
     
+    func jumpDirectionally(directionForce: CGFloat){
+        self.physicsBody?.applyImpulse(CGVector(dx: directionForce, dy: 300))
+    }
+    
     func walk(moveVelocity: CGFloat) {
         let rate: CGFloat = 0.5
         self.xVelocity = moveVelocity

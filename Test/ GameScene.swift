@@ -23,8 +23,8 @@ class GameScene: SKScene {
     let jump = SKAction.moveBy(x: 0, y: 100, duration: 0.2)
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
     var jumpAction = SKAction()
-    var isTouching = false
-    var movingRight = false
+    var isTouching = true
+    var movingRight = true
     var movingLeft = false
     var xVelocity: CGFloat = 0
     var directionHandling: CGFloat = 1
@@ -68,7 +68,13 @@ class GameScene: SKScene {
         let velocityCheck: CGFloat = -20.0
         
 
-        if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
+        
+        
+        
+        if movingRight == true && buttonJump.contains(touchlocation){
+            thePlayer.jumpDirectionally(directionForce: 200)
+            
+        } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             print("im supposed to be jumping")
             thePlayer.jump()
                     } else if buttonRight.contains(touchlocation){
@@ -84,7 +90,10 @@ class GameScene: SKScene {
                         isTouching = true
                         movingLeft = true
                         xVelocity = -200
-                    }
+        }
+        
+       
+            
         }
         
             override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -104,7 +113,7 @@ class GameScene: SKScene {
                 thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
                 
                 if isTouching && movingRight && !thePlayer .hasActions(){
-                    thePlayer.walk(moveVelocity:xVelocity)
+                    thePlayer.walk(moveVelocity:200)
                     
                 } else if isTouching && movingLeft && !thePlayer .hasActions(){
                     thePlayer.walk(moveVelocity:xVelocity)
