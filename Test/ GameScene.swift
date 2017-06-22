@@ -121,7 +121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let scene = GameScene(fileNamed: levelName) {
             
-            self.view?.presentScene(scene, transition: SKTransition.fade(withDuration: 1))
+            self.view?.presentScene(scene, transition: SKTransition.fade(withDuration: 0.1))
         }
         
         
