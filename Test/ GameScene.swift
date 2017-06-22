@@ -8,6 +8,11 @@
 import SpriteKit
 import GameplayKit
 
+enum BodyType:UInt32 {
+    case player = 1
+    case door = 2
+}
+
 class GameScene: SKScene {
     
     var thePlayer:Player = Player()
@@ -66,6 +71,10 @@ class GameScene: SKScene {
         if (self.childNode(withName: "rightButton") != nil){
             rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
             
+        }
+        
+        if let theDoor:Door = node as? Door {
+            theDoor.setUpDoor()
         }
         
         jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
