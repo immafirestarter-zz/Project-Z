@@ -60,17 +60,15 @@ class GameScene: SKScene {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (self.childNode(withName: "Player") != nil){
-            thePlayer = self.childNode(withName: "Player") as! Player
-        }
-
         let touch = touches.first
         let touchlocation = touch!.location(in: self)
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
         let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
+        let velocityCheck: CGFloat = -20.0
+        
 
-        if buttonJump.contains(touchlocation) && thePlayer.physicsBody?.velocity.dy == 0 {
+        if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             print("im supposed to be jumping")
             thePlayer.jump()
                     } else if buttonRight.contains(touchlocation){

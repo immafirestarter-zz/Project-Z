@@ -29,6 +29,7 @@ class Player: SKSpriteNode {
         body.affectedByGravity = true
         body.allowsRotation = false
         body.isDynamic = true
+        body.restitution = 0
     }
     
     
@@ -56,7 +57,7 @@ class Player: SKSpriteNode {
         let jump2Anime = SKAction.setTexture(jump2)
         let jumpAction = SKAction.sequence([jump1Anime, jump2Anime])
         self.run(jumpAction)
-        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 500))
+        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
     }
     
     func walk(moveVelocity: CGFloat) {
