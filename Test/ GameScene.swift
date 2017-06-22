@@ -23,9 +23,9 @@ class GameScene: SKScene {
     let jump = SKAction.moveBy(x: 0, y: 100, duration: 0.2)
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
     var jumpAction = SKAction()
-    var isTouching = true
+    var isTouching = false
     var movingRight = false
-    var movingLeft = true
+    var movingLeft = false
     var xVelocity: CGFloat = 0
     var directionHandling: CGFloat = 1
     
@@ -67,10 +67,6 @@ class GameScene: SKScene {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
         let velocityCheck: CGFloat = -20.0
         
-
-        
-        
-        
         if movingRight == true && buttonJump.contains(touchlocation){
             thePlayer.jumpDirectionally(directionForce: 500)
             
@@ -104,7 +100,7 @@ class GameScene: SKScene {
                 movingRight = false
                 movingLeft = false
                 thePlayer.stopMoving()
-            }
+        }
         
     
             override func update(_ currentTime: TimeInterval) {
@@ -116,10 +112,10 @@ class GameScene: SKScene {
                 thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
                 
                 if isTouching && movingRight && !thePlayer .hasActions(){
-                    thePlayer.walk(moveVelocity:200)
+                    thePlayer.walk(moveVelocity:xVelocity)
                     
                 } else if isTouching && movingLeft && !thePlayer .hasActions(){
-                    thePlayer.walk(moveVelocity:-200)
+                    thePlayer.walk(moveVelocity:xVelocity)
                     
                 } else if !isTouching {
                    thePlayer.setUpIdle()
