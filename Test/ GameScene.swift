@@ -88,6 +88,8 @@ class GameScene: SKScene {
         
     
             override func update(_ currentTime: TimeInterval) {
+                thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
+                
                 if isTouching && movingRight && !thePlayer .hasActions(){
                     thePlayer.walk(moveVelocity:200)
                     
