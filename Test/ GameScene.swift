@@ -60,40 +60,47 @@ class GameScene: SKScene {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (self.childNode(withName: "Player") != nil){
-            thePlayer = self.childNode(withName: "Player") as! Player
-        }
-
         let touch = touches.first
         let touchlocation = touch!.location(in: self)
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
         let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
-
-        if buttonJump.contains(touchlocation) && thePlayer.physicsBody?.velocity.dy == 0 {
-            thePlayer.run(jumpAction)
-                    } else if buttonRight.contains(touchlocation){
-                    print("right")
-                        directionHandling = 1
-                        isTouching = true
-                        movingRight = true
-                        xVelocity = 200
+        let velocityCheck: CGFloat = -20.0
+        
+        if movingRight == true && buttonJump.contains(touchlocation){
+            thePlayer.jumpDirectionally(directionForce: 500)
             
-                    } else if buttonLeft.contains(touchlocation){
-                    print("left")
-                        directionHandling = -1
-                        isTouching = true
-                        movingLeft = true
-                        xVelocity = -200
-                    }
+        } else if movingLeft == true && buttonJump.contains(touchlocation){
+            thePlayer.jumpDirectionally(directionForce: -500)
+            
+        } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
+            print("im supposed to be jumping")
+            thePlayer.jump()
+        } else if buttonRight.contains(touchlocation){
+            print("right")
+            directionHandling = 1
+            isTouching = true
+            movingRight = true
+            xVelocity = 200
+            
+        } else if buttonLeft.contains(touchlocation){
+            print("left")
+            directionHandling = -1
+            isTouching = true
+            movingLeft = true
+            xVelocity = -200
         }
+        
+       
+            
+      }
         
             override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
                 isTouching = false
                 movingRight = false
                 movingLeft = false
                 thePlayer.stopMoving()
-            }
+        }
         
     
             override func update(_ currentTime: TimeInterval) {
@@ -112,7 +119,7 @@ class GameScene: SKScene {
                     
                 } else if !isTouching {
                    thePlayer.setUpIdle()
-                }
+            }
        }
 
 }

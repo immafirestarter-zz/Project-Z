@@ -29,6 +29,7 @@ class Player: SKSpriteNode {
         body.affectedByGravity = true
         body.allowsRotation = false
         body.isDynamic = true
+        body.restitution = 0
     }
     
     
@@ -47,6 +48,20 @@ class Player: SKSpriteNode {
         let zombieTexture = SKTexture(imageNamed: "zombie_stand")
         textureIdle = SKAction.setTexture(zombieTexture)
         self.run(textureIdle!)
+    }
+    
+    func jump() {
+        let jump1 = SKTexture(imageNamed: "jump1")
+        let jump2 = SKTexture(imageNamed: "jump2")
+        let jump1Anime = SKAction.setTexture(jump1)
+        let jump2Anime = SKAction.setTexture(jump2)
+        let jumpAction = SKAction.sequence([jump1Anime, jump2Anime])
+        self.run(jumpAction)
+        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
+    }
+    
+    func jumpDirectionally(directionForce: CGFloat){
+        self.physicsBody?.applyImpulse(CGVector(dx: directionForce, dy: 500))
     }
     
     func walk(moveVelocity: CGFloat) {
