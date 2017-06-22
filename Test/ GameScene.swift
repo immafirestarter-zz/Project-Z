@@ -41,7 +41,6 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        print("ive moved here")
         jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
         let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         borderBody.friction = 0
