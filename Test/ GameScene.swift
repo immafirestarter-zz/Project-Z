@@ -24,8 +24,8 @@ class GameScene: SKScene {
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
     var jumpAction = SKAction()
     var isTouching = true
-    var movingRight = true
-    var movingLeft = false
+    var movingRight = false
+    var movingLeft = true
     var xVelocity: CGFloat = 0
     var directionHandling: CGFloat = 1
     
@@ -72,29 +72,32 @@ class GameScene: SKScene {
         
         
         if movingRight == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: 200)
+            thePlayer.jumpDirectionally(directionForce: 500)
+            
+        } else if movingLeft == true && buttonJump.contains(touchlocation){
+            thePlayer.jumpDirectionally(directionForce: -500)
             
         } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             print("im supposed to be jumping")
             thePlayer.jump()
-                    } else if buttonRight.contains(touchlocation){
-                    print("right")
-                        directionHandling = 1
-                        isTouching = true
-                        movingRight = true
-                        xVelocity = 200
+        } else if buttonRight.contains(touchlocation){
+            print("right")
+            directionHandling = 1
+            isTouching = true
+            movingRight = true
+            xVelocity = 200
             
-                    } else if buttonLeft.contains(touchlocation){
-                    print("left")
-                        directionHandling = -1
-                        isTouching = true
-                        movingLeft = true
-                        xVelocity = -200
+        } else if buttonLeft.contains(touchlocation){
+            print("left")
+            directionHandling = -1
+            isTouching = true
+            movingLeft = true
+            xVelocity = -200
         }
         
        
             
-        }
+      }
         
             override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
                 isTouching = false
@@ -116,11 +119,11 @@ class GameScene: SKScene {
                     thePlayer.walk(moveVelocity:200)
                     
                 } else if isTouching && movingLeft && !thePlayer .hasActions(){
-                    thePlayer.walk(moveVelocity:xVelocity)
+                    thePlayer.walk(moveVelocity:-200)
                     
                 } else if !isTouching {
                    thePlayer.setUpIdle()
-                }
+            }
        }
 
 }
