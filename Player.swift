@@ -14,6 +14,7 @@ class Player: SKSpriteNode {
     var jumpAction:SKAction?
     var walkAction:SKAction?
     var atlas:SKTextureAtlas?
+    var textureIdle:SKAction?
     var xVelocity:CGFloat = 0
     
 
@@ -33,6 +34,7 @@ class Player: SKSpriteNode {
         
 //        setUpJump()
         setUpWalk()
+        setUpIdle()
     
   
         
@@ -61,9 +63,11 @@ class Player: SKSpriteNode {
         let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
         walkAction = SKAction.repeatForever(atlasAnimation)
         
-        
-        
-        
+    }
+    
+    func setUpIdle() {
+        let zombieTexture = SKTexture(imageNamed: "zombie_stand")
+        textureIdle = SKAction.setTexture(zombieTexture)
     }
     
     func walk(moveVelocity: CGFloat) {
@@ -76,7 +80,7 @@ class Player: SKSpriteNode {
     }
     func stopMoving(){
         self.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        
+        self.run(textureIdle!)
     }
 
 }
