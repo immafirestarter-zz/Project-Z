@@ -82,7 +82,6 @@ class GameScene: SKScene {
                 movingRight = false
                 movingLeft = false
                 thePlayer.stopMoving()
-                thePlayer.setUpIdle()
             }
         
     
@@ -96,9 +95,7 @@ class GameScene: SKScene {
                     thePlayer.walk(moveVelocity:-200)
                     
                 } else if !isTouching {
-                    let zombieTexture = SKTexture(imageNamed: "zombie_stand")
-                    var textureIdle = SKAction.setTexture(zombieTexture)
-                    thePlayer.run(textureIdle)
+                   thePlayer.setUpIdle()
                 }
     }
 
