@@ -21,18 +21,14 @@ class Player: SKSpriteNode {
     func setUpPlayer() {
         
         
-        
         let imageTexture = SKTexture(imageNamed: "zombie_stand")
         
         let body:SKPhysicsBody = SKPhysicsBody(texture: imageTexture,
                                                size: imageTexture.size())
-        
         self.physicsBody = body
         body.affectedByGravity = true
         body.allowsRotation = false
         body.isDynamic = true
-        setUpWalk()
-        setUpIdle()
     }
     
     
@@ -43,15 +39,14 @@ class Player: SKSpriteNode {
         let texture2:SKTexture = atlas!.textureNamed("zombie_walk2")
         atlasTextures.append(texture1)
         atlasTextures.append(texture2)
-        
         let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
-        walkAction = SKAction.repeatForever(atlasAnimation)
-        
+        self.run(atlasAnimation)
     }
     
     func setUpIdle() {
         let zombieTexture = SKTexture(imageNamed: "zombie_stand")
         textureIdle = SKAction.setTexture(zombieTexture)
+        self.run(textureIdle!)
     }
     
     func walk(moveVelocity: CGFloat) {
@@ -60,11 +55,10 @@ class Player: SKSpriteNode {
         let playerVelocity = self.physicsBody?.velocity.dx
         let relativeVelocity:CGVector = CGVector(dx: self.xVelocity - playerVelocity!, dy: 0)
         self.physicsBody?.velocity = CGVector(dx: playerVelocity! + relativeVelocity.dx * rate, dy: 0)
-        self.run(walkAction!)
+        setUpWalk()
     }
     func stopMoving(){
         self.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        self.run(textureIdle!)
     }
 
 }

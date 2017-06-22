@@ -60,8 +60,6 @@ class GameScene: SKScene {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
 
         if buttonJump.contains(touchlocation) && thePlayer.physicsBody?.velocity.dy == 0 {
-            print("ive been touched")
-            print(thePlayer.physicsBody?.velocity.dy)
             thePlayer.run(jumpAction)
                     } else if buttonRight.contains(touchlocation){
                     print("right")
@@ -85,11 +83,12 @@ class GameScene: SKScene {
                 movingRight = false
                 movingLeft = false
                 thePlayer.stopMoving()
+                thePlayer.setUpIdle()
             }
         
     
             override func update(_ currentTime: TimeInterval) {
-                if isTouching && movingRight{
+                if isTouching && movingRight && !thePlayer .hasActions(){
                     thePlayer.walk(moveVelocity:200)
                     
                 } else if isTouching && movingLeft{
