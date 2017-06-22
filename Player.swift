@@ -31,26 +31,10 @@ class Player: SKSpriteNode {
         body.affectedByGravity = true
         body.allowsRotation = false
         body.isDynamic = true
-        
-//        setUpJump()
         setUpWalk()
         setUpIdle()
-    
-  
-        
     }
     
-//    func setUpJump() {
-//        atlas = SKTextureAtlas(named:"Jump")
-//        var array = [String]()
-//        
-//        for i in (0...2) {
-//            let nameString = String(format:"jump%i", i)
-//            array.append(nameString)
-//        }
-    
-
-//    }
     
     func setUpWalk() {
         atlas = SKTextureAtlas(named: "Walk")

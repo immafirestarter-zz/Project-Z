@@ -23,19 +23,12 @@ class GameScene: SKScene {
 
     
     let jump = SKAction.moveBy(x: 0, y: 100, duration: 0.2)
-//    let moveRight = SKAction.moveBy(x: 3, y: 0, duration: 0.1)
-//    let moveLeft = SKAction.moveBy(x: -3, y: 0, duration: 0.1)
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
-//    let standTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_stand"))
-//    let halfStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk1"))
-//    let fullStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk2"))
     var jumpAction = SKAction()
-//    var walkAction = SKAction()
-//    var walkForever = SKAction()
+
     var isTouching = false
     var movingRight = false
     var movingLeft = false
-//    var animatedWalkRight = SKAction()
     var xVelocity: CGFloat = 0
     var directionHandling: CGFloat = 1
     
@@ -47,12 +40,8 @@ class GameScene: SKScene {
         if (self.childNode(withName: "Player") != nil){
             thePlayer = self.childNode(withName: "Player") as! Player
             thePlayer.setUpPlayer()
-//            thePlayer.run(walkAction)
         }
-        
-//        jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
-//        walkAction = SKAction.sequence([halfStep, fullStep, moveRight])
-//        walkForever = SKAction.repeatForever(walkAction)
+
         let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         borderBody.friction = 0
         self.physicsBody = borderBody
@@ -105,7 +94,7 @@ class GameScene: SKScene {
                     
                 } else if isTouching && movingLeft{
                     thePlayer.walk(moveVelocity:-200)
-                }
+        }
     }
 
 }
