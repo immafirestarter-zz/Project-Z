@@ -71,7 +71,8 @@ class GameScene: SKScene {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
 
         if buttonJump.contains(touchlocation) && thePlayer.physicsBody?.velocity.dy == 0 {
-            thePlayer.run(jumpAction)
+            print("im supposed to be jumping")
+            thePlayer.jump()
                     } else if buttonRight.contains(touchlocation){
                     print("right")
                         directionHandling = 1

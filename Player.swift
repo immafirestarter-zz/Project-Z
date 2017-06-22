@@ -50,7 +50,13 @@ class Player: SKSpriteNode {
     }
     
     func jump() {
-        
+        let jump1 = SKTexture(imageNamed: "jump1")
+        let jump2 = SKTexture(imageNamed: "jump2")
+        let jump1Anime = SKAction.setTexture(jump1)
+        let jump2Anime = SKAction.setTexture(jump2)
+        let jumpAction = SKAction.sequence([jump1Anime, jump2Anime])
+        self.run(jumpAction)
+        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 500))
     }
     
     func walk(moveVelocity: CGFloat) {
