@@ -11,6 +11,12 @@ import GameplayKit
 class GameScene: SKScene {
     
     var thePlayer:Player = Player()
+    var button:SKSpriteNode = SKSpriteNode()
+    var leftButton:SKSpriteNode = SKSpriteNode()
+    var rightButton:SKSpriteNode = SKSpriteNode()
+    var theCamera:SKCameraNode = SKCameraNode()
+    
+    
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
@@ -32,10 +38,24 @@ class GameScene: SKScene {
             thePlayer = self.childNode(withName: "Player") as! Player
             thePlayer.setUpPlayer()
         }
-
-        let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        borderBody.friction = 0
-        self.physicsBody = borderBody
+        if (self.childNode(withName: "TheCamera") != nil){
+            theCamera = self.childNode(withName: "TheCamera") as! SKCameraNode
+            self.camera = theCamera
+            
+            
+        }
+        if (self.childNode(withName: "button") != nil){
+            button = self.childNode(withName: "button") as! SKSpriteNode
+            
+        }
+        if (self.childNode(withName: "leftButton") != nil){
+            leftButton = self.childNode(withName: "leftButton") as! SKSpriteNode
+            
+        }
+        if (self.childNode(withName: "rightButton") != nil){
+            rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
+            
+        }
     }
 
     
@@ -77,6 +97,11 @@ class GameScene: SKScene {
         
     
             override func update(_ currentTime: TimeInterval) {
+                theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
+                button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
+                leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
+                rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
+                
                 thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
                 
                 if isTouching && movingRight && !thePlayer .hasActions(){
