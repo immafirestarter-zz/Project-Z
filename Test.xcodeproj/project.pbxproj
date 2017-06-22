@@ -15,6 +15,12 @@
 		269E3BA11EFA7D65006B919D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269E3B9F1EFA7D65006B919D /* LaunchScreen.storyboard */; };
 		269E3BAC1EFA7D65006B919D /* TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E3BAB1EFA7D65006B919D /* TestTests.swift */; };
 		269E3BB71EFA7D66006B919D /* TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E3BB61EFA7D66006B919D /* TestUITests.swift */; };
+		26BC2ABD1EFBCFFD00C6066F /* Ground2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */; };
+		26BC2ABE1EFBCFFD00C6066F /* Ground2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */; };
+		26BC2ABF1EFBCFFD00C6066F /* Ground2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */; };
+		26BC2AC11EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
+		26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
+		26BC2AC31EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
 		502504BA1EFB11F0005AA3D0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502504B91EFB11F0005AA3D0 /* Player.swift */; };
 		502504BC1EFB2047005AA3D0 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 502504BB1EFB2047005AA3D0 /* Jump.atlas */; };
 		502504C01EFB209B005AA3D0 /* Walk.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 502504BF1EFB209B005AA3D0 /* Walk.atlas */; };
@@ -54,6 +60,8 @@
 		269E3BB21EFA7D65006B919D /* TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E3BB61EFA7D66006B919D /* TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUITests.swift; sourceTree = "<group>"; };
 		269E3BB81EFA7D66006B919D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ground2.sks; sourceTree = "<group>"; };
+		26BC2AC01EFBD00A00C6066F /* GroundTile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GroundTile.sks; sourceTree = "<group>"; };
 		502504B91EFB11F0005AA3D0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = ../Player.swift; sourceTree = "<group>"; };
 		502504BB1EFB2047005AA3D0 /* Jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Jump.atlas; path = ../Jump.atlas; sourceTree = "<group>"; };
 		502504BF1EFB209B005AA3D0 /* Walk.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Walk.atlas; sourceTree = "<group>"; };
@@ -114,7 +122,9 @@
 				269E3B961EFA7D65006B919D /*  GameScene.swift */,
 				50E7F7341EFACBF9005B4513 /* GameScene.sks */,
 				502504B91EFB11F0005AA3D0 /* Player.swift */,
+				26BC2AC01EFBD00A00C6066F /* GroundTile.sks */,
 				269E3B901EFA7D65006B919D /* AppDelegate.swift */,
+				26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */,
 				269E3B941EFA7D65006B919D /* Actions.sks */,
 				269E3B981EFA7D65006B919D /* GameViewController.swift */,
 				50E7F7361EFACC52005B4513 /* Assets.xcassets */,
@@ -211,6 +221,7 @@
 				TargetAttributes = {
 					269E3B8C1EFA7D65006B919D = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = DJBH7J95ZQ;
 						ProvisioningStyle = Automatic;
 					};
 					269E3BA61EFA7D65006B919D = {
@@ -253,9 +264,11 @@
 				269E3B9C1EFA7D65006B919D /* Main.storyboard in Resources */,
 				502504BC1EFB2047005AA3D0 /* Jump.atlas in Resources */,
 				50E7F7351EFACBF9005B4513 /* GameScene.sks in Resources */,
+				26BC2ABD1EFBCFFD00C6066F /* Ground2.sks in Resources */,
 				269E3BA11EFA7D65006B919D /* LaunchScreen.storyboard in Resources */,
 				502504C01EFB209B005AA3D0 /* Walk.atlas in Resources */,
 				269E3B951EFA7D65006B919D /* Actions.sks in Resources */,
+				26BC2AC11EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				50E7F7371EFACC52005B4513 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +277,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */,
+				26BC2ABE1EFBCFFD00C6066F /* Ground2.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +286,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26BC2AC31EFBD00A00C6066F /* GroundTile.sks in Resources */,
+				26BC2ABF1EFBCFFD00C6066F /* Ground2.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,11 +455,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DJBH7J95ZQ;
 				INFOPLIST_FILE = Test/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SRM-Industries.Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -451,11 +471,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DJBH7J95ZQ;
 				INFOPLIST_FILE = Test/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SRM-Industries.Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
