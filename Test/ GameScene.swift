@@ -73,9 +73,7 @@ class GameScene: SKScene {
             
         }
         
-        if let theDoor:Door = node as? Door {
-            theDoor.setUpDoor()
-        }
+     
         
         jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
         walkAction = SKAction.sequence([halfStep, fullStep, moveRight])
