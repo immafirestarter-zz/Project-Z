@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 class Door: SKSpriteNode {
+    
     var goesWhere:String = ""
     
     func setUpDoor() {
@@ -19,6 +20,6 @@ class Door: SKSpriteNode {
         self.physicsBody?.categoryBitMask = BodyType.door.rawValue
         self.physicsBody?.collisionBitMask = 0
         self.physicsBody?.contactTestBitMask = BodyType.player.rawValue
-        
     }
+    
 }

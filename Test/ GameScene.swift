@@ -13,7 +13,7 @@ enum BodyType:UInt32 {
     case door = 2
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var thePlayer:Player = Player()
     var button:SKSpriteNode = SKSpriteNode()
@@ -73,7 +73,12 @@ class GameScene: SKScene {
             
         }
         
-     
+        for node in self.children {
+        
+        if let theDoor:Door = node as? Door {
+            theDoor.setUpDoor()
+        }
+        }
         
         jumpAction = SKAction.sequence([jumpTexture, jump, standTexture])
         walkAction = SKAction.sequence([halfStep, fullStep, moveRight])
@@ -138,7 +143,35 @@ class GameScene: SKScene {
                     thePlayer.run(moveLeft)
                 }
     }
-
+    
+    func didBegininContact(contact: SKPhysicsContact) {
+        
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue) {
+            
+            if let theDoor = contact.bodyB.node as? Door {
+                
+                loadAnotherLevel (levelName: theDoor.goesWhere)
+        
+        }
+        
+        } else if ( contact.bodyA.categoryBitMask == BodyType.door.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            
+            if let theDoor = contact.bodyA.node as? Door {
+                
+                loadAnotherLevel (levelName: theDoor.goesWhere)
+                
+            }
+        }
+    }
+    
+    func loadAnotherLevel( levelName:String) {
+    
+        if let scene = GameScene(fileNamed: levelName) {
+            
+            self.view?.presentScene(scene, transition: SKTransition.fade(withDuration: 1))
+        }
+    
+    
 }
 
-
+}
