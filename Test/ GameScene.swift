@@ -11,21 +11,12 @@ import GameplayKit
 class GameScene: SKScene {
     
     var thePlayer:Player = Player()
-
-    
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
-    
     private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    
-
-    
     let jump = SKAction.moveBy(x: 0, y: 100, duration: 0.2)
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
     var jumpAction = SKAction()
-
     var isTouching = false
     var movingRight = false
     var movingLeft = false
@@ -89,15 +80,15 @@ class GameScene: SKScene {
                 thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
                 
                 if isTouching && movingRight && !thePlayer .hasActions(){
-                    thePlayer.walk(moveVelocity:200)
+                    thePlayer.walk(moveVelocity:xVelocity)
                     
                 } else if isTouching && movingLeft && !thePlayer .hasActions(){
-                    thePlayer.walk(moveVelocity:-200)
+                    thePlayer.walk(moveVelocity:xVelocity)
                     
                 } else if !isTouching {
                    thePlayer.setUpIdle()
                 }
-    }
+       }
 
 }
 
