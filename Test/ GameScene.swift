@@ -8,7 +8,12 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+enum BodyType:UInt32 {
+    case player = 1
+    case door = 2
+}
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var thePlayer:Player = Player()
     var button:SKSpriteNode = SKSpriteNode()
@@ -34,6 +39,9 @@ class GameScene: SKScene {
 //    }
     
     override func didMove(to view: SKView) {
+       
+        physicsWorld.contactDelegate = self
+        
         if (self.childNode(withName: "Player") != nil){
             thePlayer = self.childNode(withName: "Player") as! Player
             thePlayer.setUpPlayer()
@@ -56,6 +64,50 @@ class GameScene: SKScene {
             rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
             
         }
+        
+        for node in self.children {
+        
+        if let theDoor:Door = node as? Door {
+            theDoor.setUpDoor()
+        }
+        }
+
+    }
+    
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue) {
+            
+            print("Player has touched door")
+            
+            if let theDoor = contact.bodyB.node as? Door {
+                
+                loadAnotherLevel (levelName: theDoor.goesWhere)
+                
+            }
+            
+        } else if ( contact.bodyA.categoryBitMask == BodyType.door.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            
+            print("Door has been touched by player")
+            
+            if let theDoor = contact.bodyA.node as? Door {
+                
+                loadAnotherLevel (levelName: theDoor.goesWhere)
+                
+            }
+        }
+
+    }
+    
+ 
+    func loadAnotherLevel( levelName:String) {
+        
+        if let scene = GameScene(fileNamed: levelName) {
+            
+            self.view?.presentScene(scene, transition: SKTransition.fade(withDuration: 0.1))
+        }
+        
+        
     }
 
     
@@ -122,6 +174,5 @@ class GameScene: SKScene {
             }
        }
 
+
 }
-
-

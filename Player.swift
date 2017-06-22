@@ -26,10 +26,16 @@ class Player: SKSpriteNode {
         let body:SKPhysicsBody = SKPhysicsBody(texture: imageTexture,
                                                size: imageTexture.size())
         self.physicsBody = body
+        
+        body.isDynamic = true
         body.affectedByGravity = true
         body.allowsRotation = false
-        body.isDynamic = true
+        
         body.restitution = 0
+        
+        body.categoryBitMask = BodyType.player.rawValue
+        body.contactTestBitMask = BodyType.door.rawValue
+        
     }
     
     

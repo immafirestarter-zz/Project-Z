@@ -21,6 +21,12 @@
 		26BC2AC11EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
 		26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
 		26BC2AC31EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
+		26C5C5011EFBF3CC00D50E42 /* levelTwo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26C5C5001EFBF3CC00D50E42 /* levelTwo.sks */; };
+		26C5C5021EFBF3CC00D50E42 /* levelTwo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26C5C5001EFBF3CC00D50E42 /* levelTwo.sks */; };
+		26C5C5031EFBF3CC00D50E42 /* levelTwo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26C5C5001EFBF3CC00D50E42 /* levelTwo.sks */; };
+		26C5C5051EFBF53D00D50E42 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C5C5041EFBF53D00D50E42 /* Door.swift */; };
+		26C5C5061EFBF53D00D50E42 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C5C5041EFBF53D00D50E42 /* Door.swift */; };
+		26C5C5071EFBF53D00D50E42 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C5C5041EFBF53D00D50E42 /* Door.swift */; };
 		502504BA1EFB11F0005AA3D0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502504B91EFB11F0005AA3D0 /* Player.swift */; };
 		502504BC1EFB2047005AA3D0 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 502504BB1EFB2047005AA3D0 /* Jump.atlas */; };
 		502504C01EFB209B005AA3D0 /* Walk.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 502504BF1EFB209B005AA3D0 /* Walk.atlas */; };
@@ -62,6 +68,8 @@
 		269E3BB81EFA7D66006B919D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ground2.sks; sourceTree = "<group>"; };
 		26BC2AC01EFBD00A00C6066F /* GroundTile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GroundTile.sks; sourceTree = "<group>"; };
+		26C5C5001EFBF3CC00D50E42 /* levelTwo.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = levelTwo.sks; sourceTree = "<group>"; };
+		26C5C5041EFBF53D00D50E42 /* Door.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
 		502504B91EFB11F0005AA3D0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = ../Player.swift; sourceTree = "<group>"; };
 		502504BB1EFB2047005AA3D0 /* Jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Jump.atlas; path = ../Jump.atlas; sourceTree = "<group>"; };
 		502504BF1EFB209B005AA3D0 /* Walk.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Walk.atlas; sourceTree = "<group>"; };
@@ -120,7 +128,9 @@
 				502504BB1EFB2047005AA3D0 /* Jump.atlas */,
 				502504BF1EFB209B005AA3D0 /* Walk.atlas */,
 				269E3B961EFA7D65006B919D /*  GameScene.swift */,
+				26C5C5001EFBF3CC00D50E42 /* levelTwo.sks */,
 				50E7F7341EFACBF9005B4513 /* GameScene.sks */,
+				26C5C5041EFBF53D00D50E42 /* Door.swift */,
 				502504B91EFB11F0005AA3D0 /* Player.swift */,
 				26BC2AC01EFBD00A00C6066F /* GroundTile.sks */,
 				269E3B901EFA7D65006B919D /* AppDelegate.swift */,
@@ -262,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				269E3B9C1EFA7D65006B919D /* Main.storyboard in Resources */,
+				26C5C5011EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
 				502504BC1EFB2047005AA3D0 /* Jump.atlas in Resources */,
 				50E7F7351EFACBF9005B4513 /* GameScene.sks in Resources */,
 				26BC2ABD1EFBCFFD00C6066F /* Ground2.sks in Resources */,
@@ -279,6 +290,7 @@
 			files = (
 				26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				26BC2ABE1EFBCFFD00C6066F /* Ground2.sks in Resources */,
+				26C5C5021EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +300,7 @@
 			files = (
 				26BC2AC31EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				26BC2ABF1EFBCFFD00C6066F /* Ground2.sks in Resources */,
+				26C5C5031EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +314,7 @@
 				502504BA1EFB11F0005AA3D0 /* Player.swift in Sources */,
 				269E3B971EFA7D65006B919D /*  GameScene.swift in Sources */,
 				269E3B991EFA7D65006B919D /* GameViewController.swift in Sources */,
+				26C5C5051EFBF53D00D50E42 /* Door.swift in Sources */,
 				269E3B911EFA7D65006B919D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				269E3BAC1EFA7D65006B919D /* TestTests.swift in Sources */,
+				26C5C5061EFBF53D00D50E42 /* Door.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				269E3BB71EFA7D66006B919D /* TestUITests.swift in Sources */,
+				26C5C5071EFBF53D00D50E42 /* Door.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
