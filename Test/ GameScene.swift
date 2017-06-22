@@ -24,29 +24,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
-    
     private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    
     let jump = SKAction.moveBy(x: 0, y: 100, duration: 0.2)
-    let moveRight = SKAction.moveBy(x: 3, y: 0, duration: 0.1)
-    let moveLeft = SKAction.moveBy(x: -3, y: 0, duration: 0.1)
     let jumpTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_jump"))
-    let standTexture = SKAction.setTexture(SKTexture(imageNamed: "zombie_stand"))
-    let halfStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk1"))
-    let fullStep = SKAction.setTexture(SKTexture(imageNamed: "zombie_walk2"))
     var jumpAction = SKAction()
-    var walkAction = SKAction()
-    var walkForever = SKAction()
     var isTouching = false
     var movingRight = false
     var movingLeft = false
-    var animatedWalkRight = SKAction()
+    var xVelocity: CGFloat = 0
+    var directionHandling: CGFloat = 1
     
-    override func sceneDidLoad() {
-        
-    }
+//    override func sceneDidLoad() {
+//        
+//    }
     
     override func didMove(to view: SKView) {
        
@@ -55,7 +45,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (self.childNode(withName: "Player") != nil){
             thePlayer = self.childNode(withName: "Player") as! Player
             thePlayer.setUpPlayer()
-            thePlayer.run(walkAction)
         }
         if (self.childNode(withName: "TheCamera") != nil){
             theCamera = self.childNode(withName: "TheCamera") as! SKCameraNode
@@ -129,59 +118,67 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (self.childNode(withName: "Player") != nil){
-            thePlayer = self.childNode(withName: "Player") as! Player
-        }
-
         let touch = touches.first
         let touchlocation = touch!.location(in: self)
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
         let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
-
-        if buttonJump.contains(touchlocation) {
-            print("ive been touched")
-            print(thePlayer.physicsBody?.velocity.dy)
-            thePlayer.run(jumpAction)
-                    } else if buttonRight.contains(touchlocation){
-                    print("right")
-                        isTouching = true
-                        movingRight = true
-                    } else if buttonLeft.contains(touchlocation){
-                    print("left")
-                        isTouching = true
-                        movingLeft = true
-                    }
+        let velocityCheck: CGFloat = -20.0
+        
+        if movingRight == true && buttonJump.contains(touchlocation){
+            thePlayer.jumpDirectionally(directionForce: 500)
+            
+        } else if movingLeft == true && buttonJump.contains(touchlocation){
+            thePlayer.jumpDirectionally(directionForce: -500)
+            
+        } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
+            print("im supposed to be jumping")
+            thePlayer.jump()
+        } else if buttonRight.contains(touchlocation){
+            print("right")
+            directionHandling = 1
+            isTouching = true
+            movingRight = true
+            xVelocity = 200
+            
+        } else if buttonLeft.contains(touchlocation){
+            print("left")
+            directionHandling = -1
+            isTouching = true
+            movingLeft = true
+            xVelocity = -200
         }
+        
+       
+            
+      }
         
             override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
                 isTouching = false
                 movingRight = false
                 movingLeft = false
-            }
+                thePlayer.stopMoving()
+        }
         
     
             override func update(_ currentTime: TimeInterval) {
-        
                 theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
                 button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
                 leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
                 rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
                 
-                if (self.childNode(withName: "Player") != nil){
-                    thePlayer = self.childNode(withName: "Player") as! Player
-
+                thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
                 
-                }
-                if isTouching && movingRight{
-                    thePlayer.run(walkForever)
+                if isTouching && movingRight && !thePlayer .hasActions(){
+                    thePlayer.walk(moveVelocity:xVelocity)
                     
+                } else if isTouching && movingLeft && !thePlayer .hasActions(){
+                    thePlayer.walk(moveVelocity:xVelocity)
                     
-                    
-                } else if isTouching && movingLeft{
-                    thePlayer.run(moveLeft)
-                }
-    }
+                } else if !isTouching {
+                   thePlayer.setUpIdle()
+            }
+       }
 
 
 }
