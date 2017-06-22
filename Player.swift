@@ -49,6 +49,10 @@ class Player: SKSpriteNode {
         self.run(textureIdle!)
     }
     
+    func jump() {
+        
+    }
+    
     func walk(moveVelocity: CGFloat) {
         let rate: CGFloat = 0.5
         self.xVelocity = moveVelocity
