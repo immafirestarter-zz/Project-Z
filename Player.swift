@@ -13,8 +13,13 @@ class Player: SKSpriteNode {
     
     var jumpAction:SKAction?
     var walkAction:SKAction?
+    var atlas:SKTextureAtlas?
+    var xVelocity:CGFloat = 0
     
+
     func setUpPlayer() {
+        
+        
         
         let imageTexture = SKTexture(imageNamed: "zombie_stand")
         
@@ -22,37 +27,34 @@ class Player: SKSpriteNode {
                                                size: imageTexture.size())
         
         self.physicsBody = body
-        
-        
         body.affectedByGravity = true
         body.allowsRotation = false
-        
-//        self.xScale = 1
+        body.isDynamic = true
         
 //        setUpJump()
-        setUpRunRight()
-        setUpRunLeft()
+        setUpWalk()
     
   
         
     }
     
 //    func setUpJump() {
-//        let atlas = SKTextureAtlas(named:"Jump")
+//        atlas = SKTextureAtlas(named:"Jump")
 //        var array = [String]()
 //        
 //        for i in (0...2) {
 //            let nameString = String(format:"jump%i", i)
 //            array.append(nameString)
 //        }
-//        for(var)
+    
+
 //    }
     
-    func setUpRunRight() {
-        let atlas = SKTextureAtlas(named: "Walk")
+    func setUpWalk() {
+        atlas = SKTextureAtlas(named: "Walk")
         var atlasTextures = [SKTexture]()
-        let texture1:SKTexture = atlas.textureNamed("zombie_walk1")
-        let texture2:SKTexture = atlas.textureNamed("zombie_walk2")
+        let texture1:SKTexture = atlas!.textureNamed("zombie_walk1")
+        let texture2:SKTexture = atlas!.textureNamed("zombie_walk2")
         atlasTextures.append(texture1)
         atlasTextures.append(texture2)
         
@@ -60,9 +62,21 @@ class Player: SKSpriteNode {
         walkAction = SKAction.repeatForever(atlasAnimation)
         
         
-    }
-    
-    func setUpRunLeft() {
+        
         
     }
+    
+    func walk(moveVelocity: CGFloat) {
+        let rate: CGFloat = 0.5
+        self.xVelocity = moveVelocity
+        let playerVelocity = self.physicsBody?.velocity.dx
+        let relativeVelocity:CGVector = CGVector(dx: self.xVelocity - playerVelocity!, dy: 0)
+        self.physicsBody?.velocity = CGVector(dx: playerVelocity! + relativeVelocity.dx * rate, dy: 0)
+        self.run(walkAction!)
+    }
+    func stopMoving(){
+        self.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        
+    }
+
 }
