@@ -18,8 +18,8 @@ class TestDoor: XCTestCase {
         super.setUp()
         door.name = "Door"
         door.setUpDoor()
-        
     }
+    
     override func tearDown() {
         super.tearDown()
     }
@@ -49,7 +49,7 @@ class TestDoor: XCTestCase {
         XCTAssertEqual(door.physicsBody?.affectedByGravity, false)
     }
     
-    func testsetUpDoo7(){
+    func testsetUpDoor7(){
         XCTAssertEqual(door.physicsBody?.allowsRotation, false)
     }
     
