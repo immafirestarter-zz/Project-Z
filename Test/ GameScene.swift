@@ -134,13 +134,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
         rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
         
-        if (thePlayer.position.y < -200){
-            thePlayer.isDead = true
-        }
-        
-        if thePlayer.isDead {
-            restartLevel()
-        }
         
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
         
@@ -174,6 +167,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+}
+
+if (thePlayer.position.y < -200){
+    thePlayer.isDead = true
+}
+
+if thePlayer.isDead {
+    restartLevel()
 }
 
 
