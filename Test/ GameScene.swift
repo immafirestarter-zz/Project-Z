@@ -134,7 +134,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-      
+        let enemyFollow = SKAction.move(to: thePlayer.position, duration: 2)
+        
+        theEnemy.run(enemyFollow)
       
         theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
         button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
@@ -179,9 +181,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 sceneNode.entities = scene.entities
                 sceneNode.graphs = scene.graphs
 
-                
                 sceneNode.scaleMode = .aspectFill
-                
                 if let view = self.view as! SKView? {
                     let transition = SKTransition.fade(withDuration: 1.0)
                     view.presentScene(sceneNode, transition: transition)
