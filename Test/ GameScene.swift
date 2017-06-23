@@ -16,7 +16,7 @@ enum BodyType:UInt32 {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var thePlayer:Player = Player()
-    var theEnemy = Enemy()
+    var theEnemy:Enemy = Enemy()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
@@ -69,6 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         theEnemy.position = CGPoint(x: 10, y: 0)
+        theEnemy.physicsBody?.isDynamic = true
         self.addChild(theEnemy)
     }
 
