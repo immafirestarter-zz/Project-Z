@@ -16,10 +16,19 @@ class Door: SKSpriteNode {
     func setUpDoor() {
         
         goesWhere = self.name!
+        let imageTexture = SKTexture(imageNamed: "door")
+        let body:SKPhysicsBody = SKPhysicsBody(texture: imageTexture,
+                                               size: imageTexture.size())
+        self.physicsBody = body
         
-        self.physicsBody?.categoryBitMask = BodyType.door.rawValue
-        self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = BodyType.player.rawValue
+        body.isDynamic = true
+        body.affectedByGravity = false
+        body.allowsRotation = false
+                
+        body.categoryBitMask = BodyType.door.rawValue
+        body.collisionBitMask = 0
+        body.contactTestBitMask = BodyType.player.rawValue
+
     }
     
 }
