@@ -120,10 +120,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let velocityCheck: CGFloat = -20.0
         
         if movingRight == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: 500)
+            thePlayer.jumpDirectionally(directionForce: 200)
             
         } else if movingLeft == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: -500)
+            thePlayer.jumpDirectionally(directionForce: -200)
             
         } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             print("im supposed to be jumping")
@@ -148,6 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       }
         
             override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+                thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -100))
                 isTouching = false
                 movingRight = false
                 movingLeft = false
@@ -156,10 +157,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     
             override func update(_ currentTime: TimeInterval) {
-                theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
-                button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
-                leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
-                rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
+              
+                if theCamera.position.y > -150 {
+                
+                theCamera.position = CGPoint(x: thePlayer.position.x ,y: thePlayer.position.y)
+                button.position = CGPoint(x: thePlayer.position.x + 260 ,y: thePlayer.position.y)
+                leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
+                rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
+                }
                 
                 thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
                 
