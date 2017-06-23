@@ -120,10 +120,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let velocityCheck: CGFloat = -20.0
         
         if movingRight == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: 500)
+            thePlayer.jumpDirectionally(directionForce: 200)
             
         } else if movingLeft == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: -500)
+            thePlayer.jumpDirectionally(directionForce: -200)
             
         } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             print("im supposed to be jumping")
@@ -148,6 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       }
         
             override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+                thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -100))
                 isTouching = false
                 movingRight = false
                 movingLeft = false
