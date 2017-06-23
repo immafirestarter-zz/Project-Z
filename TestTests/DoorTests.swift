@@ -24,9 +24,6 @@ class TestDoor: XCTestCase {
         super.tearDown()
     }
     
-    
-    
-    
     func testsetUpDoor(){
         XCTAssertEqual(door.name, "Door")
         XCTAssertEqual(door.goesWhere, "Door")
