@@ -34,82 +34,61 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xVelocity: CGFloat = 0
     var directionHandling: CGFloat = 1
     
-//    override func sceneDidLoad() {
-//        
-//    }
+    
     
     override func didMove(to view: SKView) {
-       
+        
         physicsWorld.contactDelegate = self
         
         if (self.childNode(withName: "Player") != nil){
             thePlayer = self.childNode(withName: "Player") as! Player
             thePlayer.setUpPlayer()
         }
+        
         if (self.childNode(withName: "TheCamera") != nil){
             theCamera = self.childNode(withName: "TheCamera") as! SKCameraNode
             self.camera = theCamera
-            
-            
         }
+        
         if (self.childNode(withName: "button") != nil){
             button = self.childNode(withName: "button") as! SKSpriteNode
-            
         }
+        
         if (self.childNode(withName: "leftButton") != nil){
             leftButton = self.childNode(withName: "leftButton") as! SKSpriteNode
-            
         }
+        
         if (self.childNode(withName: "rightButton") != nil){
             rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
-            
         }
         
         for node in self.children {
-        
-        if let theDoor:Door = node as? Door {
-            theDoor.setUpDoor()
+            if let theDoor:Door = node as? Door {
+                theDoor.setUpDoor()
+            }
         }
-        }
-
     }
-    
-    
+
     func didBegin(_ contact: SKPhysicsContact) {
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue) {
-            
-            print("Player has touched door")
-            
             if let theDoor = contact.bodyB.node as? Door {
-                
                 loadAnotherLevel (levelName: theDoor.goesWhere)
-                
             }
             
         } else if ( contact.bodyA.categoryBitMask == BodyType.door.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
-            
-            print("Door has been touched by player")
-            
             if let theDoor = contact.bodyA.node as? Door {
-                
                 loadAnotherLevel (levelName: theDoor.goesWhere)
-                
             }
         }
-
+        
     }
     
- 
+    
     func loadAnotherLevel( levelName:String) {
-        
         if let scene = GameScene(fileNamed: levelName) {
-            
             self.view?.presentScene(scene, transition: SKTransition.fade(withDuration: 0.1))
         }
-        
-        
     }
-
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
@@ -126,53 +105,76 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             thePlayer.jumpDirectionally(directionForce: -500)
             
         } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
-            print("im supposed to be jumping")
             thePlayer.jump()
+            
         } else if buttonRight.contains(touchlocation){
-            print("right")
             directionHandling = 1
             isTouching = true
             movingRight = true
             xVelocity = 200
             
         } else if buttonLeft.contains(touchlocation){
-            print("left")
             directionHandling = -1
             isTouching = true
             movingLeft = true
             xVelocity = -200
         }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isTouching = false
+        movingRight = false
+        movingLeft = false
+        thePlayer.stopMoving()
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
+        button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
+        leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
+        rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
         
-       
-            
-      }
-        
-            override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-                isTouching = false
-                movingRight = false
-                movingLeft = false
-                thePlayer.stopMoving()
+        if (thePlayer.position.y < -200){
+            thePlayer.isDead = true
         }
         
+        if thePlayer.isDead {
+            restartLevel()
+        }
+        
+        thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
+        
+        if isTouching && movingRight && !thePlayer .hasActions(){
+            thePlayer.walk(moveVelocity:xVelocity)
+            
+        } else if isTouching && movingLeft && !thePlayer .hasActions(){
+            thePlayer.walk(moveVelocity:xVelocity)
+            
+        } else if !isTouching {
+            thePlayer.setUpIdle()
+        }
+    }
     
-            override func update(_ currentTime: TimeInterval) {
-                theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
-                button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
-                leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
-                rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
+    func restartLevel(){
+        if let scene = GKScene(fileNamed: "GameScene") {
+            if let sceneNode = scene.rootNode as! GameScene? {
+                sceneNode.entities = scene.entities
+                sceneNode.graphs = scene.graphs
                 
-                thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
+                sceneNode.scaleMode = .aspectFill
                 
-                if isTouching && movingRight && !thePlayer .hasActions(){
-                    thePlayer.walk(moveVelocity:xVelocity)
+                if let view = self.view as! SKView? {
+                    let transition = SKTransition.fade(withDuration: 1.0)
+                    view.presentScene(sceneNode, transition: transition)
                     
-                } else if isTouching && movingLeft && !thePlayer .hasActions(){
-                    thePlayer.walk(moveVelocity:xVelocity)
-                    
-                } else if !isTouching {
-                   thePlayer.setUpIdle()
+                    view.ignoresSiblingOrder = true
+                    view.showsFPS = true
+                    view.showsNodeCount = true
+                }
             }
-       }
-
-
+        }
+    }
 }
+
+
+

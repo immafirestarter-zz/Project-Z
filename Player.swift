@@ -17,7 +17,8 @@ class Player: SKSpriteNode {
     var textureIdle:SKAction?
     var xVelocity:CGFloat = 0
     
-
+    var isDead = false
+    
     func setUpPlayer() {
         
         
@@ -35,6 +36,8 @@ class Player: SKSpriteNode {
         
         body.categoryBitMask = BodyType.player.rawValue
         body.contactTestBitMask = BodyType.door.rawValue
+        
+        
         
     }
     
@@ -81,5 +84,5 @@ class Player: SKSpriteNode {
     func stopMoving(){
         self.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
     }
-
+    
 }
