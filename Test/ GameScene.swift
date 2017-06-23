@@ -156,10 +156,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     
             override func update(_ currentTime: TimeInterval) {
-                theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
-                button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
-                leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
-                rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
+              
+                if theCamera.position.y > -150 {
+                
+                theCamera.position = CGPoint(x: thePlayer.position.x ,y: thePlayer.position.y)
+                button.position = CGPoint(x: thePlayer.position.x + 260 ,y: thePlayer.position.y)
+                leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
+                rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
+                }
                 
                 thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
                 
