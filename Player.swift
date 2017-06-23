@@ -66,11 +66,11 @@ class Player: SKSpriteNode {
         let jump2Anime = SKAction.setTexture(jump2)
         let jumpAction = SKAction.sequence([jump1Anime, jump2Anime])
         self.run(jumpAction)
-        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
+        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 600))
     }
     
     func jumpDirectionally(directionForce: CGFloat){
-        self.physicsBody?.applyImpulse(CGVector(dx: directionForce, dy: 500))
+        self.physicsBody?.applyImpulse(CGVector(dx: directionForce, dy: 600))
     }
     
     func walk(moveVelocity: CGFloat) {
