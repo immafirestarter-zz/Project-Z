@@ -12,10 +12,12 @@ import XCTest
 
 class TestDoor: XCTestCase {
     
-
+    let door:Door = Door()
     
     override func setUp() {
         super.setUp()
+        door.name = "Door"
+        door.setUpDoor()
         
     }
     override func tearDown() {
@@ -23,61 +25,35 @@ class TestDoor: XCTestCase {
     }
     
     
-
+    
     
     func testsetUpDoor(){
-        let door:Door = Door()
-        door.name = "Door"
-        door.setUpDoor()
         XCTAssertEqual(door.name, "Door")
         XCTAssertEqual(door.goesWhere, "Door")
     }
     
     func testsetUpDoor2(){
-        let door:Door = Door()
-        door.name = "Door"
-        door.setUpDoor()
         XCTAssertEqual(door.physicsBody?.collisionBitMask, 0)
-
     }
     
     func testsetUpDoor3(){
-        let door:Door = Door()
-        door.name = "Door"
-        door.setUpDoor()
         XCTAssertEqual(door.physicsBody?.contactTestBitMask, 1)
     }
     
     func testsetUpDoor4(){
-        let door:Door = Door()
-        door.name = "Door"
-        door.setUpDoor()
         XCTAssertEqual(door.physicsBody?.categoryBitMask, 2)
     }
-
+    
     func testsetUpDoor5(){
-        let door:Door = Door()
-        door.name = "Door"
-        door.setUpDoor()
         XCTAssertEqual(door.physicsBody?.isDynamic, true)
     }
-
+    
     func testsetUpDoor6(){
-        let door:Door = Door()
-        door.name = "Door"
-        door.setUpDoor()
         XCTAssertEqual(door.physicsBody?.affectedByGravity, false)
     }
     
     func testsetUpDoo7(){
-        let door:Door = Door()
-        door.name = "Door"
-        door.setUpDoor()
         XCTAssertEqual(door.physicsBody?.allowsRotation, false)
     }
-
-    
-
-
     
 }
