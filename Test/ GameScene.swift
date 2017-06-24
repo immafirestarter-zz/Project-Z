@@ -102,13 +102,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
             if let theBody = contact.bodyB.node as? Enemy {
                 if theBody.hasHit == false{
-                    print("im here")
-                    theBody.hasHit = true
+                    theBody.delayHit()
+                     print("im here")
                 }
-            
             }
             
-            //theBody?.physicsBody?.applyImpulse(CGVector(dx:-150, dy:100))
+            
             
             //thePlayer.isDead = true
         
