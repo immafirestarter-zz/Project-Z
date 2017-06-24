@@ -11,6 +11,8 @@ import SpriteKit
 
 class Enemy: SKSpriteNode {
     
+    var health = 100
+    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         let enemyTexture = SKTexture(imageNamed: "soldier_stand")
         super.init(texture: enemyTexture, color: UIColor.clear, size: enemyTexture.size())
@@ -22,6 +24,7 @@ class Enemy: SKSpriteNode {
         self.physicsBody?.categoryBitMask = 0
         self.physicsBody?.contactTestBitMask = 1
         self.physicsBody?.usesPreciseCollisionDetection = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

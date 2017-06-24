@@ -73,11 +73,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let wait = SKAction.wait(forDuration: 10)
         let spawn = SKAction.run {
             let theEnemy: Enemy = Enemy()
-            theEnemy.position = CGPoint(x: 10, y: 0)
-            theEnemy.physicsBody?.isDynamic = true
+            theEnemy.position = CGPoint(x: 300, y: 10)
             self.addChild(theEnemy)
             self.enemies.append(theEnemy)
             print(self.enemies.count)
+            print(theEnemy.health)
         }
         let constatSpawn = SKAction.sequence([spawn, wait])
         self.run(SKAction.repeatForever(constatSpawn))
@@ -146,14 +146,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        
         for enemy in enemies {
-            let enemyLocation = enemy.position.x
-            let
-         
-            enemy.run(SKAction.applyImpulse(CGVector(dx: 50, dy: 0), duration: 10))
+      
+            enemy.physicsBody?.velocity = CGVector(dx: -50, dy: 0)
         }
-        let offset = CGVectorM
+      
         theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
         button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
         leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
