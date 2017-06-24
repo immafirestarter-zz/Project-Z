@@ -12,6 +12,8 @@ import SpriteKit
 class Enemy: SKSpriteNode {
     
     var health = 100
+    static let enemyHitCategory = 1
+    static let playerHitCategory = 2
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         let enemyTexture = SKTexture(imageNamed: "soldier_stand")
@@ -21,8 +23,14 @@ class Enemy: SKSpriteNode {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.restitution = 0
-        self.physicsBody?.categoryBitMask = 0
-        self.physicsBody?.contactTestBitMask = 1
+        
+        
+        self.physicsBody?.categoryBitMask = UInt32(Enemy.enemyHitCategory)
+        
+        self.physicsBody?.collisionBitMask = UInt32(Enemy.playerHitCategory)
+        
+        self.physicsBody?.contactTestBitMask = UInt32(Enemy.playerHitCategory)
+
         self.physicsBody?.usesPreciseCollisionDetection = true
         
     }
