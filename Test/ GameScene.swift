@@ -102,15 +102,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
             if let theBody = contact.bodyB.node as? Enemy {
                 if theBody.hasHit == false{
+                    thePlayer.health -= 50
                     theBody.delayHit()
-                     print("im here")
+                    print(thePlayer.health)
                 }
             }
-            
-            
-            
-            //thePlayer.isDead = true
-        
         }
     }
     
@@ -187,6 +183,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
       
         if (thePlayer.position.y < -200){
+            thePlayer.isDead = true
+        }
+        
+        if thePlayer.health <= 0{
             thePlayer.isDead = true
         }
         

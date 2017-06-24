@@ -42,7 +42,7 @@ class Enemy: SKSpriteNode {
     
     func delayHit(){
         hasHit = true
-        let when = DispatchTime.now() + 5
+        let when = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.hasHit = false
         }
