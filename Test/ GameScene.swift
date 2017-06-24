@@ -13,6 +13,8 @@ enum BodyType:UInt32 {
     case door = 2
 }
 
+
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var thePlayer:Player = Player()
@@ -68,7 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theDoor.setUpDoor()
             }
         }
-        let wait = SKAction.wait(forDuration: 5)
+        let wait = SKAction.wait(forDuration: 10)
         let spawn = SKAction.run {
             let theEnemy: Enemy = Enemy()
             theEnemy.position = CGPoint(x: 10, y: 0)
@@ -144,10 +146,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        let enemyFollow = SKAction.move(to: thePlayer.position, duration: 2)
+        let dxPosition = thePlayer.physicsBody?.velocity.dx
+        
         for enemy in enemies {
             if  !enemy .hasActions(){
-                enemy.run(enemyFollow)
+                enemy.physicsBody?.applyImpulse(CGVector(dx: dxPosition!, dy: 0))
             }
         }
       
