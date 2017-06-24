@@ -99,12 +99,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         } else if (contact.bodyA.categoryBitMask == UInt32(GameScene.enemyHitCategory) && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
-            print("the enemy has hit player)")
-            thePlayer.isDead = true
+           // print("the enemy has hit player)")
+           print(contact.contactPoint)
+           
+            //thePlayer.isDead = true
         
         } else if (contact.bodyB.categoryBitMask == BodyType.player.rawValue && contact.bodyA.categoryBitMask == UInt32(GameScene.enemyHitCategory)) {
-                print("the enemy has hit player)")
-            thePlayer.isDead = true
+                print(contact.contactPoint)
+              //  print("the enemy has hit player)")
+            //thePlayer.isDead = true
+            
         }
         
         
@@ -117,7 +121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    internal override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let touchlocation = touch!.location(in: self)
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
@@ -155,6 +159,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         movingLeft = false
         thePlayer.stopMoving()
     }
+    
+  
     
     override func update(_ currentTime: TimeInterval) {
         for (index, enemy) in enemies.enumerated() {
