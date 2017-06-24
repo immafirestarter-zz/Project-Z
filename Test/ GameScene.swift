@@ -16,7 +16,7 @@ enum BodyType:UInt32 {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var thePlayer:Player = Player()
-    var theEnemy:Enemy = Enemy()
+    var enemies = [SKSpriteNode]()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
@@ -68,9 +68,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theDoor.setUpDoor()
             }
         }
-        theEnemy.position = CGPoint(x: 10, y: 0)
-        theEnemy.physicsBody?.isDynamic = true
-        self.addChild(theEnemy)
+        let wait = SKAction.wait(forDuration: 5)
+        let spawn = SKAction.run {
+            let theEnemy: Enemy = Enemy()
+            theEnemy.position = CGPoint(x: 10, y: 0)
+            theEnemy.physicsBody?.isDynamic = true
+            self.addChild(theEnemy)
+            self.enemies.append(theEnemy)
+            print(self.enemies.count)
+        }
+        let constatSpawn = SKAction.sequence([spawn, wait])
+        self.run(SKAction.repeatForever(constatSpawn))
+        
+       
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
@@ -135,8 +145,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         let enemyFollow = SKAction.move(to: thePlayer.position, duration: 2)
-        
-        theEnemy.run(enemyFollow)
+        for enemy in enemies {
+            if  !enemy .hasActions(){
+                enemy.run(enemyFollow)
+            }
+        }
       
         theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
         button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
