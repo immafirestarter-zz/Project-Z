@@ -99,28 +99,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         } else if (contact.bodyA.categoryBitMask == UInt32(GameScene.enemyHitCategory) && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
-           // print("the enemy has hit player)")
-           print(contact.contactPoint)
-            
+    
             if let theBody = contact.bodyB.node as? Enemy {
-                print(theBody.lol)
-                theBody.physicsBody?.velocity = CGVector(dx:-200, dy:0)
+                if theBody.hasHit == false{
+                    print("im here")
+                    theBody.hasHit = true
+                }
+            
             }
             
             //theBody?.physicsBody?.applyImpulse(CGVector(dx:-150, dy:100))
             
             //thePlayer.isDead = true
         
-        } else if (contact.bodyB.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == UInt32(GameScene.enemyHitCategory)) {
-            
-            if let theBody = contact.bodyB.node as? Enemy {
-                print(theBody.lol)
-                theBody.physicsBody?.velocity = CGVector(dx:-200, dy:0)
-            }
-            
         }
-        
-        
     }
     
     

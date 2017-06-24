@@ -12,7 +12,7 @@ import SpriteKit
 class Enemy: SKSpriteNode {
     
     var health = 100
-    var lol = "hello"
+    var hasHit = false
     static let enemyHitCategory = 1
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
