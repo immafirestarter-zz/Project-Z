@@ -17,6 +17,9 @@ enum BodyType:UInt32 {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    static let enemyHitCategory = 1
+    static let playerHitCategory = 2
+    
     var thePlayer:Player = Player()
     var enemies = [Enemy]()
     var button:SKSpriteNode = SKSpriteNode()
@@ -95,6 +98,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let theDoor = contact.bodyA.node as? Door {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
+            
+        } else if (contact.bodyA.categoryBitMask == UInt32(GameScene.enemyHitCategory) && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
+            print("the enemy has hit player)")
+        
+        } else if (contact.bodyB.categoryBitMask == BodyType.player.rawValue && contact.bodyA.categoryBitMask == UInt32(GameScene.enemyHitCategory)) {
+                print("the enemy has hit player)")
         }
         
         

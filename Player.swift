@@ -36,7 +36,7 @@ class Player: SKSpriteNode {
         body.affectedByGravity = true
         body.allowsRotation = false
         body.restitution = 0
-        body.categoryBitMask = BodyType.player.rawValue | UInt32(Player.playerHitCategory)
+        body.categoryBitMask = BodyType.player.rawValue
         body.collisionBitMask = UInt32(Player.enemyHitCategory)
         body.contactTestBitMask = BodyType.door.rawValue | UInt32(Player.enemyHitCategory)
         
