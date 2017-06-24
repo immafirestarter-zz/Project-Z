@@ -17,8 +17,9 @@ enum BodyType:UInt32 {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    static let enemyHitCategory = 1
     
+    static let enemyHitCategory = 1
+    var force:CGFloat = 16.0
     var thePlayer:Player = Player()
     var enemies = [Enemy]()
     var button:SKSpriteNode = SKSpriteNode()
@@ -128,16 +129,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
         let velocityCheck: CGFloat = -20.0
         
-        if movingRight == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: 200)
+        let timerAction = SKAction.wait(forDuration: 0.5)
+        let update = SKAction.run({
+            if self.force < Player.Constants.maximumJumpForce {
+                self.force+=2
+            }else{
+                self.thePlayer.jump(force: Player.Constants.maximumJumpForce)
+                self.force = Player.Constants.maximumJumpForce
+            }
+        })
+        
+        let theJumpSequence = SKAction.sequence([timerAction, update])
+        let repeatJump = SKAction.repeatForever(theJumpSequence)
+    
             
-        } else if movingLeft == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: -200)
-            
-        } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
-            thePlayer.jump()
-            
-        } else if buttonRight.contains(touchlocation){
+        if buttonJump.contains(touchlocation){
+            thePlayer.run(repeatJump, withKey: "repeat action")
+        }
+        
+         else if buttonRight.contains(touchlocation){
             directionHandling = 1
             isTouching = true
             movingRight = true

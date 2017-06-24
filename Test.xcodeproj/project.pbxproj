@@ -43,6 +43,7 @@
 		50E7F7371EFACC52005B4513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50E7F7361EFACC52005B4513 /* Assets.xcassets */; };
 		57686A6A1EFD4F07002CB08E /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57686A691EFD4F07002CB08E /* PlayerTests.swift */; };
 		57E8833E1EFD86280059A2E7 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8833D1EFD86280059A2E7 /* Enemy.swift */; };
+		57F8950F1EFEE68A00A6CE2D /* EnemyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F8950E1EFEE68A00A6CE2D /* EnemyTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		50E7F7361EFACC52005B4513 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57686A691EFD4F07002CB08E /* PlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		57E8833D1EFD86280059A2E7 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		57F8950E1EFEE68A00A6CE2D /* EnemyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				269E3BAD1EFA7D65006B919D /* Info.plist */,
 				57686A691EFD4F07002CB08E /* PlayerTests.swift */,
 				500001821EFD4E2E00F089A2 /* DoorTests.swift */,
+				57F8950E1EFEE68A00A6CE2D /* EnemyTests.swift */,
 			);
 			path = TestTests;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				57686A6A1EFD4F07002CB08E /* PlayerTests.swift in Sources */,
 				26C5C5061EFBF53D00D50E42 /* Door.swift in Sources */,
 				500001861EFD51AB00F089A2 /* Player.swift in Sources */,
+				57F8950F1EFEE68A00A6CE2D /* EnemyTests.swift in Sources */,
 				500001841EFD51A300F089A2 /*  GameScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

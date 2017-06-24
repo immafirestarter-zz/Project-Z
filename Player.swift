@@ -22,6 +22,12 @@ class Player: SKSpriteNode {
     
     var isDead = false
     
+    struct Constants {
+        static let minimumJumpForce:CGFloat = 15.0
+        static let maximumJumpForce:CGFloat = 30.0
+    }
+    
+    
     func setUpPlayer() {
         
         
@@ -34,7 +40,7 @@ class Player: SKSpriteNode {
         body.isDynamic = true
         body.affectedByGravity = true
         body.allowsRotation = false
-        body.restitution = 0
+        body.restitution = 0.1
         body.categoryBitMask = BodyType.player.rawValue
         body.collisionBitMask = UInt32(Player.enemyHitCategory)
         body.contactTestBitMask = BodyType.door.rawValue | UInt32(Player.enemyHitCategory)
@@ -59,14 +65,18 @@ class Player: SKSpriteNode {
         self.run(textureIdle!)
     }
     
-    func jump() {
-        let jump1 = SKTexture(imageNamed: "jump1")
-        let jump2 = SKTexture(imageNamed: "jump2")
-        let jump1Anime = SKAction.setTexture(jump1)
-        let jump2Anime = SKAction.setTexture(jump2)
-        let jumpAction = SKAction.sequence([jump1Anime, jump2Anime])
-        self.run(jumpAction)
-        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 600))
+//    func jump() {
+//        let jump1 = SKTexture(imageNamed: "jump1")
+//        let jump2 = SKTexture(imageNamed: "jump2")
+//        let jump1Anime = SKAction.setTexture(jump1)
+//        let jump2Anime = SKAction.setTexture(jump2)
+//        let jumpAction = SKAction.sequence([jump1Anime, jump2Anime])
+//        self.run(jumpAction)
+//        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 600))
+//    }
+    
+    func jump(force: CGFloat) {
+        self.physicsBody?.applyForce(CGVector(0, force))
     }
     
     func jumpDirectionally(directionForce: CGFloat){
