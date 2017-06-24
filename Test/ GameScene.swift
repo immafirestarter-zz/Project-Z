@@ -75,6 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let wait = SKAction.wait(forDuration: 10)
         let spawn = SKAction.run {
             let theEnemy: Enemy = Enemy()
+            theEnemy.xScale = fabs(theEnemy.xScale) * -1
             theEnemy.position = CGPoint(x: 300, y: 10)
             self.addChild(theEnemy)
             self.enemies.append(theEnemy)
@@ -100,7 +101,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         } else if (contact.bodyA.categoryBitMask == UInt32(GameScene.enemyHitCategory) && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
             if let theBody = contact.bodyB.node as? Enemy {
+                theBody.attacking = true
                 thePlayer.physicsBody?.applyImpulse(CGVector(dx:-20, dy:20))
+                theBody.attacking = false
                 if theBody.hasHit == false{
                     thePlayer.health -= 50
                     theBody.delayHit()
@@ -163,8 +166,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if enemy.position.y < -100 {
                 enemy.removeFromParent()
                 enemies.remove(at: index)
-            } else {
-            enemy.physicsBody?.velocity = CGVector(dx: -50, dy: 0)
+            } else if !enemy .hasActions() && enemy.attacking == false{
+                enemy.enemyWalk()
+            } else if enemy.attacking == true && !enemy .hasActions() {
+                enemy.attack()
             }
         }
       
