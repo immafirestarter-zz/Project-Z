@@ -18,7 +18,7 @@ enum BodyType:UInt32 {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var thePlayer:Player = Player()
-    var enemies = [SKSpriteNode]()
+    var enemies = [Enemy]()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
@@ -146,9 +146,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        for enemy in enemies {
-      
+        for (index, enemy) in enemies.enumerated() {
+            if enemy.position.y < -100 {
+                enemy.removeFromParent()
+                enemies.remove(at: index)
+            } else {
             enemy.physicsBody?.velocity = CGVector(dx: -50, dy: 0)
+            }
         }
       
         theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
