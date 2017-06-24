@@ -99,8 +99,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         } else if (contact.bodyA.categoryBitMask == UInt32(GameScene.enemyHitCategory) && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
-    
             if let theBody = contact.bodyB.node as? Enemy {
+                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-20, dy:20))
                 if theBody.hasHit == false{
                     thePlayer.health -= 50
                     theBody.delayHit()
