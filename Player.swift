@@ -13,7 +13,6 @@ class Player: SKSpriteNode {
     
     var health = 100
     static let enemyHitCategory = 1
-    static let playerHitCategory = 2
     
     var jumpAction:SKAction?
     var walkAction:SKAction?

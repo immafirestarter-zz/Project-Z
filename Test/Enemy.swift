@@ -13,7 +13,6 @@ class Enemy: SKSpriteNode {
     
     var health = 100
     static let enemyHitCategory = 1
-    static let playerHitCategory = 2
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         let enemyTexture = SKTexture(imageNamed: "soldier_stand")
