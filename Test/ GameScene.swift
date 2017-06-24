@@ -146,14 +146,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        let dxPosition = thePlayer.physicsBody?.velocity.dx
         
         for enemy in enemies {
-            if  !enemy .hasActions(){
-                enemy.physicsBody?.applyImpulse(CGVector(dx: dxPosition!, dy: 0))
-            }
+            let enemyLocation = enemy.position.x
+            let
+         
+            enemy.run(SKAction.applyImpulse(CGVector(dx: 50, dy: 0), duration: 10))
         }
-      
+        let offset = CGVectorM
         theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
         button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
         leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
