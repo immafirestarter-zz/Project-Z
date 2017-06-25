@@ -49,6 +49,9 @@ class TestKey: XCTestCase {
         XCTAssertEqual(key.physicsBody?.categoryBitMask, BodyType.key.rawValue)
     }
     
+    func testContactTestBitMask(){
+        XCTAssertEqual(key.physicsBody?.contactTestBitMask, BodyType.player.rawValue)
+    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

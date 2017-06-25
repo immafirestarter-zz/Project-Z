@@ -24,6 +24,7 @@ class Key:SKSpriteNode {
         
         body.collisionBitMask = 0
         body.categoryBitMask = BodyType.key.rawValue
+        body.contactTestBitMask = BodyType.player.rawValue
     
     }
 }
