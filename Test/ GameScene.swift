@@ -12,6 +12,7 @@ enum BodyType:UInt32 {
     case player = 1
     case door = 2
     case key = 4
+    case enemy = 8
 }
 
 
@@ -82,7 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let wait = SKAction.wait(forDuration: 10)
         let spawn = SKAction.run {
-            let theEnemy: Enemy = Enemy()
+            let theEnemy:Enemy = Enemy()
             theEnemy.xScale = fabs(theEnemy.xScale) * -1
             theEnemy.position = CGPoint(x: 300, y: 10)
             self.addChild(theEnemy)
@@ -97,17 +98,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue) && thePlayer.hasKey {
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue && thePlayer.hasKey) {
             if let theDoor = contact.bodyB.node as? Door {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
-        } else if ( contact.bodyA.categoryBitMask == BodyType.door.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) && thePlayer.hasKey {
+        } else if ( contact.bodyA.categoryBitMask == BodyType.door.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue && thePlayer.hasKey)  {
             if let theDoor = contact.bodyA.node as? Door {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
-        } else if (contact.bodyA.categoryBitMask == UInt32(GameScene.enemyHitCategory) && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
+        } else if (contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
             if let theBody = contact.bodyB.node as? Enemy {
                 theBody.attacking = true
                 thePlayer.physicsBody?.applyImpulse(CGVector(dx:-20, dy:20))

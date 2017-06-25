@@ -40,7 +40,7 @@ class Player: SKSpriteNode {
         body.restitution = 0
         body.categoryBitMask = BodyType.player.rawValue
         body.collisionBitMask = UInt32(Player.enemyHitCategory)
-        body.contactTestBitMask = BodyType.door.rawValue | UInt32(Player.enemyHitCategory)
+        body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue
         
     }
     

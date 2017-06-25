@@ -27,13 +27,13 @@ class Enemy: SKSpriteNode {
         self.physicsBody?.restitution = 0
         
         
-        self.physicsBody?.categoryBitMask = UInt32(Enemy.enemyHitCategory)
-        
-        self.physicsBody?.collisionBitMask = BodyType.player.rawValue
-        
+        self.physicsBody?.categoryBitMask = BodyType.enemy.rawValue
+    
+        self.physicsBody?.collisionBitMask = 1
         self.physicsBody?.contactTestBitMask = BodyType.player.rawValue
 
         self.physicsBody?.usesPreciseCollisionDetection = true
+        
         
     }
     
