@@ -22,22 +22,13 @@ class EndPage: SKScene {
         let touchlocation = touch!.location(in: self)
         let buttonEnd = childNode(withName: "end") as! SKSpriteNode
         if buttonEnd.contains(touchlocation){
-        loadAnotherLevel (levelName: "GameScene")
-            
+            loadAnotherLevel (levelName: "GameScene")
         }
     }
+    
     func loadAnotherLevel( levelName:String) {
         if let scene = EndPage(fileNamed: levelName) {
             self.view?.presentScene(scene, transition: SKTransition.fade(withDuration: 2))
         }
-        
-        
-        
     }
-    
-    
-
-    
-    
-    
 }

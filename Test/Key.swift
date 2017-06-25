@@ -14,11 +14,8 @@ class Key:SKSpriteNode {
     
     func setUpKey() {
         
-        
         let objectSize = CGSize(width: self.texture!.size().width * 0.2, height: self.texture!.size().height * 0.5)
-        
         let body:SKPhysicsBody = SKPhysicsBody(texture: self.texture!, size: objectSize)
-        
         
         self.physicsBody = body
         
@@ -29,6 +26,5 @@ class Key:SKSpriteNode {
         body.collisionBitMask = 0
         body.categoryBitMask = BodyType.key.rawValue
         body.contactTestBitMask = BodyType.player.rawValue
-    
     }
 }

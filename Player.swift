@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class Player: SKSpriteNode {
-
+    
     
     var health = 100
     static let enemyHitCategory = 1
@@ -41,9 +41,7 @@ class Player: SKSpriteNode {
         body.categoryBitMask = BodyType.player.rawValue
         body.collisionBitMask = 1 | 2
         body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue
-        
     }
-    
     
     func setUpWalk() {
         atlas = SKTextureAtlas(named: "Walk")
@@ -84,8 +82,8 @@ class Player: SKSpriteNode {
         self.physicsBody?.velocity = CGVector(dx: playerVelocity! + relativeVelocity.dx * rate, dy: 0)
         setUpWalk()
     }
+    
     func stopMoving(){
         self.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
     }
-    
 }

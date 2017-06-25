@@ -94,9 +94,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let constatSpawn = SKAction.sequence([spawn, wait])
         self.run(SKAction.repeatForever(constatSpawn))
         
-       
+        
     }
-
+    
     func didBegin(_ contact: SKPhysicsContact) {
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue && thePlayer.hasKey) {
             if let theDoor = contact.bodyB.node as? Door {
@@ -175,7 +175,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         thePlayer.stopMoving()
     }
     
-  
+    
     
     override func update(_ currentTime: TimeInterval) {
         for (index, enemy) in enemies.enumerated() {
@@ -188,21 +188,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.attack()
             }
         }
-      
+        
         theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
         button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
         leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
         rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
         
-                      
+        
         if theCamera.position.y > -150 {
-                
-        theCamera.position = CGPoint(x: thePlayer.position.x ,y: thePlayer.position.y)
-        button.position = CGPoint(x: thePlayer.position.x + 260 ,y: thePlayer.position.y)
-        leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
-        rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
+            
+            theCamera.position = CGPoint(x: thePlayer.position.x ,y: thePlayer.position.y)
+            button.position = CGPoint(x: thePlayer.position.x + 260 ,y: thePlayer.position.y)
+            leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
+            rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
         }
-      
+        
         if (thePlayer.position.y < -200){
             thePlayer.isDead = true
         }
@@ -211,7 +211,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             thePlayer.isDead = true
         }
         
-
+        
         if thePlayer.isDead {
             restartLevel()
         }
@@ -233,11 +233,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-
-
+    
     func restartLevel() {
         loadAnotherLevel (levelName: "EndPage")
-
+        
     }
 }
 

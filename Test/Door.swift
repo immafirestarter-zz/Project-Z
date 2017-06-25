@@ -24,11 +24,11 @@ class Door: SKSpriteNode {
         body.isDynamic = true
         body.affectedByGravity = false
         body.allowsRotation = false
-                
+        
         body.categoryBitMask = BodyType.door.rawValue
         body.collisionBitMask = 0
         body.contactTestBitMask = BodyType.player.rawValue
-
+        
     }
     
 }
