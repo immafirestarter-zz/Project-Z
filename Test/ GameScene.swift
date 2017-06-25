@@ -186,26 +186,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
 
-    func restartLevel(){
+    func restartLevel() {
         loadAnotherLevel (levelName: "EndPage")
-//        if let scene = GKScene(fileNamed: "GameScene") {
-//            if let sceneNode = scene.rootNode as! GameScene? {
-//                sceneNode.entities = scene.entities
-//                sceneNode.graphs = scene.graphs
-//
-//                
-//                sceneNode.scaleMode = .aspectFill
-//                
-//                if let view = self.view as! SKView? {
-//                    let transition = SKTransition.fade(withDuration: 1.0)
-//                    view.presentScene(sceneNode, transition: transition)
-//                    
-//                    view.ignoresSiblingOrder = true
-//                    view.showsFPS = true
-//                    view.showsNodeCount = true
-//                }
-//            }
-//        }
     }
 }
 
