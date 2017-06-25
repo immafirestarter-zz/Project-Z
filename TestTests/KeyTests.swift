@@ -41,6 +41,10 @@ class TestKey: XCTestCase {
     
     }
     
+    func testCollisionBitMask(){
+        XCTAssertEqual(key.physicsBody?.collisionBitMask, 0)
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

@@ -22,6 +22,7 @@ class Key:SKSpriteNode {
         body.isDynamic = false
         body.allowsRotation = false
         
+        body.collisionBitMask = 0
     
     }
 }
