@@ -29,27 +29,27 @@ class TestDoor: XCTestCase {
         XCTAssertEqual(door.goesWhere, "Door")
     }
     
-    func testsetUpDoor2(){
+    func testCollisionBitMask(){
         XCTAssertEqual(door.physicsBody?.collisionBitMask, 0)
     }
     
-    func testsetUpDoor3(){
+    func testContactTestBitMask(){
         XCTAssertEqual(door.physicsBody?.contactTestBitMask, 1)
     }
     
-    func testsetUpDoor4(){
+    func testCategoryBitMask(){
         XCTAssertEqual(door.physicsBody?.categoryBitMask, 2)
     }
     
-    func testsetUpDoor5(){
+    func testIsDynamic(){
         XCTAssertEqual(door.physicsBody?.isDynamic, true)
     }
     
-    func testsetUpDoor6(){
+    func testAffectedByGravity(){
         XCTAssertEqual(door.physicsBody?.affectedByGravity, false)
     }
     
-    func testsetUpDoor7(){
+    func testAllowsRotation(){
         XCTAssertEqual(door.physicsBody?.allowsRotation, false)
     }
     
