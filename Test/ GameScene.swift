@@ -77,21 +77,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue) {
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue) && thePlayer.hasKey {
             if let theDoor = contact.bodyB.node as? Door {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
-        } else if ( contact.bodyA.categoryBitMask == BodyType.door.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+        } else if ( contact.bodyA.categoryBitMask == BodyType.door.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) && thePlayer.hasKey {
             if let theDoor = contact.bodyA.node as? Door {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
         }
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.key.rawValue) {
-            print("key was touched")
+            thePlayer.hasKey = true
+            print(thePlayer.hasKey)
         } else if ( contact.bodyA.categoryBitMask == BodyType.key.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
-            print("key was touched")
+            thePlayer.hasKey = true
+            print(thePlayer.hasKey)
         }
     }
     
@@ -161,10 +163,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (thePlayer.position.y < -200){
             thePlayer.isDead = true
         }
-        
 
         if thePlayer.isDead {
             restartLevel()
+        }
+        
+        if thePlayer.hasKey {
+            theKey.removeFromParent()
         }
         
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling

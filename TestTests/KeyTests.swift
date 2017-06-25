@@ -46,8 +46,6 @@ class TestKey: XCTestCase {
         XCTAssertEqual(key.physicsBody?.contactTestBitMask, BodyType.player.rawValue)
     }
     
-    func testImageWidth() {
-    }
     
     func testPerformanceExample() {
         self.measure {}
