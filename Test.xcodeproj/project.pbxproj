@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2649D9571F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
+		2649D9581F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
+		2649D9591F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
+		2649D95B1F0009E500D935F9 /* landingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649D95A1F0009E500D935F9 /* landingPage.swift */; };
+		2649D95C1F0009E500D935F9 /* landingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649D95A1F0009E500D935F9 /* landingPage.swift */; };
+		2649D95D1F0009E500D935F9 /* landingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649D95A1F0009E500D935F9 /* landingPage.swift */; };
+		2649D95F1F000BCD00D935F9 /* Start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649D95E1F000BCD00D935F9 /* Start.swift */; };
+		2649D9601F000BCD00D935F9 /* Start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649D95E1F000BCD00D935F9 /* Start.swift */; };
+		2649D9611F000BCD00D935F9 /* Start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649D95E1F000BCD00D935F9 /* Start.swift */; };
 		269E3B911EFA7D65006B919D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E3B901EFA7D65006B919D /* AppDelegate.swift */; };
 		269E3B951EFA7D65006B919D /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 269E3B941EFA7D65006B919D /* Actions.sks */; };
 		269E3B971EFA7D65006B919D /*  GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E3B961EFA7D65006B919D /*  GameScene.swift */; };
@@ -66,6 +75,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2649D9561F00095800D935F9 /* LandingPage.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = LandingPage.sks; path = ../LandingPage.sks; sourceTree = "<group>"; };
+		2649D95A1F0009E500D935F9 /* landingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = landingPage.swift; sourceTree = "<group>"; };
+		2649D95E1F000BCD00D935F9 /* Start.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Start.swift; sourceTree = "<group>"; };
 		269E3B8D1EFA7D65006B919D /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E3B901EFA7D65006B919D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		269E3B941EFA7D65006B919D /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -147,9 +159,12 @@
 				502504BB1EFB2047005AA3D0 /* Jump.atlas */,
 				502504BF1EFB209B005AA3D0 /* Walk.atlas */,
 				269E3B961EFA7D65006B919D /*  GameScene.swift */,
+				2649D95E1F000BCD00D935F9 /* Start.swift */,
 				26C5C5001EFBF3CC00D50E42 /* levelTwo.sks */,
 				26C5C5041EFBF53D00D50E42 /* Door.swift */,
+				2649D95A1F0009E500D935F9 /* landingPage.swift */,
 				502504B91EFB11F0005AA3D0 /* Player.swift */,
+				2649D9561F00095800D935F9 /* LandingPage.sks */,
 				26BC2AC01EFBD00A00C6066F /* GroundTile.sks */,
 				269E3B901EFA7D65006B919D /* AppDelegate.swift */,
 				26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */,
@@ -302,6 +317,7 @@
 				502504C01EFB209B005AA3D0 /* Walk.atlas in Resources */,
 				269E3B951EFA7D65006B919D /* Actions.sks in Resources */,
 				26BC2AC11EFBD00A00C6066F /* GroundTile.sks in Resources */,
+				2649D9571F00095800D935F9 /* LandingPage.sks in Resources */,
 				50E7F7371EFACC52005B4513 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2649D9581F00095800D935F9 /* LandingPage.sks in Resources */,
 				26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				26BC2ABE1EFBCFFD00C6066F /* Ground2.sks in Resources */,
 				26C5C5021EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
@@ -320,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2649D9591F00095800D935F9 /* LandingPage.sks in Resources */,
 				26BC2AC31EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				26BC2ABF1EFBCFFD00C6066F /* Ground2.sks in Resources */,
 				26C5C5031EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
@@ -333,9 +351,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2649D95B1F0009E500D935F9 /* landingPage.swift in Sources */,
 				502504BA1EFB11F0005AA3D0 /* Player.swift in Sources */,
 				269E3B971EFA7D65006B919D /*  GameScene.swift in Sources */,
 				269E3B991EFA7D65006B919D /* GameViewController.swift in Sources */,
+				2649D95F1F000BCD00D935F9 /* Start.swift in Sources */,
 				26C5C5051EFBF53D00D50E42 /* Door.swift in Sources */,
 				269E3B911EFA7D65006B919D /* AppDelegate.swift in Sources */,
 				507190981EFFC7C2006C3CA9 /* Key.swift in Sources */,
@@ -347,8 +367,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5000018A1EFD51B500F089A2 /* GameViewController.swift in Sources */,
+				2649D95C1F0009E500D935F9 /* landingPage.swift in Sources */,
 				507190991EFFC7C2006C3CA9 /* Key.swift in Sources */,
 				500001881EFD51B000F089A2 /* AppDelegate.swift in Sources */,
+				2649D9601F000BCD00D935F9 /* Start.swift in Sources */,
 				508C9E0C1EFFC6C1008AB64E /* KeyTests.swift in Sources */,
 				269E3BAC1EFA7D65006B919D /* TestTests.swift in Sources */,
 				500001831EFD4E2E00F089A2 /* DoorTests.swift in Sources */,
@@ -369,6 +391,8 @@
 				500001851EFD51A300F089A2 /*  GameScene.swift in Sources */,
 				500001891EFD51B000F089A2 /* AppDelegate.swift in Sources */,
 				5000018B1EFD51B500F089A2 /* GameViewController.swift in Sources */,
+				2649D95D1F0009E500D935F9 /* landingPage.swift in Sources */,
+				2649D9611F000BCD00D935F9 /* Start.swift in Sources */,
 				26C5C5071EFBF53D00D50E42 /* Door.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
