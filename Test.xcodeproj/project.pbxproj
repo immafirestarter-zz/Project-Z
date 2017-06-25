@@ -55,6 +55,10 @@
 		508050261F00240F00E73F6B /* EndPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508050241F00240F00E73F6B /* EndPage.swift */; };
 		508050271F00240F00E73F6B /* EndPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508050241F00240F00E73F6B /* EndPage.swift */; };
 		508C9E0C1EFFC6C1008AB64E /* KeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508C9E0B1EFFC6C1008AB64E /* KeyTests.swift */; };
+		50DAA6CB1F0015AF008643F0 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8833D1EFD86280059A2E7 /* Enemy.swift */; };
+		50DAA6CC1F0015B0008643F0 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8833D1EFD86280059A2E7 /* Enemy.swift */; };
+		50DAA6CE1F001637008643F0 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8833D1EFD86280059A2E7 /* Enemy.swift */; };
+		50DAA6CF1F001649008643F0 /* TestEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DAA6C71F001576008643F0 /* TestEnemy.swift */; };
 		50E7F7351EFACBF9005B4513 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 50E7F7341EFACBF9005B4513 /* GameScene.sks */; };
 		50E7F7371EFACC52005B4513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50E7F7361EFACC52005B4513 /* Assets.xcassets */; };
 		57686A6A1EFD4F07002CB08E /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57686A691EFD4F07002CB08E /* PlayerTests.swift */; };
@@ -106,9 +110,11 @@
 		507190971EFFC7C2006C3CA9 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		508050241F00240F00E73F6B /* EndPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPage.swift; sourceTree = "<group>"; };
 		508C9E0B1EFFC6C1008AB64E /* KeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyTests.swift; sourceTree = "<group>"; };
+		50DAA6C71F001576008643F0 /* TestEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEnemy.swift; sourceTree = "<group>"; };
 		50E7F7341EFACBF9005B4513 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		50E7F7361EFACC52005B4513 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57686A691EFD4F07002CB08E /* PlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
+		57E8833D1EFD86280059A2E7 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +186,7 @@
 				269E3B9F1EFA7D65006B919D /* LaunchScreen.storyboard */,
 				269E3BA21EFA7D65006B919D /* Info.plist */,
 				507190971EFFC7C2006C3CA9 /* Key.swift */,
+				57E8833D1EFD86280059A2E7 /* Enemy.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -192,6 +199,7 @@
 				57686A691EFD4F07002CB08E /* PlayerTests.swift */,
 				500001821EFD4E2E00F089A2 /* DoorTests.swift */,
 				508C9E0B1EFFC6C1008AB64E /* KeyTests.swift */,
+				50DAA6C71F001576008643F0 /* TestEnemy.swift */,
 			);
 			path = TestTests;
 			sourceTree = "<group>";
@@ -359,7 +367,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				2649D95B1F0009E500D935F9 /* LandingPage.swift in Sources */,
+
+				50DAA6CB1F0015AF008643F0 /* Enemy.swift in Sources */,
+
 				502504BA1EFB11F0005AA3D0 /* Player.swift in Sources */,
 				269E3B971EFA7D65006B919D /*  GameScene.swift in Sources */,
 				269E3B991EFA7D65006B919D /* GameViewController.swift in Sources */,
@@ -379,11 +391,13 @@
 				507190991EFFC7C2006C3CA9 /* Key.swift in Sources */,
 				500001881EFD51B000F089A2 /* AppDelegate.swift in Sources */,
 				508C9E0C1EFFC6C1008AB64E /* KeyTests.swift in Sources */,
+				50DAA6CF1F001649008643F0 /* TestEnemy.swift in Sources */,
 				269E3BAC1EFA7D65006B919D /* TestTests.swift in Sources */,
 				500001831EFD4E2E00F089A2 /* DoorTests.swift in Sources */,
 				57686A6A1EFD4F07002CB08E /* PlayerTests.swift in Sources */,
 				508050261F00240F00E73F6B /* EndPage.swift in Sources */,
 				26C5C5061EFBF53D00D50E42 /* Door.swift in Sources */,
+				50DAA6CC1F0015B0008643F0 /* Enemy.swift in Sources */,
 				500001861EFD51AB00F089A2 /* Player.swift in Sources */,
 				500001841EFD51A300F089A2 /*  GameScene.swift in Sources */,
 			);
@@ -397,6 +411,7 @@
 				500001871EFD51AC00F089A2 /* Player.swift in Sources */,
 				269E3BB71EFA7D66006B919D /* TestUITests.swift in Sources */,
 				500001851EFD51A300F089A2 /*  GameScene.swift in Sources */,
+				50DAA6CE1F001637008643F0 /* Enemy.swift in Sources */,
 				500001891EFD51B000F089A2 /* AppDelegate.swift in Sources */,
 				508050271F00240F00E73F6B /* EndPage.swift in Sources */,
 				5000018B1EFD51B500F089A2 /* GameViewController.swift in Sources */,

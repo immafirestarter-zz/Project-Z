@@ -2,9 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-
-      "filename" : "door.png",
-
+      "filename" : "soldier_stand.png",
       "scale" : "1x"
     },
     {
