@@ -10,4 +10,8 @@ import Foundation
 import SpriteKit
 
 class Key:SKSpriteNode {
+    
+    func setUpKey() {
+    
+    }
 }
