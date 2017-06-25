@@ -11,7 +11,15 @@ import SpriteKit
 
 class Key:SKSpriteNode {
     
+    
     func setUpKey() {
+        
+        let body:SKPhysicsBody = SKPhysicsBody()
+        
+        self.physicsBody = body
+        
+        body.affectedByGravity = false
+        
     
     }
 }

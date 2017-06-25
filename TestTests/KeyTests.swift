@@ -23,7 +23,9 @@ class TestKey: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testPhysicsBody() {
+        
+        XCTAssertEqual(key.physicsBody?.affectedByGravity, false)
 
     }
     
