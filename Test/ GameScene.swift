@@ -11,11 +11,13 @@ import GameplayKit
 enum BodyType:UInt32 {
     case player = 1
     case door = 2
+    case key = 4
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var thePlayer:Player = Player()
+    var theKey:Key = Key()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
@@ -62,6 +64,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
         }
         
+        if (self.childNode(withName: "Key") != nil) {
+            theKey = self.childNode(withName: "Key") as! Key
+            theKey.setUpKey()
+        }
+        
         for node in self.children {
             if let theDoor:Door = node as? Door {
                 theDoor.setUpDoor()
@@ -70,17 +77,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue) {
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue) && thePlayer.hasKey {
             if let theDoor = contact.bodyB.node as? Door {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
-        } else if ( contact.bodyA.categoryBitMask == BodyType.door.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+        } else if ( contact.bodyA.categoryBitMask == BodyType.door.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) && thePlayer.hasKey {
             if let theDoor = contact.bodyA.node as? Door {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
+            
         }
-        
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.key.rawValue) {
+            thePlayer.hasKey = true
+            print(thePlayer.hasKey)
+        } else if ( contact.bodyA.categoryBitMask == BodyType.key.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            thePlayer.hasKey = true
+            print(thePlayer.hasKey)
+        }
     }
     
     
@@ -149,10 +163,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (thePlayer.position.y < -200){
             thePlayer.isDead = true
         }
-        
 
         if thePlayer.isDead {
             restartLevel()
+        }
+        
+        if thePlayer.hasKey {
+            theKey.removeFromParent()
         }
         
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
