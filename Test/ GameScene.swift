@@ -110,18 +110,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
-        } else if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
+        }
+        
+        if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
+            
             if let theBody = contact.bodyB.node as? Enemy {
                 theBody.attacking = true
                 thePlayer.physicsBody?.applyImpulse(CGVector(dx:-5, dy:5))
                 theBody.attacking = false
-                if theBody.hasHit == false{
+                if (theBody.hasHit == false) {
+                    thePlayer.health -= 50
+                    theBody.delayHit()
+                    print(thePlayer.health)
+                }
+            }
+        } else if (contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
+            
+            if let theBody = contact.bodyA.node as? Enemy {
+                theBody.attacking = true
+                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-5, dy:5))
+                theBody.attacking = false
+                if (theBody.hasHit == false) {
                     thePlayer.health -= 50
                     theBody.delayHit()
                     print(thePlayer.health)
                 }
             }
         }
+        
+        
+        
+        
+        
+        
+        
+        
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.key.rawValue) {
             thePlayer.hasKey = true
             print(thePlayer.hasKey)
