@@ -23,10 +23,16 @@ class TestKey: XCTestCase {
         super.tearDown()
     }
     
-    func testPhysicsBody() {
+    func testAffectedByGravity() {
         
         XCTAssertEqual(key.physicsBody?.affectedByGravity, false)
 
+    }
+    
+    func testIsDynamic() {
+        
+        XCTAssertEqual(key.physicsBody?.isDynamic, false)
+        
     }
     
     func testPerformanceExample() {

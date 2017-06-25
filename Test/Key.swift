@@ -19,6 +19,7 @@ class Key:SKSpriteNode {
         self.physicsBody = body
         
         body.affectedByGravity = false
+        body.isDynamic = false
         
     
     }
