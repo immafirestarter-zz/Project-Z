@@ -91,13 +91,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print(self.enemies.count)
             print(theEnemy.health)
         }
-        let constatSpawn = SKAction.sequence([spawn, wait])
-        self.run(SKAction.repeatForever(constatSpawn))
+        
+        let constantSpawn = SKAction.sequence([spawn, wait])
+        self.run(SKAction.repeatForever(constantSpawn))
         
         
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue && thePlayer.hasKey) {
             if let theDoor = contact.bodyB.node as? Door {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
@@ -108,10 +110,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
-        } else if (contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
+        } else if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
             if let theBody = contact.bodyB.node as? Enemy {
                 theBody.attacking = true
-                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-20, dy:20))
+                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-5, dy:5))
                 theBody.attacking = false
                 if theBody.hasHit == false{
                     thePlayer.health -= 50
