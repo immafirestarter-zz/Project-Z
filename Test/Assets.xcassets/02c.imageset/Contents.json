@@ -2,9 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-
-      "filename" : "door.png",
-
+      "filename" : "02c.png",
       "scale" : "1x"
     },
     {
