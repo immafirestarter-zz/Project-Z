@@ -22,6 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     static let enemyHitCategory = 1
     var force:CGFloat = 16.0
     var thePlayer:Player = Player()
+    var theKey:Key = Key()
     var enemies = [Enemy]()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
@@ -117,6 +118,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     print(thePlayer.health)
                 }
             }
+        }
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.key.rawValue) {
+            thePlayer.hasKey = true
+            print(thePlayer.hasKey)
+        } else if ( contact.bodyA.categoryBitMask == BodyType.key.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            thePlayer.hasKey = true
+            print(thePlayer.hasKey)
         }
     }
     
