@@ -23,6 +23,7 @@ class Key:SKSpriteNode {
         body.allowsRotation = false
         
         body.collisionBitMask = 0
+        body.categoryBitMask = BodyType.key.rawValue
     
     }
 }

@@ -11,6 +11,7 @@ import GameplayKit
 enum BodyType:UInt32 {
     case player = 1
     case door = 2
+    case key = 4
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
