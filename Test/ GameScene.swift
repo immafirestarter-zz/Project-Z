@@ -138,20 +138,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        
-        
-        
-        
-        
-        
-        
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.key.rawValue) {
             thePlayer.hasKey = true
             print(thePlayer.hasKey)
-        } else if ( contact.bodyA.categoryBitMask == BodyType.key.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
-            thePlayer.hasKey = true
-            print(thePlayer.hasKey)
-        }
+        } 
     }
     
     
@@ -228,14 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
         }
         
-        if (thePlayer.position.y < -200){
-            thePlayer.isDead = true
-        }
-        
-        if thePlayer.health <= 0{
-            thePlayer.isDead = true
-        }
-        
+        thePlayer.statusCheck()
         
         if thePlayer.isDead {
             restartLevel()

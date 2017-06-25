@@ -86,4 +86,10 @@ class Player: SKSpriteNode {
     func stopMoving(){
         self.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
     }
+    
+    func statusCheck(){
+        if (self.position.y < -200 || self.health <= 0){
+            self.isDead = true
+        }
+    }
 }
