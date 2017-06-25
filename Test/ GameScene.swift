@@ -14,10 +14,16 @@ enum BodyType:UInt32 {
     case key = 4
 }
 
+
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    
+    static let enemyHitCategory = 1
+    var force:CGFloat = 16.0
     var thePlayer:Player = Player()
     var theKey:Key = Key()
+    var enemies = [Enemy]()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
@@ -74,6 +80,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theDoor.setUpDoor()
             }
         }
+        let wait = SKAction.wait(forDuration: 10)
+        let spawn = SKAction.run {
+            let theEnemy: Enemy = Enemy()
+            theEnemy.xScale = fabs(theEnemy.xScale) * -1
+            theEnemy.position = CGPoint(x: 300, y: 10)
+            self.addChild(theEnemy)
+            self.enemies.append(theEnemy)
+            print(self.enemies.count)
+            print(theEnemy.health)
+        }
+        let constatSpawn = SKAction.sequence([spawn, wait])
+        self.run(SKAction.repeatForever(constatSpawn))
+        
+       
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
@@ -87,6 +107,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
+        } else if (contact.bodyA.categoryBitMask == UInt32(GameScene.enemyHitCategory) && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
+            if let theBody = contact.bodyB.node as? Enemy {
+                theBody.attacking = true
+                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-20, dy:20))
+                theBody.attacking = false
+                if theBody.hasHit == false{
+                    thePlayer.health -= 50
+                    theBody.delayHit()
+                    print(thePlayer.health)
+                }
+            }
         }
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.key.rawValue) {
             thePlayer.hasKey = true
@@ -104,7 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    internal override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let touchlocation = touch!.location(in: self)
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
@@ -143,8 +174,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         thePlayer.stopMoving()
     }
     
+  
+    
     override func update(_ currentTime: TimeInterval) {
-      
+        for (index, enemy) in enemies.enumerated() {
+            if enemy.position.y < -100 {
+                enemy.removeFromParent()
+                enemies.remove(at: index)
+            } else if !enemy .hasActions() && enemy.attacking == false{
+                enemy.enemyWalk()
+            } else if enemy.attacking == true && !enemy .hasActions() {
+                enemy.attack()
+            }
+        }
       
         theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
         button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
@@ -163,6 +205,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (thePlayer.position.y < -200){
             thePlayer.isDead = true
         }
+        
+        if thePlayer.health <= 0{
+            thePlayer.isDead = true
+        }
+        
 
         if thePlayer.isDead {
             restartLevel()
@@ -192,9 +239,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 sceneNode.entities = scene.entities
                 sceneNode.graphs = scene.graphs
 
-                
                 sceneNode.scaleMode = .aspectFill
-                
                 if let view = self.view as! SKView? {
                     let transition = SKTransition.fade(withDuration: 1.0)
                     view.presentScene(sceneNode, transition: transition)

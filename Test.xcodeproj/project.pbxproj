@@ -46,6 +46,7 @@
 		50E7F7351EFACBF9005B4513 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 50E7F7341EFACBF9005B4513 /* GameScene.sks */; };
 		50E7F7371EFACC52005B4513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50E7F7361EFACC52005B4513 /* Assets.xcassets */; };
 		57686A6A1EFD4F07002CB08E /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57686A691EFD4F07002CB08E /* PlayerTests.swift */; };
+		57E8833E1EFD86280059A2E7 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8833D1EFD86280059A2E7 /* Enemy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		50E7F7341EFACBF9005B4513 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		50E7F7361EFACC52005B4513 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57686A691EFD4F07002CB08E /* PlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
+		57E8833D1EFD86280059A2E7 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				269E3B9F1EFA7D65006B919D /* LaunchScreen.storyboard */,
 				269E3BA21EFA7D65006B919D /* Info.plist */,
 				507190971EFFC7C2006C3CA9 /* Key.swift */,
+				57E8833D1EFD86280059A2E7 /* Enemy.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			files = (
 				502504BA1EFB11F0005AA3D0 /* Player.swift in Sources */,
 				269E3B971EFA7D65006B919D /*  GameScene.swift in Sources */,
+				57E8833E1EFD86280059A2E7 /* Enemy.swift in Sources */,
 				269E3B991EFA7D65006B919D /* GameViewController.swift in Sources */,
 				26C5C5051EFBF53D00D50E42 /* Door.swift in Sources */,
 				269E3B911EFA7D65006B919D /* AppDelegate.swift in Sources */,

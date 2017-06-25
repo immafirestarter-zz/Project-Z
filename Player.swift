@@ -10,6 +10,10 @@ import Foundation
 import SpriteKit
 
 class Player: SKSpriteNode {
+
+    
+    var health = 100
+    static let enemyHitCategory = 1
     
     var jumpAction:SKAction?
     var walkAction:SKAction?
@@ -33,13 +37,10 @@ class Player: SKSpriteNode {
         body.isDynamic = true
         body.affectedByGravity = true
         body.allowsRotation = false
-        
         body.restitution = 0
-        body.collisionBitMask = 1
         body.categoryBitMask = BodyType.player.rawValue
-        body.contactTestBitMask = BodyType.door.rawValue
-        
-        
+        body.collisionBitMask = UInt32(Player.enemyHitCategory)
+        body.contactTestBitMask = BodyType.door.rawValue | UInt32(Player.enemyHitCategory)
         
     }
     
