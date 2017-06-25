@@ -35,7 +35,7 @@ class Player: SKSpriteNode {
         body.allowsRotation = false
         
         body.restitution = 0
-        
+        body.collisionBitMask = 1
         body.categoryBitMask = BodyType.player.rawValue
         body.contactTestBitMask = BodyType.door.rawValue
         
