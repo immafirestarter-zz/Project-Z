@@ -17,6 +17,7 @@ enum BodyType:UInt32 {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var thePlayer:Player = Player()
+    var theKey:Key = Key()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
@@ -63,6 +64,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
         }
         
+        if(self.childNode(withName: "Key") != nil) {
+            theKey = self.childNode(withName: "Key") as! Key
+            theKey.setUpKey()
+        }
+        
         for node in self.children {
             if let theDoor:Door = node as? Door {
                 theDoor.setUpDoor()
@@ -80,8 +86,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let theDoor = contact.bodyA.node as? Door {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
+            
         }
-        
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.key.rawValue) {
+            print("key was touched")
+        } else if ( contact.bodyA.categoryBitMask == BodyType.key.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            print("key was touched")
+        }
     }
     
     
