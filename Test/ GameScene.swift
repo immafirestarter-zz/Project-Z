@@ -116,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let theBody = contact.bodyB.node as? Enemy {
                 theBody.attacking = true
-                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-5, dy:5))
+                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-10, dy:10))
                 theBody.attacking = false
                 if (theBody.hasHit == false) {
                     thePlayer.health -= 50
