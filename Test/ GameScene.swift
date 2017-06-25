@@ -162,7 +162,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -100))
+        thePlayer.removeAction(forKey: "repeat action")
+        thePlayer.jump(force:self.force)
+        self.force = Player.Constants.minimumJumpForce
         isTouching = false
         movingRight = false
         movingLeft = false
