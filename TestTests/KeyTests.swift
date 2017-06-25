@@ -35,6 +35,12 @@ class TestKey: XCTestCase {
         
     }
     
+    func testRotates() {
+        
+        XCTAssertEqual(key.physicsBody?.allowsRotation, false)
+    
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

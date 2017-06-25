@@ -20,6 +20,7 @@ class Key:SKSpriteNode {
         
         body.affectedByGravity = false
         body.isDynamic = false
+        body.allowsRotation = false
         
     
     }
