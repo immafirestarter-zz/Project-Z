@@ -64,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
         }
         
-        if(self.childNode(withName: "Key") != nil) {
+        if (self.childNode(withName: "Key") != nil) {
             theKey = self.childNode(withName: "Key") as! Key
             theKey.setUpKey()
         }

@@ -14,10 +14,10 @@ class Key:SKSpriteNode {
     
     func setUpKey() {
         
-        let imageTexture = SKTexture(imageNamed: "key-gold")
         
-        let body:SKPhysicsBody = SKPhysicsBody(texture: imageTexture,
-                                               size: imageTexture.size())
+        let objectSize = CGSize(width: self.texture!.size().width * 0.2, height: self.texture!.size().height * 0.5)
+        
+        let body:SKPhysicsBody = SKPhysicsBody(texture: self.texture!, size: objectSize)
         
         
         self.physicsBody = body

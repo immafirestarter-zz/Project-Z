@@ -19,6 +19,8 @@ class Player: SKSpriteNode {
     
     var isDead = false
     
+    var hasKey = false
+    
     func setUpPlayer() {
         
         
