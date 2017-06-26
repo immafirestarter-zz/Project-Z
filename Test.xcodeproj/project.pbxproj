@@ -65,6 +65,7 @@
 		C14F431F1F011343001AB82B /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F431E1F011343001AB82B /* Weapon.swift */; };
 		C14F43201F011343001AB82B /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F431E1F011343001AB82B /* Weapon.swift */; };
 		C14F43211F011343001AB82B /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F431E1F011343001AB82B /* Weapon.swift */; };
+		C14F43231F011BA6001AB82B /* WeaponTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F43221F011BA6001AB82B /* WeaponTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		57686A691EFD4F07002CB08E /* PlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		57E8833D1EFD86280059A2E7 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		C14F431E1F011343001AB82B /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		C14F43221F011BA6001AB82B /* WeaponTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 			children = (
 				269E3BAB1EFA7D65006B919D /* TestTests.swift */,
 				269E3BAD1EFA7D65006B919D /* Info.plist */,
+				C14F43221F011BA6001AB82B /* WeaponTests.swift */,
 				57686A691EFD4F07002CB08E /* PlayerTests.swift */,
 				500001821EFD4E2E00F089A2 /* DoorTests.swift */,
 				508C9E0B1EFFC6C1008AB64E /* KeyTests.swift */,
@@ -398,6 +401,7 @@
 				50DAA6CF1F001649008643F0 /* TestEnemy.swift in Sources */,
 				269E3BAC1EFA7D65006B919D /* TestTests.swift in Sources */,
 				500001831EFD4E2E00F089A2 /* DoorTests.swift in Sources */,
+				C14F43231F011BA6001AB82B /* WeaponTests.swift in Sources */,
 				57686A6A1EFD4F07002CB08E /* PlayerTests.swift in Sources */,
 				508050261F00240F00E73F6B /* EndPage.swift in Sources */,
 				26C5C5061EFBF53D00D50E42 /* Door.swift in Sources */,

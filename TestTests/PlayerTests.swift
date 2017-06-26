@@ -31,10 +31,8 @@ class TestPlayer: XCTestCase {
     
     func testPlayerMovment() {
         XCTAssert(player.physicsBody?.velocity.dx == 0, "player is moving in the begining")
-        player.walk(moveVelocity: 200)
+        player.walk(force: 200)
         XCTAssert(player.physicsBody?.velocity.dx == 100, "player is not moving")
-        player.stopMoving()
-        XCTAssert(player.physicsBody?.velocity.dx == 0, "player is still moving")
     }
     
     func testPlayeHasKey() {
