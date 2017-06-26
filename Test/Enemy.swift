@@ -18,6 +18,7 @@ class Enemy: SKSpriteNode {
     static let enemyHitCategory = 1
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        
         let enemyTexture = SKTexture(imageNamed: "soldier_stand")
         super.init(texture: enemyTexture, color: UIColor.clear, size: enemyTexture.size())
         self.physicsBody = SKPhysicsBody(texture: enemyTexture, size: enemyTexture.size())

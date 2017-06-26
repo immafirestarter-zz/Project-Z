@@ -28,6 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var theKey:Key = Key()
     var theWeapon:Weapon = Weapon()
     var enemies = [Enemy]()
+    var projectile:Projectile = Projectile()
     var button:SKSpriteNode = SKSpriteNode()
     var shootButton: SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
@@ -205,7 +206,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             isTouching = true
             movingLeft = true
             xVelocity = -300
+        
+        } else if shootButton.contains(touchlocation){
+            projectile.spawnProjectile(player: thePlayer)
+            print("im shooting stuff")
         }
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
