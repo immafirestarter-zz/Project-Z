@@ -151,6 +151,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     thePlayer.health -= 25
                     theBody.delayHit()
                     print(thePlayer.health)
+                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
                 }
             }
         } else if (contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
@@ -160,9 +161,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 thePlayer.physicsBody?.applyImpulse(CGVector(dx:-5, dy:5))
                 theBody.attacking = false
                 if (theBody.hasHit == false) {
-                    thePlayer.health -= 50
+                    thePlayer.health -= 25
                     theBody.delayHit()
                     print(thePlayer.health)
+                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
                 }
             }
         }
@@ -171,6 +173,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if (thePlayer.health < 100) {
                 thePlayer.health += 25
                 theHealthPack.removeFromParent()
+                theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
             }
         }
         
@@ -259,8 +262,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func update(_ currentTime: TimeInterval) {
-        
-        theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
         
         for (index, enemy) in enemies.enumerated() {
             if enemy.position.y < -100 {
