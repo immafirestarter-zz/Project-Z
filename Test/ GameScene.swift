@@ -13,7 +13,9 @@ enum BodyType:UInt32 {
     case door = 2
     case key = 4
     case enemy = 8
-    case healthPack = 16
+    case weapon = 16
+    case projectile = 32
+    case healthPack = 64
 }
 
 
@@ -54,8 +56,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.contactDelegate = self
         
-        
-        
         if (self.childNode(withName: "Player") != nil){
             thePlayer = self.childNode(withName: "Player") as! Player
             thePlayer.setUpPlayer()
@@ -95,10 +95,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theHealthPack = self.childNode(withName: "health") as! HealthPack
             theHealthPack.setUp()
         }
-
-      
-        
-
         
         if (self.childNode(withName: "Weapon") != nil) {
             theWeapon = self.childNode(withName: "Weapon") as! Weapon
@@ -130,7 +126,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let constantSpawn = SKAction.sequence([spawn, wait])
         self.run(SKAction.repeatForever(constantSpawn))
     }
-
     
     func didBegin(_ contact: SKPhysicsContact) {
         
@@ -230,8 +225,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
         let velocityCheck: CGFloat = -20.0
         
-        
-        
         if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             thePlayer.jump()
             
@@ -255,7 +248,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print(thePlayer.xScale)
             }
         }
-        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
