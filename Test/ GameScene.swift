@@ -171,10 +171,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     thePlayer.weaponCount += 3
                 }
             }
-            
         }
         
-        if ( contact.bodyB.categoryBitMask == BodyType.projectile.rawValue && contact.bodyA.categoryBitMask == BodyType.enemy.rawValue) {
+        if ( contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
             if let theEnemy = contact.bodyA.node as? Enemy {
             print ("this enemy has been hit")
                 theEnemy.health -= 100
@@ -182,7 +181,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let theProjectile = contact.bodyB.node as? Projectile {
                 theProjectile.removeFromParent()
             }
-        } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
+        } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue){
             if let theEnemy = contact.bodyB.node as? Enemy {
                 print ("this enemy has been hit")
                 theEnemy.health -= 100
