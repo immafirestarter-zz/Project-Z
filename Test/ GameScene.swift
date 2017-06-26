@@ -78,6 +78,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theKey = self.childNode(withName: "Key") as! Key
             theKey.setUpKey()
         }
+        if (self.childNode(withName: "lifeBar") != nil) {
+            theLifeBar = self.childNode(withName: "lifeBar") as! LifeBar
+            theLifeBar.setUp()
+   
+        }
+
+      
+        
+
         
         for node in self.children {
             if let theDoor:Door = node as? Door {
@@ -97,11 +106,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let constantSpawn = SKAction.sequence([spawn, wait])
         self.run(SKAction.repeatForever(constantSpawn))
-        
-        
-        addChild(theLifeBar)
-        theLifeBar.setUp(playerPosition: thePlayer.position.x, cameraPosition: theCamera.position.y)
     }
+
     
     func didBegin(_ contact: SKPhysicsContact) {
         
@@ -124,7 +130,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 thePlayer.physicsBody?.applyImpulse(CGVector(dx:-10, dy:10))
                 theBody.attacking = false
                 if (theBody.hasHit == false) {
-                    thePlayer.health -= 50
+                    thePlayer.health -= 25
                     theBody.delayHit()
                     print(thePlayer.health)
                 }
@@ -198,6 +204,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func update(_ currentTime: TimeInterval) {
+        
+        theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+        
         for (index, enemy) in enemies.enumerated() {
             if enemy.position.y < -100 {
                 enemy.removeFromParent()
@@ -209,18 +218,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
-        button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
-        leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
-        rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
-        
-        
         if theCamera.position.y > -150 {
             
             theCamera.position = CGPoint(x: thePlayer.position.x ,y: thePlayer.position.y)
             button.position = CGPoint(x: thePlayer.position.x + 260 ,y: thePlayer.position.y)
             leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
             rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
+            theLifeBar.position = CGPoint(x: thePlayer.position.x - 320 ,y: theCamera.position.y + 150)
         }
         
         thePlayer.statusCheck()
