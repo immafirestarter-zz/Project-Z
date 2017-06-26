@@ -182,6 +182,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let theProjectile = contact.bodyB.node as? Projectile {
                 theProjectile.removeFromParent()
             }
+        } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
+            if let theEnemy = contact.bodyB.node as? Enemy {
+                print ("this enemy has been hit")
+                theEnemy.health -= 100
+            }
+            if let theProjectile = contact.bodyA.node as? Projectile {
+                theProjectile.removeFromParent()
+            }
         }
         
     }
