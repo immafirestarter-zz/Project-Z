@@ -15,7 +15,7 @@ class TestLifeBar: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        lifeBar.setUp()
+        lifeBar.setUp(playerPosition: 300.0, cameraPosition: 100.0)
     }
     
     override func tearDown() {

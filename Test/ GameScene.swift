@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var thePlayer:Player = Player()
     var theKey:Key = Key()
     var enemies = [Enemy]()
+    var theLifeBar:LifeBar = LifeBar()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
@@ -48,6 +49,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         physicsWorld.contactDelegate = self
+        
+        
         
         if (self.childNode(withName: "Player") != nil){
             thePlayer = self.childNode(withName: "Player") as! Player
@@ -96,6 +99,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.run(SKAction.repeatForever(constantSpawn))
         
         
+        addChild(theLifeBar)
+        theLifeBar.setUp(playerPosition: thePlayer.position.x, cameraPosition: theCamera.position.y)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
