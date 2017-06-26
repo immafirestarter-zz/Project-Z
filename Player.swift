@@ -24,6 +24,8 @@ class Player: SKSpriteNode {
     var isDead = false
     
     var hasKey = false
+    var hasWeapon = false
+    var weaponCount:Int = 0
     
     func setUpPlayer() {
         
@@ -39,7 +41,7 @@ class Player: SKSpriteNode {
         body.allowsRotation = false
         body.restitution = 0
         body.categoryBitMask = BodyType.player.rawValue
-        body.collisionBitMask = 1 | 2
+        body.collisionBitMask = 1
         body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue
     }
     
@@ -73,6 +75,10 @@ class Player: SKSpriteNode {
     func statusCheck(){
         if (self.position.y < -200 || self.health <= 0){
             self.isDead = true
+        }
+        
+        if (self.weaponCount == 0){
+            self.hasWeapon = false
         }
     }
 }

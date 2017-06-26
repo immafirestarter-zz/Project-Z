@@ -6,12 +6,13 @@
 //  Copyright © 2017 Sami. All rights reserved.
 //
 
+import SpriteKit
 import XCTest
 @testable import Test
 
 class TestKey: XCTestCase {
     
-    let key:Key = Key()
+    let key:Key = Key(texture: SKTexture(imageNamed: "key-gold"))
     
     override func setUp() {
         super.setUp()
