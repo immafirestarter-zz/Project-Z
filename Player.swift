@@ -74,13 +74,8 @@ class Player: SKSpriteNode {
         self.physicsBody?.applyImpulse(CGVector(dx: directionForce, dy: 600))
     }
     
-    func walk(moveVelocity: CGFloat) {
-        let rate: CGFloat = 0.5
-        self.xVelocity = moveVelocity
-        let playerVelocity = self.physicsBody?.velocity.dx
-        let relativeVelocity:CGVector = CGVector(dx: self.xVelocity - playerVelocity!, dy: 0)
-        self.physicsBody?.velocity = CGVector(dx: playerVelocity! + relativeVelocity.dx * rate, dy: 0)
-        setUpWalk()
+    func walk(force: CGFloat) {
+        self.physicsBody?.applyForce(CGVector(dx: force, dy: 0.0))
     }
     
     func stopMoving(){

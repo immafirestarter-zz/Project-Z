@@ -172,18 +172,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             directionHandling = 1
             isTouching = true
             movingRight = true
-            xVelocity = 200
+            xVelocity = 300
             
         } else if buttonLeft.contains(touchlocation){
             directionHandling = -1
             isTouching = true
             movingLeft = true
-            xVelocity = -200
+            xVelocity = -300
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -100))
         isTouching = false
         movingRight = false
         movingLeft = false
@@ -231,10 +230,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
         
         if isTouching && movingRight && !thePlayer .hasActions(){
-            thePlayer.walk(moveVelocity:xVelocity)
+            print("im moving right")
+            thePlayer.walk(force: xVelocity)
             
         } else if isTouching && movingLeft && !thePlayer .hasActions(){
-            thePlayer.walk(moveVelocity:xVelocity)
+            print("im moving left")
+            thePlayer.walk(force: xVelocity)
             
         } else if !isTouching {
             thePlayer.setUpIdle()
