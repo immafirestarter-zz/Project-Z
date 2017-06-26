@@ -26,7 +26,7 @@ class Projectile: SKSpriteNode {
         
         
         self.physicsBody?.categoryBitMask = BodyType.projectile.rawValue
-        self.physicsBody?.collisionBitMask = 8
+        self.physicsBody?.collisionBitMask = BodyType.enemy.rawValue
         self.physicsBody?.contactTestBitMask = BodyType.enemy.rawValue
         
         self.physicsBody?.usesPreciseCollisionDetection = true
@@ -38,14 +38,14 @@ class Projectile: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func spawnProjectile(player: Player, parent: GameScene) {
+    class func spawnProjectile(player: Player, parent: GameScene) {
         let newProjectile: Projectile = Projectile()
         newProjectile.position = CGPoint(x: player.position.x+50, y: player.position.y)
         parent.addChild(newProjectile)
         self.shootProjectile(projectile: newProjectile)
     }
     
-    func shootProjectile(projectile: Projectile) {
+    class func shootProjectile(projectile: Projectile) {
         projectile.physicsBody?.applyImpulse(CGVector(dx: 100, dy: 0))
     }
 }

@@ -28,7 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var theKey:Key = Key()
     var theWeapon:Weapon = Weapon()
     var enemies = [Enemy]()
-    var projectile:Projectile = Projectile()
+//    var theProjectile:Projectile = Projectile()
     var button:SKSpriteNode = SKSpriteNode()
     var shootButton: SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
@@ -173,6 +173,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
+        
+        if ( contact.bodyB.categoryBitMask == BodyType.projectile.rawValue && contact.bodyA.categoryBitMask == BodyType.enemy.rawValue) {
+            if let theEnemy = contact.bodyA.node as? Enemy {
+            print ("this enemy has been hit")
+                theEnemy.health -= 100
+            }
+            if let theProjectile = contact.bodyB.node as? Projectile {
+                theProjectile.removeFromParent()
+            }
+        }
     }
     
     
@@ -208,7 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             xVelocity = -300
         
         } else if shootButton.contains(touchlocation){
-            projectile.spawnProjectile(player: thePlayer, parent: self )
+            Projectile.spawnProjectile(player: thePlayer, parent: self )
             print("im shooting stuff")
         }
         
@@ -231,8 +241,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.enemyWalk()
             } else if enemy.attacking == true && !enemy .hasActions() {
                 enemy.attack()
+            } else if enemy.health <= 0 {
+                enemy.removeFromParent()
+                enemies.remove(at: index)
             }
         }
+        
         
         theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
         button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
