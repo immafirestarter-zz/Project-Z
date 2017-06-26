@@ -13,18 +13,13 @@ class LifeBar: SKSpriteNode {
     
     
     func setUp() {
-    
-        let objectSize = CGSize(width: self.texture!.size().width, height: self.texture!.size().height)
+        let objectSize = CGSize(width: self.texture!.size().width / 2, height: self.texture!.size().height / 2)
         self.size = objectSize
-        
     }
-    
     
     func updateBar(lifeWidth: CGFloat) {
-        var newRatio = lifeWidth / 100
-        var objectSize = CGSize(width: self.texture!.size().width * newRatio, height: self.texture!.size().height)
+        let newRatio = lifeWidth / 100
+        let objectSize = CGSize(width: self.texture!.size().width / 2  * newRatio, height: self.texture!.size().height / 2)
         self.size = objectSize
-        
     }
-    
 }
