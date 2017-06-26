@@ -208,7 +208,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             xVelocity = -300
         
         } else if shootButton.contains(touchlocation){
-            projectile.spawnProjectile(player: thePlayer)
+            projectile.spawnProjectile(player: thePlayer, parent: self )
             print("im shooting stuff")
         }
         

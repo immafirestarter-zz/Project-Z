@@ -39,9 +39,10 @@ class Projectile: SKSpriteNode {
     }
     
     
-    func spawnProjectile(player: Player) {
+    func spawnProjectile(player: Player, parent: GameScene) {
         let newProjectile: Projectile = Projectile()
         newProjectile.position = player.position
+        parent.addChild(newProjectile)
         self.shootProjectile(projectile: newProjectile)
     }
     
