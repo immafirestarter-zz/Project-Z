@@ -99,6 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theDoor.setUpDoor()
             }
         }
+
         let wait = SKAction.wait(forDuration: 10)
         let spawn = SKAction.run {
             let theEnemy:Enemy = Enemy()
@@ -183,35 +184,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
         let velocityCheck: CGFloat = -20.0
         
-        if movingRight == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: 200)
+      
             
-        } else if movingLeft == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: -200)
-            
-        } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
+        if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             thePlayer.jump()
             
         } else if buttonRight.contains(touchlocation){
             directionHandling = 1
             isTouching = true
             movingRight = true
-            xVelocity = 200
+            xVelocity = 300
             
         } else if buttonLeft.contains(touchlocation){
             directionHandling = -1
             isTouching = true
             movingLeft = true
-            xVelocity = -200
+            xVelocity = -300
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -100))
         isTouching = false
         movingRight = false
         movingLeft = false
-        thePlayer.stopMoving()
     }
     
     
@@ -253,10 +248,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
         
         if isTouching && movingRight && !thePlayer .hasActions(){
-            thePlayer.walk(moveVelocity:xVelocity)
+            print("im moving right")
+            thePlayer.walk(force: xVelocity)
             
         } else if isTouching && movingLeft && !thePlayer .hasActions(){
-            thePlayer.walk(moveVelocity:xVelocity)
+            print("im moving left")
+            thePlayer.walk(force: xVelocity)
             
         } else if !isTouching {
             thePlayer.setUpIdle()
