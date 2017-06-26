@@ -83,24 +83,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theWeapon.setUpWeapon()
         }
         
+        if (self.childNode(withName: "Weapon2") != nil) {
+            theWeapon = self.childNode(withName: "Weapon2") as! Weapon
+            theWeapon.setUpWeapon()
+        }
+        
         for node in self.children {
             if let theDoor:Door = node as? Door {
                 theDoor.setUpDoor()
             }
         }
-//        let wait = SKAction.wait(forDuration: 10)
-//        let spawn = SKAction.run {
-//            let theEnemy:Enemy = Enemy()
-//            theEnemy.xScale = fabs(theEnemy.xScale) * -1
-//            theEnemy.position = CGPoint(x: 300, y: 10)
-//            self.addChild(theEnemy)
-//            self.enemies.append(theEnemy)
-//            print(self.enemies.count)
-//            print(theEnemy.health)
-//        }
-//        
-//        let constantSpawn = SKAction.sequence([spawn, wait])
-//        self.run(SKAction.repeatForever(constantSpawn))
+        //        let wait = SKAction.wait(forDuration: 10)
+        //        let spawn = SKAction.run {
+        //            let theEnemy:Enemy = Enemy()
+        //            theEnemy.xScale = fabs(theEnemy.xScale) * -1
+        //            theEnemy.position = CGPoint(x: 300, y: 10)
+        //            self.addChild(theEnemy)
+        //            self.enemies.append(theEnemy)
+        //            print(self.enemies.count)
+        //            print(theEnemy.health)
+        //        }
+        //
+        //        let constantSpawn = SKAction.sequence([spawn, wait])
+        //        self.run(SKAction.repeatForever(constantSpawn))
         
         
     }
@@ -148,7 +153,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.key.rawValue) {
             thePlayer.hasKey = true
             print(thePlayer.hasKey)
-        } 
+        }
+        
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.weapon.rawValue) {
+            if let theWeapon = contact.bodyB.node as? Weapon {
+                if theWeapon.pickedUp == false {
+                    theWeapon.pickedUp = true
+                    theWeapon.removeFromParent()
+                    thePlayer.hasWeapon = true
+                    thePlayer.weaponCount += 50
+                }
+            }
+            
+        }
     }
     
     
@@ -166,8 +183,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
         let velocityCheck: CGFloat = -20.0
         
-      
-            
+        
+        
         if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             thePlayer.jump()
             
@@ -232,11 +249,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
         
         if isTouching && movingRight && !thePlayer .hasActions(){
-            print("im moving right")
             thePlayer.walk(force: xVelocity)
             
         } else if isTouching && movingLeft && !thePlayer .hasActions(){
-            print("im moving left")
             thePlayer.walk(force: xVelocity)
             
         } else if !isTouching {
