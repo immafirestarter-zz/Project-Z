@@ -18,6 +18,7 @@ class Enemy: SKSpriteNode {
     static let enemyHitCategory = 1
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        
         let enemyTexture = SKTexture(imageNamed: "soldier_stand")
         super.init(texture: enemyTexture, color: UIColor.clear, size: enemyTexture.size())
         self.physicsBody = SKPhysicsBody(texture: enemyTexture, size: enemyTexture.size())
@@ -28,9 +29,8 @@ class Enemy: SKSpriteNode {
         
         
         self.physicsBody?.categoryBitMask = BodyType.enemy.rawValue
-        self.physicsBody?.collisionBitMask = 1
-        self.physicsBody?.contactTestBitMask = BodyType.player.rawValue
-        
+        self.physicsBody?.collisionBitMask = 2
+        self.physicsBody?.contactTestBitMask = BodyType.player.rawValue | BodyType.projectile.rawValue
         self.physicsBody?.usesPreciseCollisionDetection = true
         
         
