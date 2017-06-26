@@ -160,6 +160,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.key.rawValue) {
             thePlayer.hasKey = true
             print(thePlayer.hasKey)
+            run(SKAction.playSoundFileNamed("key1.wav", waitForCompletion: false))
         }
         
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.weapon.rawValue) {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2612506D1F014587006CF5CD /* key1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612506C1F014587006CF5CD /* key1.wav */; };
+		2612506E1F014587006CF5CD /* key1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612506C1F014587006CF5CD /* key1.wav */; };
+		2612506F1F014587006CF5CD /* key1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612506C1F014587006CF5CD /* key1.wav */; };
 		2649D9571F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
 		2649D9581F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
 		2649D9591F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
@@ -89,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2612506C1F014587006CF5CD /* key1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = key1.wav; sourceTree = "<group>"; };
 		2649D9561F00095800D935F9 /* LandingPage.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = LandingPage.sks; path = ../LandingPage.sks; sourceTree = "<group>"; };
 		2649D95A1F0009E500D935F9 /* landingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = landingPage.swift; sourceTree = "<group>"; };
 		2649D9621F00171300D935F9 /* EndPage.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndPage.sks; sourceTree = "<group>"; };
@@ -152,6 +156,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2612506B1F014566006CF5CD /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				2612506C1F014587006CF5CD /* key1.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		269E3B841EFA7D65006B919D = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +187,7 @@
 		269E3B8F1EFA7D65006B919D /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				2612506B1F014566006CF5CD /* Sounds */,
 				50E7F7341EFACBF9005B4513 /* GameScene.sks */,
 				502504BB1EFB2047005AA3D0 /* Jump.atlas */,
 				502504BF1EFB209B005AA3D0 /* Walk.atlas */,
@@ -336,6 +349,7 @@
 			files = (
 				269E3B9C1EFA7D65006B919D /* Main.storyboard in Resources */,
 				26C5C5011EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
+				2612506D1F014587006CF5CD /* key1.wav in Resources */,
 				502504BC1EFB2047005AA3D0 /* Jump.atlas in Resources */,
 				50E7F7351EFACBF9005B4513 /* GameScene.sks in Resources */,
 				26BC2ABD1EFBCFFD00C6066F /* Ground2.sks in Resources */,
@@ -353,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2612506E1F014587006CF5CD /* key1.wav in Resources */,
 				2649D9581F00095800D935F9 /* LandingPage.sks in Resources */,
 				26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				26BC2ABE1EFBCFFD00C6066F /* Ground2.sks in Resources */,
@@ -365,6 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2612506F1F014587006CF5CD /* key1.wav in Resources */,
 				2649D9591F00095800D935F9 /* LandingPage.sks in Resources */,
 				26BC2AC31EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				26BC2ABF1EFBCFFD00C6066F /* Ground2.sks in Resources */,
