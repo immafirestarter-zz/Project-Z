@@ -13,6 +13,7 @@ enum BodyType:UInt32 {
     case door = 2
     case key = 4
     case enemy = 8
+    case weapon = 16
 }
 
 
