@@ -61,30 +61,13 @@ class Player: SKSpriteNode {
     }
     
     func jump() {
-        let jump1 = SKTexture(imageNamed: "jump1")
-        let jump2 = SKTexture(imageNamed: "jump2")
-        let jump1Anime = SKAction.setTexture(jump1)
-        let jump2Anime = SKAction.setTexture(jump2)
-        let jumpAction = SKAction.sequence([jump1Anime, jump2Anime])
-        self.run(jumpAction)
-        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 600))
+        self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 450))
     }
     
-    func jumpDirectionally(directionForce: CGFloat){
-        self.physicsBody?.applyImpulse(CGVector(dx: directionForce, dy: 600))
-    }
     
-    func walk(moveVelocity: CGFloat) {
-        let rate: CGFloat = 0.5
-        self.xVelocity = moveVelocity
-        let playerVelocity = self.physicsBody?.velocity.dx
-        let relativeVelocity:CGVector = CGVector(dx: self.xVelocity - playerVelocity!, dy: 0)
-        self.physicsBody?.velocity = CGVector(dx: playerVelocity! + relativeVelocity.dx * rate, dy: 0)
-        setUpWalk()
-    }
-    
-    func stopMoving(){
-        self.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+    func walk(force: CGFloat) {
+        self.physicsBody?.applyForce(CGVector(dx: force, dy: 0.0))
+        
     }
     
     func statusCheck(){
