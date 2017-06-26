@@ -10,6 +10,15 @@
 		2612506D1F014587006CF5CD /* key1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612506C1F014587006CF5CD /* key1.wav */; };
 		2612506E1F014587006CF5CD /* key1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612506C1F014587006CF5CD /* key1.wav */; };
 		2612506F1F014587006CF5CD /* key1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612506C1F014587006CF5CD /* key1.wav */; };
+		261250711F014649006CF5CD /* bombpick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 261250701F014649006CF5CD /* bombpick.wav */; };
+		261250721F014649006CF5CD /* bombpick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 261250701F014649006CF5CD /* bombpick.wav */; };
+		261250731F014649006CF5CD /* bombpick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 261250701F014649006CF5CD /* bombpick.wav */; };
+		261250791F014BEE006CF5CD /* oshi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 261250781F014BEE006CF5CD /* oshi.mp3 */; };
+		2612507A1F014BEE006CF5CD /* oshi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 261250781F014BEE006CF5CD /* oshi.mp3 */; };
+		2612507B1F014BEE006CF5CD /* oshi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 261250781F014BEE006CF5CD /* oshi.mp3 */; };
+		2612507D1F014CA6006CF5CD /* jungle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612507C1F014CA6006CF5CD /* jungle.wav */; };
+		2612507E1F014CA6006CF5CD /* jungle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612507C1F014CA6006CF5CD /* jungle.wav */; };
+		2612507F1F014CA6006CF5CD /* jungle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612507C1F014CA6006CF5CD /* jungle.wav */; };
 		2649D9571F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
 		2649D9581F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
 		2649D9591F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
@@ -93,6 +102,9 @@
 
 /* Begin PBXFileReference section */
 		2612506C1F014587006CF5CD /* key1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = key1.wav; sourceTree = "<group>"; };
+		261250701F014649006CF5CD /* bombpick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bombpick.wav; sourceTree = "<group>"; };
+		261250781F014BEE006CF5CD /* oshi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = oshi.mp3; sourceTree = "<group>"; };
+		2612507C1F014CA6006CF5CD /* jungle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jungle.wav; sourceTree = "<group>"; };
 		2649D9561F00095800D935F9 /* LandingPage.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = LandingPage.sks; path = ../LandingPage.sks; sourceTree = "<group>"; };
 		2649D95A1F0009E500D935F9 /* landingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = landingPage.swift; sourceTree = "<group>"; };
 		2649D9621F00171300D935F9 /* EndPage.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndPage.sks; sourceTree = "<group>"; };
@@ -159,7 +171,10 @@
 		2612506B1F014566006CF5CD /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				261250701F014649006CF5CD /* bombpick.wav */,
 				2612506C1F014587006CF5CD /* key1.wav */,
+				261250781F014BEE006CF5CD /* oshi.mp3 */,
+				2612507C1F014CA6006CF5CD /* jungle.wav */,
 			);
 			name = Sounds;
 			sourceTree = "<group>";
@@ -356,10 +371,13 @@
 				269E3BA11EFA7D65006B919D /* LaunchScreen.storyboard in Resources */,
 				2649D9631F00171300D935F9 /* EndPage.sks in Resources */,
 				502504C01EFB209B005AA3D0 /* Walk.atlas in Resources */,
+				261250791F014BEE006CF5CD /* oshi.mp3 in Resources */,
 				269E3B951EFA7D65006B919D /* Actions.sks in Resources */,
+				2612507D1F014CA6006CF5CD /* jungle.wav in Resources */,
 				26BC2AC11EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				2649D9571F00095800D935F9 /* LandingPage.sks in Resources */,
 				50E7F7371EFACC52005B4513 /* Assets.xcassets in Resources */,
+				261250711F014649006CF5CD /* bombpick.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,11 +386,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2612506E1F014587006CF5CD /* key1.wav in Resources */,
+				2612507A1F014BEE006CF5CD /* oshi.mp3 in Resources */,
 				2649D9581F00095800D935F9 /* LandingPage.sks in Resources */,
 				26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				26BC2ABE1EFBCFFD00C6066F /* Ground2.sks in Resources */,
+				2612507E1F014CA6006CF5CD /* jungle.wav in Resources */,
 				26C5C5021EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
 				2649D9641F00171300D935F9 /* EndPage.sks in Resources */,
+				261250721F014649006CF5CD /* bombpick.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,11 +402,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2612506F1F014587006CF5CD /* key1.wav in Resources */,
+				2612507B1F014BEE006CF5CD /* oshi.mp3 in Resources */,
 				2649D9591F00095800D935F9 /* LandingPage.sks in Resources */,
 				26BC2AC31EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				26BC2ABF1EFBCFFD00C6066F /* Ground2.sks in Resources */,
+				2612507F1F014CA6006CF5CD /* jungle.wav in Resources */,
 				26C5C5031EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
 				2649D9651F00171300D935F9 /* EndPage.sks in Resources */,
+				261250731F014649006CF5CD /* bombpick.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

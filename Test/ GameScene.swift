@@ -47,11 +47,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var movingLeft = false
     var xVelocity: CGFloat = 0
     var directionHandling: CGFloat = 1
+    var backgroundMusic: SKAudioNode!
     
     
     
     override func didMove(to view: SKView) {
+
+        audio()
         
+    
         physicsWorld.contactDelegate = self
         
         if (self.childNode(withName: "Player") != nil){
@@ -115,6 +119,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.run(SKAction.repeatForever(constantSpawn))
         
         
+        
+    }
+
+    func audio() {
+        let audioNode = SKAudioNode(fileNamed: "oshi.mp3")
+        audioNode.autoplayLooped = false
+        self.addChild(audioNode)
+        let playAction = SKAction.play()
+        audioNode.run(playAction)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -164,6 +177,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.weapon.rawValue) {
+            run(SKAction.playSoundFileNamed("bombpick.wav", waitForCompletion: false))
             if let theWeapon = contact.bodyB.node as? Weapon {
                 if theWeapon.pickedUp == false {
                     theWeapon.pickedUp = true
@@ -180,6 +194,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func loadAnotherLevel( levelName:String) {
         if let scene = GameScene(fileNamed: levelName) {
             self.view?.presentScene(scene, transition: SKTransition.fade(withDuration: 0.1))
+            
         }
     }
     
@@ -253,7 +268,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         thePlayer.statusCheck()
-        
         if thePlayer.isDead {
             restartLevel()
         }
