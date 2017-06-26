@@ -168,7 +168,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     theWeapon.pickedUp = true
                     theWeapon.removeFromParent()
                     thePlayer.hasWeapon = true
-                    thePlayer.weaponCount += 50
+                    thePlayer.weaponCount += 3
                 }
             }
             
@@ -183,6 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theProjectile.removeFromParent()
             }
         }
+        
     }
     
     
@@ -218,8 +219,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             xVelocity = -300
         
         } else if shootButton.contains(touchlocation){
+            if thePlayer.hasWeapon {
+            thePlayer.weaponCount -= 1
             Projectile.spawnProjectile(player: thePlayer, parent: self )
             print("im shooting stuff")
+            }
         }
         
     }
