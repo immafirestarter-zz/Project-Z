@@ -14,6 +14,7 @@ enum BodyType:UInt32 {
     case key = 4
     case enemy = 8
     case weapon = 16
+    case projectile = 32
 }
 
 
@@ -28,6 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var theWeapon:Weapon = Weapon()
     var enemies = [Enemy]()
     var button:SKSpriteNode = SKSpriteNode()
+    var shootButton: SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
     var theCamera:SKCameraNode = SKCameraNode()
@@ -65,6 +67,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             button = self.childNode(withName: "button") as! SKSpriteNode
         }
         
+        if (self.childNode(withName: "shootButton") != nil){
+            shootButton = self.childNode(withName: "shootButton") as! SKSpriteNode
+        }
+        
         if (self.childNode(withName: "leftButton") != nil){
             leftButton = self.childNode(withName: "leftButton") as! SKSpriteNode
         }
@@ -93,19 +99,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theDoor.setUpDoor()
             }
         }
-        //        let wait = SKAction.wait(forDuration: 10)
-        //        let spawn = SKAction.run {
-        //            let theEnemy:Enemy = Enemy()
-        //            theEnemy.xScale = fabs(theEnemy.xScale) * -1
-        //            theEnemy.position = CGPoint(x: 300, y: 10)
-        //            self.addChild(theEnemy)
-        //            self.enemies.append(theEnemy)
-        //            print(self.enemies.count)
-        //            print(theEnemy.health)
-        //        }
-        //
-        //        let constantSpawn = SKAction.sequence([spawn, wait])
-        //        self.run(SKAction.repeatForever(constantSpawn))
+                let wait = SKAction.wait(forDuration: 10)
+                let spawn = SKAction.run {
+                    let theEnemy:Enemy = Enemy()
+                    theEnemy.xScale = fabs(theEnemy.xScale) * -1
+                    theEnemy.position = CGPoint(x: 300, y: 10)
+                    self.addChild(theEnemy)
+                    self.enemies.append(theEnemy)
+                    print(self.enemies.count)
+                    print(theEnemy.health)
+                }
+        
+                let constantSpawn = SKAction.sequence([spawn, wait])
+                self.run(SKAction.repeatForever(constantSpawn))
         
         
     }
@@ -224,14 +230,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
         button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
+        shootButton.position = CGPoint(x: thePlayer.position.x + 200 ,y: theCamera.position.y)
         leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
         rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
+        
         
         
         if theCamera.position.y > -150 {
             
             theCamera.position = CGPoint(x: thePlayer.position.x ,y: thePlayer.position.y)
             button.position = CGPoint(x: thePlayer.position.x + 260 ,y: thePlayer.position.y)
+            shootButton.position = CGPoint(x: thePlayer.position.x + 180 ,y: theCamera.position.y)
             leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
             rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
         }
