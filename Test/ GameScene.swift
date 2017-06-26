@@ -13,6 +13,7 @@ enum BodyType:UInt32 {
     case door = 2
     case key = 4
     case enemy = 8
+    case healthPack = 16
 }
 
 
@@ -26,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var theKey:Key = Key()
     var enemies = [Enemy]()
     var theLifeBar:LifeBar = LifeBar()
+    var theHealthPack:HealthPack = HealthPack()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
@@ -81,7 +83,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (self.childNode(withName: "lifeBar") != nil) {
             theLifeBar = self.childNode(withName: "lifeBar") as! LifeBar
             theLifeBar.setUp()
-   
+        }
+        
+        if (self.childNode(withName: "health")) != nil {
+            theHealthPack = self.childNode(withName: "health") as! HealthPack
+            theHealthPack.setUp()
         }
 
       
@@ -146,6 +152,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     theBody.delayHit()
                     print(thePlayer.health)
                 }
+            }
+        }
+        
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.healthPack.rawValue) {
+            if (thePlayer.health < 100) {
+                thePlayer.health += 25
+                theHealthPack.removeFromParent()
             }
         }
         
