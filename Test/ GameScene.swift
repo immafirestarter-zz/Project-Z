@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var force:CGFloat = 16.0
     var thePlayer:Player = Player()
     var theKey:Key = Key()
+    var theWeapon:Weapon = Weapon()
     var enemies = [Enemy]()
     var button:SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
@@ -75,6 +76,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (self.childNode(withName: "Key") != nil) {
             theKey = self.childNode(withName: "Key") as! Key
             theKey.setUpKey()
+        }
+        
+        if (self.childNode(withName: "Weapon") != nil) {
+            theWeapon = self.childNode(withName: "Weapon") as! Weapon
+            theWeapon.setUpWeapon()
         }
         
         for node in self.children {
