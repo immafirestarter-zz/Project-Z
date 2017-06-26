@@ -230,6 +230,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             thePlayer.weaponCount -= 1
             Projectile.spawnProjectile(player: thePlayer, parent: self )
             print("im shooting stuff")
+            print(thePlayer.xScale)
             }
         }
         

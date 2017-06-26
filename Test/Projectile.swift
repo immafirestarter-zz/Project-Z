@@ -40,12 +40,19 @@ class Projectile: SKSpriteNode {
     
     class func spawnProjectile(player: Player, parent: GameScene) {
         let newProjectile: Projectile = Projectile()
-        newProjectile.position = CGPoint(x: player.position.x+50, y: player.position.y)
+        newProjectile.position = player.position
         parent.addChild(newProjectile)
-        self.shootProjectile(projectile: newProjectile)
+        if player.xScale > 0 {
+        self.shootProjectile(projectile: newProjectile, direction: 100.0)
+        } else {
+        self.shootProjectile(projectile: newProjectile, direction: -100.0)
+        }
+        
     }
     
-    class func shootProjectile(projectile: Projectile) {
-        projectile.physicsBody?.applyImpulse(CGVector(dx: 100, dy: 0))
+    class func shootProjectile(projectile: Projectile, direction: CGFloat) {
+        
+        
+        projectile.physicsBody?.applyImpulse(CGVector(dx: direction, dy: 0))
     }
 }
