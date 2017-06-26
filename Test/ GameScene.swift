@@ -81,19 +81,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theDoor.setUpDoor()
             }
         }
-        let wait = SKAction.wait(forDuration: 10)
-        let spawn = SKAction.run {
-            let theEnemy:Enemy = Enemy()
-            theEnemy.xScale = fabs(theEnemy.xScale) * -1
-            theEnemy.position = CGPoint(x: 300, y: 10)
-            self.addChild(theEnemy)
-            self.enemies.append(theEnemy)
-            print(self.enemies.count)
-            print(theEnemy.health)
-        }
-        
-        let constantSpawn = SKAction.sequence([spawn, wait])
-        self.run(SKAction.repeatForever(constantSpawn))
+//        let wait = SKAction.wait(forDuration: 10)
+//        let spawn = SKAction.run {
+//            let theEnemy:Enemy = Enemy()
+//            theEnemy.xScale = fabs(theEnemy.xScale) * -1
+//            theEnemy.position = CGPoint(x: 300, y: 10)
+//            self.addChild(theEnemy)
+//            self.enemies.append(theEnemy)
+//            print(self.enemies.count)
+//            print(theEnemy.health)
+//        }
+//        
+//        let constantSpawn = SKAction.sequence([spawn, wait])
+//        self.run(SKAction.repeatForever(constantSpawn))
         
         
     }
@@ -159,13 +159,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
         let velocityCheck: CGFloat = -20.0
         
-        if movingRight == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: 200)
+      
             
-        } else if movingLeft == true && buttonJump.contains(touchlocation){
-            thePlayer.jumpDirectionally(directionForce: -200)
-            
-        } else if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
+        if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             thePlayer.jump()
             
         } else if buttonRight.contains(touchlocation){
@@ -186,7 +182,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         isTouching = false
         movingRight = false
         movingLeft = false
-        thePlayer.stopMoving()
     }
     
     
