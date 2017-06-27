@@ -37,7 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
     var theCamera:SKCameraNode = SKCameraNode()
-//    var theGround:Ground = Ground()
+    var playerJump = false
     
     
     
@@ -243,9 +243,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if ( contact.bodyA.categoryBitMask == BodyType.ground.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            playerJump = false
             print("im colliding with the floor")
             
         } else if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.ground.rawValue) {
+            playerJump = false
             print("im colliding with the ground")
         }
         
@@ -284,7 +286,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
         let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
+        
         if buttonJump.contains(touchlocation) && thePlayer.physicsBody?.velocity.dy == 0.0  {
+            playerJump = true
             thePlayer.jump()
             
         } else if buttonRight.contains(touchlocation) {
@@ -345,6 +349,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theLifeBar.position = CGPoint(x: thePlayer.position.x - 320 ,y: theCamera.position.y + 150)
         }
         
+        if playerJump == false {
+            thePlayer.setUpIdle()
+        }
+    
         thePlayer.statusCheck()
         if thePlayer.isDead {
             restartLevel()
@@ -357,20 +365,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
         
         if isTouching && movingRight && !thePlayer .hasActions(){
-//            thePlayer.walk(force: xVelocity)
             thePlayer.walk(force: xVelocity)
          
-            
-        
-            
-        
-            
-            
         } else if isTouching && movingLeft && !thePlayer .hasActions(){
             thePlayer.walk(force: xVelocity)
             
-        } else if !isTouching {
-            thePlayer.setUpIdle()
         }
     }
     
