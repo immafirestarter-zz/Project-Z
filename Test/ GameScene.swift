@@ -16,6 +16,7 @@ enum BodyType:UInt32 {
     case weapon = 16
     case projectile = 32
     case healthPack = 64
+    case ground = 128
 }
 
 
@@ -36,7 +37,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
     var theCamera:SKCameraNode = SKCameraNode()
+
     var knife_count:SKLabelNode = SKLabelNode()
+
+//    var theGround:Ground = Ground()
+    
+
     
     
     var entities = [GKEntity]()
@@ -51,6 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xVelocity: CGFloat = 0
     var directionHandling: CGFloat = 1
     var backgroundMusic: SKAudioNode!
+    
     
     
     
@@ -112,15 +119,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theWeapon.setUpWeapon()
         }
         
+
         if (self.childNode(withName: "knife_count") != nil) {
             knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
         }
         
         
+
         
         for node in self.children {
             if let theDoor:Door = node as? Door {
                 theDoor.setUpDoor()
+            }
+            if let theGround:Ground = node as? Ground {
+                theGround.setUpGround()
             }
         }
         
@@ -239,6 +251,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     thePlayer.weaponCount += 3
                 }
             }
+        }
+        
+        if ( contact.bodyA.categoryBitMask == BodyType.ground.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            print("im colliding with the floor")
+            
+        } else if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.ground.rawValue) {
+            print("im colliding with the ground")
         }
         
         
