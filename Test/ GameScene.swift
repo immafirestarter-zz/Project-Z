@@ -60,6 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.contactDelegate = self
         
+        
         if (self.childNode(withName: "Player") != nil){
             thePlayer = self.childNode(withName: "Player") as! Player
             thePlayer.setUpPlayer()
@@ -271,18 +272,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if buttonJump.contains(touchlocation) && thePlayer.physicsBody?.velocity.dy == 0.0  {
             thePlayer.jump()
             
-        } else if buttonRight.contains(touchlocation){
+        } else if buttonRight.contains(touchlocation) {
             directionHandling = 1
             isTouching = true
             movingRight = true
-            xVelocity = 300
+            xVelocity = 5555
             
         } else if buttonLeft.contains(touchlocation){
             directionHandling = -1
             isTouching = true
             movingLeft = true
-            xVelocity = -300
-            
+            xVelocity = -5555
+        
         } else if shootButton.contains(touchlocation){
             if thePlayer.hasWeapon {
                 thePlayer.weaponCount -= 1
@@ -297,7 +298,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         isTouching = false
         movingRight = false
         movingLeft = false
+        xVelocity = 0
     }
+    
     
     
     
@@ -339,7 +342,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
         
         if isTouching && movingRight && !thePlayer .hasActions(){
+//            thePlayer.walk(force: xVelocity)
             thePlayer.walk(force: xVelocity)
+         
+            
+        
+            
+        
+            
             
         } else if isTouching && movingLeft && !thePlayer .hasActions(){
             thePlayer.walk(force: xVelocity)
