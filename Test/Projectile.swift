@@ -11,6 +11,8 @@ import SpriteKit
 
 class Projectile: SKSpriteNode {
     
+    var hit = false
+    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         
         let someTexture = SKTexture(imageNamed: "bomb")
