@@ -37,7 +37,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
     var theCamera:SKCameraNode = SKCameraNode()
-    var theGround:Ground = Ground()
+//    var theGround:Ground = Ground()
+    
     
     
     var entities = [GKEntity]()
@@ -52,6 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xVelocity: CGFloat = 0
     var directionHandling: CGFloat = 1
     var backgroundMusic: SKAudioNode!
+    
     
     
     
@@ -113,15 +115,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theWeapon.setUpWeapon()
         }
         
-        if self.childNode(withName: "ground") != nil {
-            theGround = self.childNode(withName: "ground") as! Ground
-            print("some stupid shit")
-            theGround.setUpGround()
-        }
         
         for node in self.children {
             if let theDoor:Door = node as? Door {
                 theDoor.setUpDoor()
+            }
+            if let theGround:Ground = node as? Ground {
+                theGround.setUpGround()
             }
         }
         

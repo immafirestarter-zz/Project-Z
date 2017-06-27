@@ -30,7 +30,7 @@ class Player: SKSpriteNode {
     func setUpPlayer() {
         
         
-        let imageTexture = SKTexture(imageNamed: "idle")
+//        let imageTexture = SKTexture(imageNamed: "idle")
         
         let objectSize = CGSize(width: self.texture!.size().width * 0.4, height: self.texture!.size().height * 0.4)
         let body:SKPhysicsBody = SKPhysicsBody(texture: self.texture!, size: objectSize)
@@ -43,7 +43,7 @@ class Player: SKSpriteNode {
         body.allowsRotation = false
         body.restitution = 0
         body.categoryBitMask = BodyType.player.rawValue
-        body.collisionBitMask = 1
+        body.collisionBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue
         body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue
     }
 
