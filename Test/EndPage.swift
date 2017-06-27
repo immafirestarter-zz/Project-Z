@@ -23,6 +23,7 @@ class EndPage: SKScene {
         let buttonEnd = childNode(withName: "end") as! SKSpriteNode
         if buttonEnd.contains(touchlocation){
             loadAnotherLevel (levelName: "GameScene")
+            
         }
     }
     
