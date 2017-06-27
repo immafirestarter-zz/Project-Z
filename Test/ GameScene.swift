@@ -158,15 +158,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let theBody = contact.bodyB.node as? Enemy {
                 theBody.attacking = true
-                if thePlayer.position.x > theBody.position.x {
-                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 10, dy:10))
-                } else if thePlayer.position.x < theBody.position.x {
-                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: -10, dy:10))
-                }
+                
                 if thePlayer.position.y > theBody.position.y {
-                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
+                    thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 150))
+                }
+                if thePlayer.position.x > theBody.position.x {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 5, dy:5))
+                } else if thePlayer.position.x < theBody.position.x {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: -5, dy:5))
                 }
                 theBody.attacking = false
+                
                 if (theBody.hasHit == false) {
                     thePlayer.health -= 25
                     theBody.delayHit()
@@ -178,14 +181,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let theBody = contact.bodyA.node as? Enemy {
                 theBody.attacking = true
-                if thePlayer.position.x > theBody.position.x {
-                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 10, dy:10))
-                } else if thePlayer.position.x < theBody.position.x {
-                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: -10, dy:10))
-                }
                 
                 if thePlayer.position.y > theBody.position.y {
-                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
+                    thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 150))
+                }
+                
+                if thePlayer.position.x > theBody.position.x {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 5, dy:5))
+                } else if thePlayer.position.x < theBody.position.x {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: -5, dy:5))
                 }
                 theBody.attacking = false
                 if (theBody.hasHit == false) {
