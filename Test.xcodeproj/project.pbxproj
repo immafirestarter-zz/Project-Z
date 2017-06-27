@@ -65,6 +65,9 @@
 		508050261F00240F00E73F6B /* EndPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508050241F00240F00E73F6B /* EndPage.swift */; };
 		508050271F00240F00E73F6B /* EndPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508050241F00240F00E73F6B /* EndPage.swift */; };
 		508C9E0C1EFFC6C1008AB64E /* KeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508C9E0B1EFFC6C1008AB64E /* KeyTests.swift */; };
+		50D33A511F02D0DB00CB2935 /* Spikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D33A501F02D0DB00CB2935 /* Spikes.swift */; };
+		50D33A521F02D0DB00CB2935 /* Spikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D33A501F02D0DB00CB2935 /* Spikes.swift */; };
+		50D33A531F02D0DB00CB2935 /* Spikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D33A501F02D0DB00CB2935 /* Spikes.swift */; };
 		50DAA6CB1F0015AF008643F0 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8833D1EFD86280059A2E7 /* Enemy.swift */; };
 		50DAA6CC1F0015B0008643F0 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8833D1EFD86280059A2E7 /* Enemy.swift */; };
 		50DAA6CE1F001637008643F0 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8833D1EFD86280059A2E7 /* Enemy.swift */; };
@@ -138,6 +141,7 @@
 		507190971EFFC7C2006C3CA9 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		508050241F00240F00E73F6B /* EndPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPage.swift; sourceTree = "<group>"; };
 		508C9E0B1EFFC6C1008AB64E /* KeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyTests.swift; sourceTree = "<group>"; };
+		50D33A501F02D0DB00CB2935 /* Spikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spikes.swift; sourceTree = "<group>"; };
 		50DAA6C71F001576008643F0 /* TestEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEnemy.swift; sourceTree = "<group>"; };
 		50E7F7341EFACBF9005B4513 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		50E7F7361EFACC52005B4513 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 				50F3EACF1F00E4B000601635 /* LifeBar.swift */,
 				5006674F1F012FA9009B16A9 /* HealthPack.swift */,
 				57F885231F02C210004BD42C /* Ground.swift */,
+				50D33A501F02D0DB00CB2935 /* Spikes.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				26C5C5051EFBF53D00D50E42 /* Door.swift in Sources */,
 				269E3B911EFA7D65006B919D /* AppDelegate.swift in Sources */,
 				500667501F012FA9009B16A9 /* HealthPack.swift in Sources */,
+				50D33A511F02D0DB00CB2935 /* Spikes.swift in Sources */,
 				507190981EFFC7C2006C3CA9 /* Key.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +467,7 @@
 				500001831EFD4E2E00F089A2 /* DoorTests.swift in Sources */,
 				C14F43231F011BA6001AB82B /* WeaponTests.swift in Sources */,
 				57686A6A1EFD4F07002CB08E /* PlayerTests.swift in Sources */,
+				50D33A521F02D0DB00CB2935 /* Spikes.swift in Sources */,
 				508050261F00240F00E73F6B /* EndPage.swift in Sources */,
 				26C5C5061EFBF53D00D50E42 /* Door.swift in Sources */,
 				576E0AD11F0141A1001D1847 /* Projectile.swift in Sources */,
@@ -481,6 +488,7 @@
 				269E3BB71EFA7D66006B919D /* TestUITests.swift in Sources */,
 				500001851EFD51A300F089A2 /*  GameScene.swift in Sources */,
 				50DAA6CE1F001637008643F0 /* Enemy.swift in Sources */,
+				50D33A531F02D0DB00CB2935 /* Spikes.swift in Sources */,
 				500001891EFD51B000F089A2 /* AppDelegate.swift in Sources */,
 				C14F43211F011343001AB82B /* Weapon.swift in Sources */,
 				508050271F00240F00E73F6B /* EndPage.swift in Sources */,
