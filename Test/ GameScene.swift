@@ -40,8 +40,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerJump = false
 
     var knife_count:SKLabelNode = SKLabelNode()
-
-//    var theGround:Ground = Ground()
     
     
     
@@ -119,13 +117,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theWeapon.setUpWeapon()
         }
         
-
+        
         if (self.childNode(withName: "knife_count") != nil) {
             knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
         }
         
         
-
         
         for node in self.children {
             if let theDoor:Door = node as? Door {
@@ -262,23 +259,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("im colliding with the ground")
         }
         
-        
-        
-        if ( contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
+        if ( contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
             if let theProjectile = contact.bodyB.node as? Projectile, let theEnemy = contact.bodyA.node as? Enemy {
                 if theProjectile.hit == false {
                     theEnemy.health -= 100
                     theProjectile.hit = true
-                    theProjectile.removeFromParent()
                 }
-            } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue){
+            } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
                 if let theEnemy = contact.bodyB.node as? Enemy, let theProjectile = contact.bodyA.node as? Projectile {
                     if theProjectile.hit == false {
                         theEnemy.health -= 100
                         theProjectile.hit = true
-                        theProjectile.removeFromParent()
                     }
                 }
+            }
+        }
+        
+        if (contact.bodyA.categoryBitMask == BodyType.projectile.rawValue) {
+            if let theProjectile =  contact.bodyA.node as? Projectile {
+                theProjectile.removeFromParent()
+            }
+        } else if (contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
+            if let theProjectile =  contact.bodyB.node as? Projectile {
+                theProjectile.removeFromParent()
             }
         }
     }
@@ -313,7 +316,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             isTouching = true
             movingLeft = true
             xVelocity = -5555
-        
+            
         } else if shootButton.contains(touchlocation){
             if thePlayer.hasWeapon {
                 thePlayer.weaponCount -= 1
