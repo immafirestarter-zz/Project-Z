@@ -162,6 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if thePlayer.position.y > theBody.position.y {
                     thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
                     thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 200))
+                    theBody.health = 0
                 }
                 if thePlayer.position.x > theBody.position.x {
                     thePlayer.physicsBody?.applyImpulse(CGVector(dx: 10, dy:10))
@@ -185,6 +186,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if thePlayer.position.y > theBody.position.y {
                     thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
                     thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 200))
+                    theBody.health = 0
                 }
                 
                 if thePlayer.position.x > theBody.position.x {
