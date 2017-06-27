@@ -54,10 +54,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func didMove(to view: SKView) {
-
+        
         audio()
         
-    
+        
         physicsWorld.contactDelegate = self
         
         if (self.childNode(withName: "Player") != nil){
@@ -115,7 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theDoor.setUpDoor()
             }
         }
-
+        
         let wait = SKAction.wait(forDuration: 10)
         let spawn = SKAction.run {
             let theEnemy:Enemy = Enemy()
@@ -127,11 +127,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print(theEnemy.health)
         }
         let constantSpawn = SKAction.sequence([spawn, wait])
-        self.run(SKAction.repeatForever(constantSpawn))    
-
+        self.run(SKAction.repeatForever(constantSpawn))
+        
         
     }
-
+    
     func audio() {
         let audioNode = SKAudioNode(fileNamed: "oshi.mp3")
         audioNode.autoplayLooped = false
@@ -165,7 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: yPushedByEnemy))
                     theBody.health = 0
                 } else {
-
+                    
                     if thePlayer.position.x > theBody.position.x {
                         thePlayer.physicsBody?.applyImpulse(CGVector(dx: xPushedByEnemy, dy:yPushedByEnemy))
                     } else if thePlayer.position.x < theBody.position.x {
@@ -190,7 +190,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: yPushedByEnemy))
                     theBody.health = 0
                 } else {
-
+                    
                     if thePlayer.position.x > theBody.position.x {
                         thePlayer.physicsBody?.applyImpulse(CGVector(dx: xPushedByEnemy, dy:yPushedByEnemy))
                     } else if thePlayer.position.x < theBody.position.x {
@@ -238,15 +238,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if ( contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
             if let theProjectile = contact.bodyB.node as? Projectile, let theEnemy = contact.bodyA.node as? Enemy {
                 if theProjectile.hit == false {
-                theEnemy.health -= 100
-                theProjectile.hit = true
-                theProjectile.removeFromParent()
+                    theEnemy.health -= 100
+                    theProjectile.hit = true
+                    theProjectile.removeFromParent()
                 }
             } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue){
-            if let theEnemy = contact.bodyB.node as? Enemy, let theProjectile = contact.bodyA.node as? Projectile {
-                theEnemy.health -= 100
-                theProjectile.hit = true
-                theProjectile.removeFromParent()
+                if let theEnemy = contact.bodyB.node as? Enemy, let theProjectile = contact.bodyA.node as? Projectile {
+                    if theProjectile.hit == false {
+                        theEnemy.health -= 100
+                        theProjectile.hit = true
+                        theProjectile.removeFromParent()
+                    }
                 }
             }
         }
@@ -280,13 +282,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             isTouching = true
             movingLeft = true
             xVelocity = -300
-        
+            
         } else if shootButton.contains(touchlocation){
             if thePlayer.hasWeapon {
-            thePlayer.weaponCount -= 1
-            Projectile.spawnProjectile(player: thePlayer, parent: self )
-            print("im shooting stuff")
-            print(thePlayer.xScale)
+                thePlayer.weaponCount -= 1
+                Projectile.spawnProjectile(player: thePlayer, parent: self )
+                print("im shooting stuff")
+                print(thePlayer.xScale)
             }
         }
     }
