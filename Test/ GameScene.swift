@@ -15,6 +15,7 @@ enum BodyType:UInt32 {
     case enemy = 8
     case weapon = 16
     case projectile = 32
+    case healthPack = 64
 }
 
 
@@ -28,7 +29,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var theKey:Key = Key()
     var theWeapon:Weapon = Weapon()
     var enemies = [Enemy]()
-    var projectile:Projectile = Projectile()
+    var theLifeBar:LifeBar = LifeBar()
+    var theHealthPack:HealthPack = HealthPack()
     var button:SKSpriteNode = SKSpriteNode()
     var shootButton: SKSpriteNode = SKSpriteNode()
     var leftButton:SKSpriteNode = SKSpriteNode()
@@ -88,6 +90,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theKey = self.childNode(withName: "Key") as! Key
             theKey.setUpKey()
         }
+        if (self.childNode(withName: "lifeBar") != nil) {
+            theLifeBar = self.childNode(withName: "lifeBar") as! LifeBar
+            theLifeBar.setUp()
+        }
+        
+        if (self.childNode(withName: "health")) != nil {
+            theHealthPack = self.childNode(withName: "health") as! HealthPack
+            theHealthPack.setUp()
+        }
         
         if (self.childNode(withName: "Weapon") != nil) {
             theWeapon = self.childNode(withName: "Weapon") as! Weapon
@@ -104,21 +115,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theDoor.setUpDoor()
             }
         }
-                let wait = SKAction.wait(forDuration: 10)
-                let spawn = SKAction.run {
-                    let theEnemy:Enemy = Enemy()
-                    theEnemy.xScale = fabs(theEnemy.xScale) * -1
-                    theEnemy.position = CGPoint(x: 300, y: 10)
-                    self.addChild(theEnemy)
-                    self.enemies.append(theEnemy)
-                    print(self.enemies.count)
-                    print(theEnemy.health)
-                }
-        
-                let constantSpawn = SKAction.sequence([spawn, wait])
-                self.run(SKAction.repeatForever(constantSpawn))
-        
-        
+
+        let wait = SKAction.wait(forDuration: 10)
+        let spawn = SKAction.run {
+            let theEnemy:Enemy = Enemy()
+            theEnemy.xScale = fabs(theEnemy.xScale) * -1
+            theEnemy.position = CGPoint(x: 300, y: 10)
+            self.addChild(theEnemy)
+            self.enemies.append(theEnemy)
+            print(self.enemies.count)
+            print(theEnemy.health)
+        }
+        let constantSpawn = SKAction.sequence([spawn, wait])
+        self.run(SKAction.repeatForever(constantSpawn))    
+
         
     }
 
@@ -151,9 +161,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 thePlayer.physicsBody?.applyImpulse(CGVector(dx:-10, dy:10))
                 theBody.attacking = false
                 if (theBody.hasHit == false) {
-                    thePlayer.health -= 50
+                    thePlayer.health -= 25
                     theBody.delayHit()
                     print(thePlayer.health)
+                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
                 }
             }
         } else if (contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
@@ -163,10 +174,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 thePlayer.physicsBody?.applyImpulse(CGVector(dx:-5, dy:5))
                 theBody.attacking = false
                 if (theBody.hasHit == false) {
-                    thePlayer.health -= 50
+                    thePlayer.health -= 25
                     theBody.delayHit()
                     print(thePlayer.health)
+                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
                 }
+            }
+        }
+        
+        if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.healthPack.rawValue) {
+            if (thePlayer.health < 100) {
+                thePlayer.health += 25
+                theHealthPack.removeFromParent()
+                theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
             }
         }
         
@@ -183,11 +203,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     theWeapon.pickedUp = true
                     theWeapon.removeFromParent()
                     thePlayer.hasWeapon = true
-                    thePlayer.weaponCount += 50
+                    thePlayer.weaponCount += 3
                 }
             }
-            
         }
+        
+        if ( contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
+            if let theEnemy = contact.bodyA.node as? Enemy {
+            print ("this enemy has been hit")
+                theEnemy.health -= 100
+            }
+            if let theProjectile = contact.bodyB.node as? Projectile {
+                theProjectile.removeFromParent()
+            }
+        } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue){
+            if let theEnemy = contact.bodyB.node as? Enemy {
+                print ("this enemy has been hit")
+                theEnemy.health -= 100
+            }
+            if let theProjectile = contact.bodyA.node as? Projectile {
+                theProjectile.removeFromParent()
+            }
+        }
+        
     }
     
     
@@ -206,8 +244,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
         let velocityCheck: CGFloat = -20.0
         
-        
-        
         if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
             thePlayer.jump()
             
@@ -224,10 +260,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             xVelocity = -300
         
         } else if shootButton.contains(touchlocation){
-            projectile.spawnProjectile(player: thePlayer)
+            if thePlayer.hasWeapon {
+            thePlayer.weaponCount -= 1
+            Projectile.spawnProjectile(player: thePlayer, parent: self )
             print("im shooting stuff")
+            print(thePlayer.xScale)
+            }
         }
-        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -239,6 +278,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func update(_ currentTime: TimeInterval) {
+        
         for (index, enemy) in enemies.enumerated() {
             if enemy.position.y < -100 {
                 enemy.removeFromParent()
@@ -247,16 +287,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.enemyWalk()
             } else if enemy.attacking == true && !enemy .hasActions() {
                 enemy.attack()
+            } else if enemy.health <= 0 {
+                enemy.removeFromParent()
+                enemies.remove(at: index)
             }
         }
-        
-        theCamera.position = CGPoint(x: thePlayer.position.x ,y: theCamera.position.y)
-        button.position = CGPoint(x: thePlayer.position.x + 260 ,y: theCamera.position.y)
-        shootButton.position = CGPoint(x: thePlayer.position.x + 200 ,y: theCamera.position.y)
-        leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: theCamera.position.y)
-        rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: theCamera.position.y)
-        
-        
         
         if theCamera.position.y > -150 {
             
@@ -265,6 +300,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             shootButton.position = CGPoint(x: thePlayer.position.x + 180 ,y: theCamera.position.y)
             leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
             rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
+            theLifeBar.position = CGPoint(x: thePlayer.position.x - 320 ,y: theCamera.position.y + 150)
         }
         
         thePlayer.statusCheck()

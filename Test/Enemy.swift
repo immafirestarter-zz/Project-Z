@@ -30,8 +30,7 @@ class Enemy: SKSpriteNode {
         
         self.physicsBody?.categoryBitMask = BodyType.enemy.rawValue
         self.physicsBody?.collisionBitMask = 2
-        self.physicsBody?.contactTestBitMask = BodyType.player.rawValue
-        
+        self.physicsBody?.contactTestBitMask = BodyType.player.rawValue | BodyType.projectile.rawValue
         self.physicsBody?.usesPreciseCollisionDetection = true
         
         
