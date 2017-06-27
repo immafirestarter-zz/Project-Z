@@ -141,6 +141,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        let xPushedByEnemy = 100
+        let yPushedByEnemy = 200
         
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue && thePlayer.hasKey) {
             if let theDoor = contact.bodyB.node as? Door {
@@ -160,14 +162,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theBody.attacking = true
                 thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
                 if thePlayer.position.y > (theBody.position.y + theBody.size.height/2) {
-                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 200))
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: yPushedByEnemy))
                     theBody.health = 0
                 } else {
 
                     if thePlayer.position.x > theBody.position.x {
-                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: 100, dy:150))
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: xPushedByEnemy, dy:yPushedByEnemy))
                     } else if thePlayer.position.x < theBody.position.x {
-                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: -100, dy:150))
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: -xPushedByEnemy, dy:yPushedByEnemy))
                     }
                     theBody.attacking = false
                     
@@ -185,14 +187,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theBody.attacking = true
                 thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
                 if thePlayer.position.y > (theBody.position.y + theBody.size.height/2) {
-                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 200))
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: yPushedByEnemy))
                     theBody.health = 0
                 } else {
 
                     if thePlayer.position.x > theBody.position.x {
-                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: 100, dy:150))
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: xPushedByEnemy, dy:yPushedByEnemy))
                     } else if thePlayer.position.x < theBody.position.x {
-                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: -100, dy:150))
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: -xPushedByEnemy, dy:yPushedByEnemy))
                     }
                     theBody.attacking = false
                     if (theBody.hasHit == false) {
