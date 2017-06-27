@@ -129,6 +129,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let constantSpawn = SKAction.sequence([spawn, wait])
         self.run(SKAction.repeatForever(constantSpawn))
+        
+        
     }
     
     func audio() {
