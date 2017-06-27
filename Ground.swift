@@ -11,30 +11,24 @@ import SpriteKit
 
 class Ground: SKSpriteNode {
     
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+    
+    
+    func setUpGround() {
         
-        let texture = SKTexture()
-        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        let objectSize = CGSize(width: self.texture!.size().width * 0.4, height: self.texture!.size().height * 0.4)
+        let body:SKPhysicsBody = SKPhysicsBody(texture: self.texture!, size: objectSize)
         
-        self.physicsBody = SKPhysicsBody()
+        self.physicsBody = body
+        body.isDynamic = true
+        body.affectedByGravity = false
+        body.allowsRotation = false
+        body.restitution = 0
         
-        self.physicsBody?.isDynamic = true
-        self.physicsBody?.affectedByGravity = true
-        self.physicsBody?.allowsRotation = false
-        self.physicsBody?.restitution = 0
-
-        
-        
-        self.physicsBody?.categoryBitMask = BodyType.ground.rawValue
-        self.physicsBody?.collisionBitMask = 1 | 2
-        self.physicsBody?.contactTestBitMask = BodyType.player.rawValue | BodyType.enemy.rawValue
-        self.physicsBody?.usesPreciseCollisionDetection = true
-        
-        
+        body.categoryBitMask = BodyType.ground.rawValue
+        body.collisionBitMask = 1
+        body.contactTestBitMask = BodyType.player.rawValue
+        body.usesPreciseCollisionDetection = true
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
 }

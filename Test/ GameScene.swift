@@ -37,6 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
     var theCamera:SKCameraNode = SKCameraNode()
+    var theGround:Ground = Ground()
     
     
     var entities = [GKEntity]()
@@ -113,8 +114,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if self.childNode(withName: "ground") != nil {
-            var theGround:Ground = Ground()
             theGround = self.childNode(withName: "ground") as! Ground
+            print("some stupid shit")
+            theGround.setUpGround()
         }
         
         for node in self.children {
@@ -242,6 +244,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if ( contact.bodyA.categoryBitMask == BodyType.ground.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
             print("im colliding with the floor")
+            
         } else if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.ground.rawValue) {
             print("im colliding with the ground")
         }
