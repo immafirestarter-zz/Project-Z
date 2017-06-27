@@ -19,9 +19,10 @@ class Enemy: SKSpriteNode {
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         
-        let enemyTexture = SKTexture(imageNamed: "soldier_stand")
-        super.init(texture: enemyTexture, color: UIColor.clear, size: enemyTexture.size())
-        self.physicsBody = SKPhysicsBody(texture: enemyTexture, size: enemyTexture.size())
+        let enemyTexture = SKTexture(imageNamed: "ghost1-1")
+        let enemySize = CGSize(width: enemyTexture.size().width * 0.4, height: enemyTexture.size().height * 0.4)
+        super.init(texture: enemyTexture, color: UIColor.clear, size: enemySize)
+        self.physicsBody = SKPhysicsBody(texture: enemyTexture, size: enemySize)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
@@ -52,10 +53,12 @@ class Enemy: SKSpriteNode {
     func setUpEnemyWalk() {
         atlas = SKTextureAtlas(named: "Walk")
         var atlasTextures = [SKTexture]()
-        let texture1:SKTexture = atlas!.textureNamed("soldier_walk1")
-        let texture2:SKTexture = atlas!.textureNamed("soldier_walk2")
+        let texture1:SKTexture = atlas!.textureNamed("ghost1-1")
+        let texture2:SKTexture = atlas!.textureNamed("ghost2-1")
+        let texture3:SKTexture = atlas!.textureNamed("ghost3-1")
         atlasTextures.append(texture1)
         atlasTextures.append(texture2)
+        atlasTextures.append(texture3)
         let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/15)
         self.run(atlasAnimation)
     }
@@ -66,8 +69,8 @@ class Enemy: SKSpriteNode {
     }
     
     func attack(){
-        let kickTexture = SKAction.setTexture(SKTexture(imageNamed: "soldier_kick"))
-        let standTexture = SKAction.setTexture(SKTexture(imageNamed: "soldier_stand"))
+        let kickTexture = SKAction.setTexture(SKTexture(imageNamed: "ghost1-1"))
+        let standTexture = SKAction.setTexture(SKTexture(imageNamed: "ghost1-1"))
         let megaAttack = SKAction.sequence([kickTexture, standTexture])
         self.run(megaAttack)
     }            
