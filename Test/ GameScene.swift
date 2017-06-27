@@ -262,16 +262,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        if ( contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
-            print ("hit enemy")
+        if ( contact.bodyB.categoryBitMask == BodyType.projectile.rawValue && contact.bodyA.categoryBitMask == BodyType.enemy.rawValue) {
             if let theProjectile = contact.bodyB.node as? Projectile, let theEnemy = contact.bodyA.node as? Enemy {
                 if theProjectile.hit == false {
                     theEnemy.health -= 100
                     theProjectile.hit = true
                     theProjectile.removeFromParent()
                 }
-            } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue){
-                print ("enemy hit")
+            } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue && contact.bodyA.categoryBitMask == BodyType.enemy.rawValue){
                 if let theEnemy = contact.bodyB.node as? Enemy, let theProjectile = contact.bodyA.node as? Projectile {
                     if theProjectile.hit == false {
                         theEnemy.health -= 100
