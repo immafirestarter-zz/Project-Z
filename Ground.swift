@@ -22,11 +22,12 @@ class Ground: SKSpriteNode {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.restitution = 0
+
         
         
-        self.physicsBody?.categoryBitMask = BodyType.enemy.rawValue
-        self.physicsBody?.collisionBitMask = 2
-        self.physicsBody?.contactTestBitMask = BodyType.player.rawValue | BodyType.projectile.rawValue
+        self.physicsBody?.categoryBitMask = BodyType.ground.rawValue
+        self.physicsBody?.collisionBitMask = 1 | 2
+        self.physicsBody?.contactTestBitMask = BodyType.player.rawValue | BodyType.enemy.rawValue
         self.physicsBody?.usesPreciseCollisionDetection = true
         
         

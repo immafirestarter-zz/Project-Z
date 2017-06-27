@@ -16,6 +16,7 @@ enum BodyType:UInt32 {
     case weapon = 16
     case projectile = 32
     case healthPack = 64
+    case ground = 128
 }
 
 
@@ -109,6 +110,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (self.childNode(withName: "Weapon2") != nil) {
             theWeapon = self.childNode(withName: "Weapon2") as! Weapon
             theWeapon.setUpWeapon()
+        }
+        
+        if self.childNode(withName: "ground") != nil {
+            var theGround:Ground = Ground()
+            theGround = self.childNode(withName: "ground") as! Ground
         }
         
         for node in self.children {
@@ -232,6 +238,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     thePlayer.weaponCount += 3
                 }
             }
+        }
+        
+        if ( contact.bodyA.categoryBitMask == BodyType.ground.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            print("im colliding with the floor")
+        } else if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.ground.rawValue) {
+            print("im colliding with the ground")
         }
         
         
