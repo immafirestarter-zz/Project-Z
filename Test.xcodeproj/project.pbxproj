@@ -36,9 +36,6 @@
 		269E3BA11EFA7D65006B919D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269E3B9F1EFA7D65006B919D /* LaunchScreen.storyboard */; };
 		269E3BAC1EFA7D65006B919D /* TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E3BAB1EFA7D65006B919D /* TestTests.swift */; };
 		269E3BB71EFA7D66006B919D /* TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E3BB61EFA7D66006B919D /* TestUITests.swift */; };
-		26BC2ABD1EFBCFFD00C6066F /* Ground2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */; };
-		26BC2ABE1EFBCFFD00C6066F /* Ground2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */; };
-		26BC2ABF1EFBCFFD00C6066F /* Ground2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */; };
 		26BC2AC11EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
 		26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
 		26BC2AC31EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
@@ -129,7 +126,6 @@
 		269E3BB21EFA7D65006B919D /* TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E3BB61EFA7D66006B919D /* TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUITests.swift; sourceTree = "<group>"; };
 		269E3BB81EFA7D66006B919D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ground2.sks; sourceTree = "<group>"; };
 		26BC2AC01EFBD00A00C6066F /* GroundTile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GroundTile.sks; sourceTree = "<group>"; };
 		26C5C5001EFBF3CC00D50E42 /* levelTwo.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = levelTwo.sks; sourceTree = "<group>"; };
 		26C5C5041EFBF53D00D50E42 /* Door.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
@@ -226,12 +222,9 @@
 				2649D9561F00095800D935F9 /* LandingPage.sks */,
 				26BC2AC01EFBD00A00C6066F /* GroundTile.sks */,
 				269E3B901EFA7D65006B919D /* AppDelegate.swift */,
-				26BC2ABC1EFBCFFD00C6066F /* Ground2.sks */,
 				C14F431E1F011343001AB82B /* Weapon.swift */,
 				576E0ACF1F0141A1001D1847 /* Projectile.swift */,
 				269E3B941EFA7D65006B919D /* Actions.sks */,
-				507190971EFFC7C2006C3CA9 /* Key.swift */,
-				57E8833D1EFD86280059A2E7 /* Enemy.swift */,
 				269E3B981EFA7D65006B919D /* GameViewController.swift */,
 				50E7F7361EFACC52005B4513 /* Assets.xcassets */,
 				269E3B9A1EFA7D65006B919D /* Main.storyboard */,
@@ -382,7 +375,6 @@
 				2612506D1F014587006CF5CD /* key1.wav in Resources */,
 				502504BC1EFB2047005AA3D0 /* Jump.atlas in Resources */,
 				50E7F7351EFACBF9005B4513 /* GameScene.sks in Resources */,
-				26BC2ABD1EFBCFFD00C6066F /* Ground2.sks in Resources */,
 				269E3BA11EFA7D65006B919D /* LaunchScreen.storyboard in Resources */,
 				2649D9631F00171300D935F9 /* EndPage.sks in Resources */,
 				502504C01EFB209B005AA3D0 /* Walk.atlas in Resources */,
@@ -404,8 +396,6 @@
 				2612507A1F014BEE006CF5CD /* oshi.mp3 in Resources */,
 				2649D9581F00095800D935F9 /* LandingPage.sks in Resources */,
 				26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */,
-				26BC2ABE1EFBCFFD00C6066F /* Ground2.sks in Resources */,
-				2612507E1F014CA6006CF5CD /* jungle.wav in Resources */,
 				26C5C5021EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
 				2649D9641F00171300D935F9 /* EndPage.sks in Resources */,
 				261250721F014649006CF5CD /* bombpick.wav in Resources */,
@@ -420,8 +410,6 @@
 				2612507B1F014BEE006CF5CD /* oshi.mp3 in Resources */,
 				2649D9591F00095800D935F9 /* LandingPage.sks in Resources */,
 				26BC2AC31EFBD00A00C6066F /* GroundTile.sks in Resources */,
-				26BC2ABF1EFBCFFD00C6066F /* Ground2.sks in Resources */,
-				2612507F1F014CA6006CF5CD /* jungle.wav in Resources */,
 				26C5C5031EFBF3CC00D50E42 /* levelTwo.sks in Resources */,
 				2649D9651F00171300D935F9 /* EndPage.sks in Resources */,
 				261250731F014649006CF5CD /* bombpick.wav in Resources */,
