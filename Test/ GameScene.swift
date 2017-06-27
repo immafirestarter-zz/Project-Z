@@ -266,9 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
         let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
-        let velocityCheck: CGFloat = -20.0
-        
-        if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
+        if buttonJump.contains(touchlocation) && thePlayer.physicsBody?.velocity.dy == 0.0  {
             thePlayer.jump()
             
         } else if buttonRight.contains(touchlocation){
