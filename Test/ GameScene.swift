@@ -158,26 +158,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let theBody = contact.bodyB.node as? Enemy {
                 theBody.attacking = true
-                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-10, dy:10))
-                theBody.attacking = false
-                if (theBody.hasHit == false) {
-                    thePlayer.health -= 25
-                    theBody.delayHit()
-                    print(thePlayer.health)
-                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                
+                if thePlayer.position.y > (theBody.position.y + theBody.size.height/2) {
+                    thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 200))
+                    theBody.health = 0
+                } else {
+                    if thePlayer.position.x > theBody.position.x {
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: 10, dy:10))
+                    } else if thePlayer.position.x < theBody.position.x {
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: -10, dy:10))
+                    }
+                    theBody.attacking = false
+                    
+                    if (theBody.hasHit == false) {
+                        thePlayer.health -= 25
+                        theBody.delayHit()
+                        print(thePlayer.health)
+                        theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                    }
                 }
             }
         } else if (contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
             
             if let theBody = contact.bodyA.node as? Enemy {
                 theBody.attacking = true
-                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-5, dy:5))
-                theBody.attacking = false
-                if (theBody.hasHit == false) {
-                    thePlayer.health -= 25
-                    theBody.delayHit()
-                    print(thePlayer.health)
-                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                
+                if thePlayer.position.y > (theBody.position.y + theBody.size.height/2) {
+                    thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 200))
+                    theBody.health = 0
+                } else {
+                    
+                    if thePlayer.position.x > theBody.position.x {
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: 10, dy:10))
+                    } else if thePlayer.position.x < theBody.position.x {
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: -10, dy:10))
+                    }
+                    theBody.attacking = false
+                    if (theBody.hasHit == false) {
+                        thePlayer.health -= 25
+                        theBody.delayHit()
+                        print(thePlayer.health)
+                        theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                    }
                 }
             }
         }
