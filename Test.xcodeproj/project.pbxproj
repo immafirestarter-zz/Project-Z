@@ -17,8 +17,6 @@
 		2612507A1F014BEE006CF5CD /* oshi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 261250781F014BEE006CF5CD /* oshi.mp3 */; };
 		2612507B1F014BEE006CF5CD /* oshi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 261250781F014BEE006CF5CD /* oshi.mp3 */; };
 		2612507D1F014CA6006CF5CD /* jungle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612507C1F014CA6006CF5CD /* jungle.wav */; };
-		2612507E1F014CA6006CF5CD /* jungle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612507C1F014CA6006CF5CD /* jungle.wav */; };
-		2612507F1F014CA6006CF5CD /* jungle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612507C1F014CA6006CF5CD /* jungle.wav */; };
 		2649D9571F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
 		2649D9581F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
 		2649D9591F00095800D935F9 /* LandingPage.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2649D9561F00095800D935F9 /* LandingPage.sks */; };
@@ -81,6 +79,7 @@
 		576E0AD01F0141A1001D1847 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576E0ACF1F0141A1001D1847 /* Projectile.swift */; };
 		576E0AD11F0141A1001D1847 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576E0ACF1F0141A1001D1847 /* Projectile.swift */; };
 		576E0AD21F0141A1001D1847 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576E0ACF1F0141A1001D1847 /* Projectile.swift */; };
+		57F8851F1F02B4E0004BD42C /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F8851E1F02B4E0004BD42C /* Ground.swift */; };
 		C14F431F1F011343001AB82B /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F431E1F011343001AB82B /* Weapon.swift */; };
 		C14F43201F011343001AB82B /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F431E1F011343001AB82B /* Weapon.swift */; };
 		C14F43211F011343001AB82B /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F431E1F011343001AB82B /* Weapon.swift */; };
@@ -145,6 +144,7 @@
 		57686A691EFD4F07002CB08E /* PlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		576E0ACF1F0141A1001D1847 /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		57E8833D1EFD86280059A2E7 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		57F8851E1F02B4E0004BD42C /* Ground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
 		C14F431E1F011343001AB82B /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		C14F43221F011BA6001AB82B /* WeaponTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +188,7 @@
 		269E3B841EFA7D65006B919D = {
 			isa = PBXGroup;
 			children = (
+				57F8851E1F02B4E0004BD42C /* Ground.swift */,
 				269E3B8F1EFA7D65006B919D /* Test */,
 				269E3BAA1EFA7D65006B919D /* TestTests */,
 				269E3BB51EFA7D66006B919D /* TestUITests */,
@@ -425,6 +426,7 @@
 			files = (
 				2649D95B1F0009E500D935F9 /* landingPage.swift in Sources */,
 				576E0AD01F0141A1001D1847 /* Projectile.swift in Sources */,
+				57F8851F1F02B4E0004BD42C /* Ground.swift in Sources */,
 				50DAA6CB1F0015AF008643F0 /* Enemy.swift in Sources */,
 				502504BA1EFB11F0005AA3D0 /* Player.swift in Sources */,
 				50F3EAD01F00E4B000601635 /* LifeBar.swift in Sources */,
