@@ -14,15 +14,19 @@ class Projectile: SKSpriteNode {
     var hit = false
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+//        // Spaceship 1: circular physics body
+//        let circularSpaceShip = SKSpriteNode(texture: spaceShipTexture)
+//        circularSpaceShip.physicsBody = SKPhysicsBody(circleOfRadius: max(circularSpaceShip.size.width / 2,
+//                                                                          circularSpaceShip.size.height / 2))
+//        
+        let projectileTexture = SKTexture(imageNamed: "knife")
+        let projectileSize = CGSize(width: projectileTexture.size().width * 0.5, height: projectileTexture.size().height * 0.5)
         
-        let someTexture = SKTexture(imageNamed: "knife")
-        let objectSize = CGSize(width: someTexture.size().width * 0.5, height: someTexture.size().height * 0.5)
-        
-        super.init(texture: someTexture, color: UIColor.clear, size: objectSize)
+        super.init(texture: projectileTexture, color: UIColor.clear, size: projectileSize)
         
     
 
-        self.physicsBody = SKPhysicsBody(texture: someTexture, size: objectSize)
+        self.physicsBody = SKPhysicsBody(texture: projectileTexture, size: projectileSize)
         
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
