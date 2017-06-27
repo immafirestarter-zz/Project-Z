@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/Projectile.swift"
-            timestampString = "520284681.169619"
+            timestampString = "520284898.747669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "spawnProjectile(player:parent:)"
             landmarkType = "7">
          </BreakpointContent>
