@@ -158,7 +158,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let theBody = contact.bodyB.node as? Enemy {
                 theBody.attacking = true
-                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-10, dy:10))
+                if thePlayer.position.x > theBody.position.x {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 10, dy:10))
+                } else if thePlayer.position.x < theBody.position.x {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: -10, dy:10))
+                }
+                if thePlayer.position.y > theBody.position.y {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
+                }
                 theBody.attacking = false
                 if (theBody.hasHit == false) {
                     thePlayer.health -= 25
@@ -171,7 +178,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let theBody = contact.bodyA.node as? Enemy {
                 theBody.attacking = true
-                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-5, dy:5))
+                if thePlayer.position.x > theBody.position.x {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 10, dy:10))
+                } else if thePlayer.position.x < theBody.position.x {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: -10, dy:10))
+                }
+                
+                if thePlayer.position.y > theBody.position.y {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
+                }
                 theBody.attacking = false
                 if (theBody.hasHit == false) {
                     thePlayer.health -= 25
