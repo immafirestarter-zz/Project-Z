@@ -54,10 +54,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func didMove(to view: SKView) {
-
+        
         audio()
         
-    
+        
         physicsWorld.contactDelegate = self
         
         
@@ -116,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 theDoor.setUpDoor()
             }
         }
-
+        
         let wait = SKAction.wait(forDuration: 10)
         let spawn = SKAction.run {
             let theEnemy:Enemy = Enemy()
@@ -130,7 +130,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let constantSpawn = SKAction.sequence([spawn, wait])
         self.run(SKAction.repeatForever(constantSpawn))
     }
-
+    
     func audio() {
         let audioNode = SKAudioNode(fileNamed: "oshi.mp3")
         audioNode.autoplayLooped = false
@@ -140,6 +140,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        let xPushedByEnemy = 100
+        let yPushedByEnemy = 200
         
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.door.rawValue && thePlayer.hasKey) {
             if let theDoor = contact.bodyB.node as? Door {
@@ -157,26 +159,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let theBody = contact.bodyB.node as? Enemy {
                 theBody.attacking = true
-                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-10, dy:10))
-                theBody.attacking = false
-                if (theBody.hasHit == false) {
-                    thePlayer.health -= 25
-                    theBody.delayHit()
-                    print(thePlayer.health)
-                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+                if thePlayer.position.y > (theBody.position.y + theBody.size.height/2) {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: yPushedByEnemy))
+                    theBody.health = 0
+                } else {
+                    
+                    if thePlayer.position.x > theBody.position.x {
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: xPushedByEnemy, dy:yPushedByEnemy))
+                    } else if thePlayer.position.x < theBody.position.x {
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: -xPushedByEnemy, dy:yPushedByEnemy))
+                    }
+                    theBody.attacking = false
+                    
+                    if (theBody.hasHit == false) {
+                        thePlayer.health -= 25
+                        theBody.delayHit()
+                        print(thePlayer.health)
+                        theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                    }
                 }
             }
         } else if (contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue){
             
             if let theBody = contact.bodyA.node as? Enemy {
                 theBody.attacking = true
-                thePlayer.physicsBody?.applyImpulse(CGVector(dx:-5, dy:5))
-                theBody.attacking = false
-                if (theBody.hasHit == false) {
-                    thePlayer.health -= 25
-                    theBody.delayHit()
-                    print(thePlayer.health)
-                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+                if thePlayer.position.y > (theBody.position.y + theBody.size.height/2) {
+                    thePlayer.physicsBody?.applyImpulse(CGVector(dx: 0, dy: yPushedByEnemy))
+                    theBody.health = 0
+                } else {
+                    
+                    if thePlayer.position.x > theBody.position.x {
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: xPushedByEnemy, dy:yPushedByEnemy))
+                    } else if thePlayer.position.x < theBody.position.x {
+                        thePlayer.physicsBody?.applyImpulse(CGVector(dx: -xPushedByEnemy, dy:yPushedByEnemy))
+                    }
+                    theBody.attacking = false
+                    if (theBody.hasHit == false) {
+                        thePlayer.health -= 25
+                        theBody.delayHit()
+                        print(thePlayer.health)
+                        theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                    }
                 }
             }
         }
@@ -207,24 +232,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        
+        
         if ( contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
-            if let theEnemy = contact.bodyA.node as? Enemy {
-            print ("this enemy has been hit")
-                theEnemy.health -= 100
-            }
-            if let theProjectile = contact.bodyB.node as? Projectile {
-                theProjectile.removeFromParent()
-            }
-        } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue){
-            if let theEnemy = contact.bodyB.node as? Enemy {
-                print ("this enemy has been hit")
-                theEnemy.health -= 100
-            }
-            if let theProjectile = contact.bodyA.node as? Projectile {
-                theProjectile.removeFromParent()
+            if let theProjectile = contact.bodyB.node as? Projectile, let theEnemy = contact.bodyA.node as? Enemy {
+                if theProjectile.hit == false {
+                    theEnemy.health -= 100
+                    theProjectile.hit = true
+                    theProjectile.removeFromParent()
+                }
+            } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue){
+                if let theEnemy = contact.bodyB.node as? Enemy, let theProjectile = contact.bodyA.node as? Projectile {
+                    if theProjectile.hit == false {
+                        theEnemy.health -= 100
+                        theProjectile.hit = true
+                        theProjectile.removeFromParent()
+                    }
+                }
             }
         }
-        
     }
     
     
@@ -241,9 +267,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let buttonJump = childNode(withName: "button") as! SKSpriteNode
         let buttonLeft = childNode(withName: "leftButton") as! SKSpriteNode
         let buttonRight = childNode(withName: "rightButton") as! SKSpriteNode
-        let velocityCheck: CGFloat = -20.0
-        
-        if buttonJump.contains(touchlocation) && (thePlayer.physicsBody?.velocity.dy)! >= velocityCheck  {
+        if buttonJump.contains(touchlocation) && thePlayer.physicsBody?.velocity.dy == 0.0  {
             thePlayer.jump()
             
         } else if buttonRight.contains(touchlocation) {
@@ -260,10 +284,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         } else if shootButton.contains(touchlocation){
             if thePlayer.hasWeapon {
-            thePlayer.weaponCount -= 1
-            Projectile.spawnProjectile(player: thePlayer, parent: self )
-            print("im shooting stuff")
-            print(thePlayer.xScale)
+                thePlayer.weaponCount -= 1
+                Projectile.spawnProjectile(player: thePlayer, parent: self )
+                print("im shooting stuff")
+                print(thePlayer.xScale)
             }
         }
     }
