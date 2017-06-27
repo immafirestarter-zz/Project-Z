@@ -39,6 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var theCamera:SKCameraNode = SKCameraNode()
     var playerJump = false
     
+
     
     
     var entities = [GKEntity]()
@@ -115,6 +116,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theWeapon.setUpWeapon()
         }
         
+
+        if (self.childNode(withName: "knife_count") != nil) {
+            knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
+        }
+        
+        
+
         
         for node in self.children {
             if let theDoor:Door = node as? Door {
@@ -325,6 +333,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         
+        knife_count.text = String(thePlayer.weaponCount)
+        
         for (index, enemy) in enemies.enumerated() {
             if enemy.position.y < -100 {
                 enemy.removeFromParent()
@@ -347,6 +357,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
             rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
             theLifeBar.position = CGPoint(x: thePlayer.position.x - 320 ,y: theCamera.position.y + 150)
+            knife_count.position = CGPoint(x: thePlayer.position.x - 130 ,y: theCamera.position.y + 145)
+            
         }
         
         if playerJump == false {
