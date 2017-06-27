@@ -144,7 +144,7 @@
 		57686A691EFD4F07002CB08E /* PlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		576E0ACF1F0141A1001D1847 /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		57E8833D1EFD86280059A2E7 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
-		57F8851E1F02B4E0004BD42C /* Ground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
+		57F8851E1F02B4E0004BD42C /* Ground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ground.swift; path = ../Ground.swift; sourceTree = "<group>"; };
 		C14F431E1F011343001AB82B /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		C14F43221F011BA6001AB82B /* WeaponTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,7 +188,6 @@
 		269E3B841EFA7D65006B919D = {
 			isa = PBXGroup;
 			children = (
-				57F8851E1F02B4E0004BD42C /* Ground.swift */,
 				269E3B8F1EFA7D65006B919D /* Test */,
 				269E3BAA1EFA7D65006B919D /* TestTests */,
 				269E3BB51EFA7D66006B919D /* TestUITests */,
@@ -216,6 +215,7 @@
 				269E3B961EFA7D65006B919D /*  GameScene.swift */,
 				26C5C5001EFBF3CC00D50E42 /* levelTwo.sks */,
 				26C5C5041EFBF53D00D50E42 /* Door.swift */,
+				57F8851E1F02B4E0004BD42C /* Ground.swift */,
 				2649D95A1F0009E500D935F9 /* landingPage.swift */,
 				508050241F00240F00E73F6B /* EndPage.swift */,
 				502504B91EFB11F0005AA3D0 /* Player.swift */,

@@ -7,3 +7,33 @@
 //
 
 import Foundation
+import SpriteKit
+
+class Ground: SKSpriteNode {
+    
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        
+        let texture = SKTexture()
+        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        
+        self.physicsBody = SKPhysicsBody()
+        
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.restitution = 0
+        
+        
+        self.physicsBody?.categoryBitMask = BodyType.enemy.rawValue
+        self.physicsBody?.collisionBitMask = 2
+        self.physicsBody?.contactTestBitMask = BodyType.player.rawValue | BodyType.projectile.rawValue
+        self.physicsBody?.usesPreciseCollisionDetection = true
+        
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
