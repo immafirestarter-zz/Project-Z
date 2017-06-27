@@ -29,9 +29,6 @@ class Player: SKSpriteNode {
     
     func setUpPlayer() {
         
-        
-//        let imageTexture = SKTexture(imageNamed: "idle")
-        
         let objectSize = CGSize(width: self.texture!.size().width * 0.4, height: self.texture!.size().height * 0.4)
         let body:SKPhysicsBody = SKPhysicsBody(texture: self.texture!, size: objectSize)
         
@@ -55,6 +52,7 @@ class Player: SKSpriteNode {
     }
     
     func jump() {
+        self.run(SKAction.setTexture(SKTexture(imageNamed: "Image-1")))
         self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 450))
         
     }
