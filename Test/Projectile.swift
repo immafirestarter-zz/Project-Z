@@ -16,10 +16,13 @@ class Projectile: SKSpriteNode {
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         
         let someTexture = SKTexture(imageNamed: "knife")
+        let objectSize = CGSize(width: someTexture.size().width * 0.5, height: someTexture.size().height * 0.5)
         
-        super.init(texture: someTexture, color: UIColor.clear, size: someTexture.size())
+        super.init(texture: someTexture, color: UIColor.clear, size: objectSize)
         
-        self.physicsBody = SKPhysicsBody(texture: someTexture, size: someTexture.size())
+    
+
+        self.physicsBody = SKPhysicsBody(texture: someTexture, size: objectSize)
         
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
@@ -45,9 +48,10 @@ class Projectile: SKSpriteNode {
         newProjectile.position = player.position
         parent.addChild(newProjectile)
         if player.xScale > 0 {
-        self.shootProjectile(projectile: newProjectile, direction: 100.0)
+        self.shootProjectile(projectile: newProjectile, direction: 5.0)
         } else {
-        self.shootProjectile(projectile: newProjectile, direction: -100.0)
+        newProjectile.xScale = fabs(newProjectile.xScale) * -1
+        self.shootProjectile(projectile: newProjectile, direction: -5.0)
         }
         
     }
