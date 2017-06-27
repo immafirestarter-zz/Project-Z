@@ -30,12 +30,14 @@ class Player: SKSpriteNode {
     func setUpPlayer() {
         
         
-        let imageTexture = SKTexture(imageNamed: "zombie_stand")
+        let imageTexture = SKTexture(imageNamed: "idle")
         
-        let body:SKPhysicsBody = SKPhysicsBody(texture: imageTexture,
-                                               size: imageTexture.size())
+        let objectSize = CGSize(width: self.texture!.size().width * 0.4, height: self.texture!.size().height * 0.4)
+        let body:SKPhysicsBody = SKPhysicsBody(texture: self.texture!, size: objectSize)
+        
         self.physicsBody = body
         
+        body.mass = 0.51282
         body.isDynamic = true
         body.affectedByGravity = true
         body.allowsRotation = false
@@ -44,32 +46,36 @@ class Player: SKSpriteNode {
         body.collisionBitMask = 1
         body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue
     }
-    
-    func setUpWalk() {
-        atlas = SKTextureAtlas(named: "Walk")
-        var atlasTextures = [SKTexture]()
-        let texture1:SKTexture = atlas!.textureNamed("zombie_walk1")
-        let texture2:SKTexture = atlas!.textureNamed("zombie_walk2")
-        atlasTextures.append(texture1)
-        atlasTextures.append(texture2)
-        let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
-        self.run(atlasAnimation)
-    }
+
     
     func setUpIdle() {
-        let zombieTexture = SKTexture(imageNamed: "zombie_stand")
-        textureIdle = SKAction.setTexture(zombieTexture)
+        let ninjaTexture = SKTexture(imageNamed: "idle")
+        textureIdle = SKAction.setTexture(ninjaTexture)
         self.run(textureIdle!)
     }
     
     func jump() {
         self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 450))
+        
     }
     
     
     func walk(force: CGFloat) {
-        self.physicsBody?.applyForce(CGVector(dx: force, dy: 0.0))
+        atlas = SKTextureAtlas(named: "Walk")
+        var atlasTextures = [SKTexture]()
+        let texture1:SKTexture = atlas!.textureNamed("walk1")
+        let texture2:SKTexture = atlas!.textureNamed("walk2")
+        let texture3:SKTexture = atlas!.textureNamed("walk3")
+        atlasTextures.append(texture1)
+        atlasTextures.append(texture2)
+        atlasTextures.append(texture3)
+        let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
         
+        let move = SKAction.run {
+            self.physicsBody?.applyForce(CGVector(dx: force, dy: 0.0))
+        }
+        let moveSeq = SKAction.group([move, atlasAnimation])
+        self.run(moveSeq)
     }
     
     func statusCheck(){
