@@ -37,11 +37,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var leftButton:SKSpriteNode = SKSpriteNode()
     var rightButton:SKSpriteNode = SKSpriteNode()
     var theCamera:SKCameraNode = SKCameraNode()
-    
+    var playerJump = false
+
     var knife_count:SKLabelNode = SKLabelNode()
-    
-    //    var theGround:Ground = Ground()
-    
     
     
     
@@ -123,7 +121,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (self.childNode(withName: "knife_count") != nil) {
             knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
         }
-        
         
         
         
@@ -386,15 +383,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
         
         if isTouching && movingRight && !thePlayer .hasActions(){
-            //            thePlayer.walk(force: xVelocity)
             thePlayer.walk(force: xVelocity)
-            
-            
-            
-            
-            
-            
-            
+         
         } else if isTouching && movingLeft && !thePlayer .hasActions(){
             thePlayer.walk(force: xVelocity)
             
