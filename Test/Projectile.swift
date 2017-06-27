@@ -13,7 +13,7 @@ class Projectile: SKSpriteNode {
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         
-        let someTexture = SKTexture(imageNamed: "bomb")
+        let someTexture = SKTexture(imageNamed: "knife")
         
         super.init(texture: someTexture, color: UIColor.clear, size: someTexture.size())
         
