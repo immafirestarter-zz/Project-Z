@@ -38,8 +38,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var rightButton:SKSpriteNode = SKSpriteNode()
     var theCamera:SKCameraNode = SKCameraNode()
     var playerJump = false
-    
 
+    var knife_count:SKLabelNode = SKLabelNode()
+
+//    var theGround:Ground = Ground()
+    
     
     
     var entities = [GKEntity]()
