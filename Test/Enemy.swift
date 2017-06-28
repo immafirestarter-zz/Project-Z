@@ -68,6 +68,21 @@ class Enemy: SKSpriteNode {
         setUpEnemyWalk()
     }
     
+    class func spawnEnemy(parent: GameScene) {
+        let wait = SKAction.wait(forDuration: 10)
+        let spawn = SKAction.run {
+            let theEnemy:Enemy = Enemy()
+            theEnemy.xScale = fabs(theEnemy.xScale) * -1
+            theEnemy.position = CGPoint(x: 300, y: 10)
+        parent.addChild(theEnemy)
+        parent.enemies.append(theEnemy)
+        }
+        
+        let constantSpawn = SKAction.sequence([spawn, wait])
+        parent.run(SKAction.repeatForever(constantSpawn))
+
+    }
+    
     func attack(){
         let kickTexture = SKAction.setTexture(SKTexture(imageNamed: "ghost1-1"))
         let standTexture = SKAction.setTexture(SKTexture(imageNamed: "ghost1-1"))

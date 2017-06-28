@@ -64,12 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let initialPlayerPosition = CGPoint(x: 150, y: 250)
     var playerProgress = CGFloat()
     
-    
-  
-    
-    
-    
-    
+
     override func didMove(to view: SKView) {
         
         audio()
@@ -96,67 +91,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         
         
-        if (self.childNode(withName: "Player") != nil){
-            thePlayer = self.childNode(withName: "Player") as! Player
-            thePlayer.setUpPlayer()
-        }
-        
-        if (self.childNode(withName: "TheCamera") != nil){
-            theCamera = self.childNode(withName: "TheCamera") as! SKCameraNode
-            self.camera = theCamera
-        }
-        
-        if (self.childNode(withName: "button") != nil){
-            button = self.childNode(withName: "button") as! SKSpriteNode
-        }
-        
-        if (self.childNode(withName: "shootButton") != nil){
-            shootButton = self.childNode(withName: "shootButton") as! SKSpriteNode
-        }
-        
-        if (self.childNode(withName: "leftButton") != nil){
-            leftButton = self.childNode(withName: "leftButton") as! SKSpriteNode
-        }
-        
-        if (self.childNode(withName: "rightButton") != nil){
-            rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
-        }
-        
-        if (self.childNode(withName: "Key") != nil) {
-            theKey = self.childNode(withName: "Key") as! Key
-            theKey.setUpKey()
-        }
-        if (self.childNode(withName: "lifeBar") != nil) {
-            theLifeBar = self.childNode(withName: "lifeBar") as! LifeBar
-            theLifeBar.setUp()
-        }
-        
-        if (self.childNode(withName: "health")) != nil {
-            theHealthPack = self.childNode(withName: "health") as! HealthPack
-            theHealthPack.setUp()
-        }
-        
-        if (self.childNode(withName: "Weapon") != nil) {
-            theWeapon = self.childNode(withName: "Weapon") as! Weapon
-            theWeapon.setUpWeapon()
-        }
-        
-        if (self.childNode(withName: "Weapon2") != nil) {
-            theWeapon = self.childNode(withName: "Weapon2") as! Weapon
-            theWeapon.setUpWeapon()
-        }
-        
-        
-        if (self.childNode(withName: "knife_count") != nil) {
-            knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
-        }
-        
-        
+        theCamera = self.childNode(withName: "TheCamera") as! SKCameraNode
+        thePlayer = self.childNode(withName: "Player") as! Player
+        button = self.childNode(withName: "button") as! SKSpriteNode
+        shootButton = self.childNode(withName: "shootButton") as! SKSpriteNode
+        leftButton = self.childNode(withName: "leftButton") as! SKSpriteNode
+        rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
+        theKey = self.childNode(withName: "Key") as! Key
+        theLifeBar = childNode(withName: "lifeBar") as! LifeBar
+        theHealthPack = self.childNode(withName: "health") as! HealthPack
+        knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
+        theKey.setUpKey()
+        thePlayer.setUpPlayer()
+        self.camera = theCamera
+        theHealthPack.setUp()
         
         for node in self.children {
+            if let theHealthPack:HealthPack = node as? HealthPack {
+                theHealthPack.setUp()
+            }
             if let theDoor:Door = node as? Door {
                 theDoor.setUpDoor()
             }
+            
+            if let theWeapon:Weapon = node as? Weapon {
+                theWeapon.setUpWeapon()
+            }
+            
             if let theGround:Ground = node as? Ground {
                 theGround.setUpGround()
             }
@@ -168,20 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        let wait = SKAction.wait(forDuration: 10)
-        let spawn = SKAction.run {
-            let theEnemy:Enemy = Enemy()
-            theEnemy.xScale = fabs(theEnemy.xScale) * -1
-            theEnemy.position = CGPoint(x: 300, y: 10)
-            self.addChild(theEnemy)
-            self.enemies.append(theEnemy)
-            print(self.enemies.count)
-            print(theEnemy.health)
-        }
-        let constantSpawn = SKAction.sequence([spawn, wait])
-        self.run(SKAction.repeatForever(constantSpawn))
-        
-        
+      Enemy.spawnEnemy(parent: self)
     }
     
     func audio() {
