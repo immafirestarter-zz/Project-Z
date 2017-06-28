@@ -17,6 +17,8 @@ enum BodyType:UInt32 {
     case projectile = 32
     case healthPack = 64
     case ground = 128
+    case spikes = 256
+    case hangingSpikes = 512
 }
 
 
@@ -131,6 +133,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let theGround:Ground = node as? Ground {
                 theGround.setUpGround()
             }
+            if let spikes:Spikes = node as? Spikes {
+                spikes.setUp()
+            }
+            if let hangingSpikes:HangingSpikes = node as? HangingSpikes {
+                hangingSpikes.setUp()
+            }
         }
         
         let wait = SKAction.wait(forDuration: 10)
@@ -171,6 +179,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
+        }
+        
+        if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.spikes.rawValue) {
+            thePlayer.bloodSplatter()
+            thePlayer.delayDeath()
+        }
+        if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.hangingSpikes.rawValue) {
+            thePlayer.health -= 25
         }
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
