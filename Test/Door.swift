@@ -15,7 +15,7 @@ class Door: SKSpriteNode {
     
     func setUpDoor() {
         
-        goesWhere = self.name!
+        goesWhere = "EndGame"
         let imageTexture = SKTexture(imageNamed: "door")
         let body:SKPhysicsBody = SKPhysicsBody(texture: imageTexture,
                                                size: imageTexture.size())
