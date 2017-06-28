@@ -162,8 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theEnemy.position = CGPoint(x: 300, y: 10)
             self.addChild(theEnemy)
             self.enemies.append(theEnemy)
-            print(self.enemies.count)
-            print(theEnemy.health)
+            
         }
         let constantSpawn = SKAction.sequence([spawn, wait])
         self.run(SKAction.repeatForever(constantSpawn))
@@ -199,8 +198,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             thePlayer.bloodSplatter()
             thePlayer.delayDeath()
         }
+        
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.hangingSpikes.rawValue) {
-            thePlayer.health -= 25
+            if let hangingSpikes = contact.bodyB.node as? HangingSpikes {
+                if hangingSpikes.hit == false {
+                    thePlayer.health -= 25
+                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                    hangingSpikes.hit = true
+                }
+            }
         }
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){

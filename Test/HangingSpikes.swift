@@ -11,6 +11,7 @@ import SpriteKit
 
 class HangingSpikes:SKSpriteNode {
     
+    var hit = false
     
     func setUp() {
         
