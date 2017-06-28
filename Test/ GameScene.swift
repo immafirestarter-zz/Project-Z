@@ -473,6 +473,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         loadAnotherLevel (levelName: "EndPage")
         
     }
+    
+//    func winrar() {
+//        loadAnotherLevel (levelName: "EndGame")
+//        
+//    }
 }
 
 
