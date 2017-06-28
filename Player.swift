@@ -49,14 +49,16 @@ class Player: SKSpriteNode {
     
     func setUpIdle() {
         let ninjaTexture = SKTexture(imageNamed: "idle")
-        textureIdle = SKAction.setTexture(ninjaTexture)
-        self.run(textureIdle!)
+  
+        let crouchingTiger = SKTexture(imageNamed: "Image")
+    
+
+        self.run(SKAction.animate(with: [ninjaTexture, crouchingTiger], timePerFrame: 2/10))
     }
     
     func jump() {
         self.run(SKAction.setTexture(SKTexture(imageNamed: "Image-1")))
         self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 450))
-        
     }
     
     func bloodSplatter() {

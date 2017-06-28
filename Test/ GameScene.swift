@@ -447,19 +447,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-//        if isTouching && movingRight {
-//            atlas = SKTextureAtlas(named: "Walk")
-//            var atlasTextures = [SKTexture]()
-//            let texture1:SKTexture = atlas!.textureNamed("walk1")
-//            let texture2:SKTexture = atlas!.textureNamed("walk2")
-//            let texture3:SKTexture = atlas!.textureNamed("walk3")
-//            atlasTextures.append(texture1)
-//            atlasTextures.append(texture2)
-//            atlasTextures.append(texture3)
-//            let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
-//            let move = SKAction.repeat(atlasAnimation)
-//            thePlayer.run(move)
-//        }
+        if isTouching == false && playerJump == false && thePlayer.hasActions() == false {
+            thePlayer.setUpIdle()
+        }
     }
     
     
