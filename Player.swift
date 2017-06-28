@@ -44,8 +44,9 @@ class Player: SKSpriteNode {
         body.allowsRotation = false
         body.restitution = 0
         body.categoryBitMask = BodyType.player.rawValue
-        body.collisionBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue | BodyType.spikes.rawValue
-        body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue | BodyType.spikes.rawValue
+        body.collisionBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue | BodyType.spikes.rawValue | BodyType.hangingSpikes.rawValue
+
+        body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue | BodyType.spikes.rawValue | BodyType.hangingSpikes.rawValue
     }
 
     
