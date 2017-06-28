@@ -203,12 +203,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.hangingSpikes.rawValue) {
             if let hangingSpikes = contact.bodyB.node as? HangingSpikes {
                 if hangingSpikes.hit == false {
+                    thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
                     thePlayer.health -= 25
                     theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
                     hangingSpikes.hit = true
                 }
+                hangingSpikes.hit = false
+            }
+        } else if (contact.bodyA.categoryBitMask == BodyType.hangingSpikes.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            if let hangingSpikes = contact.bodyA.node as? HangingSpikes {
+                if hangingSpikes.hit == false {
+                    thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+                    thePlayer.health -= 25
+                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                    hangingSpikes.hit = true
+                }
+                hangingSpikes.hit = false
             }
         }
+
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
             
