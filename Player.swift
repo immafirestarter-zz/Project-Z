@@ -19,6 +19,7 @@ class Player: SKSpriteNode {
     var walkAction:SKAction?
     var atlas:SKTextureAtlas?
     var textureIdle:SKAction?
+    var textureBlood:SKAction?
     var xVelocity:CGFloat = 0
     
     var isDead = false
@@ -43,8 +44,8 @@ class Player: SKSpriteNode {
         body.allowsRotation = false
         body.restitution = 0
         body.categoryBitMask = BodyType.player.rawValue
-        body.collisionBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue
-        body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue
+        body.collisionBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue | BodyType.spikes.rawValue
+        body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue | BodyType.spikes.rawValue
     }
 
     
@@ -59,6 +60,17 @@ class Player: SKSpriteNode {
         
     }
     
+    func bloodSplatter() {
+        let bloodTexture = SKTexture(imageNamed: "blood")
+        self.texture = bloodTexture
+    }
+    
+    func delayDeath(){
+        let when = DispatchTime.now() + 0.05
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.health = 0
+        }
+    }
     
     func walk(force: CGFloat) {
         atlas = SKTextureAtlas(named: "Walk")

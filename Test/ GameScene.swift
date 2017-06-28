@@ -135,6 +135,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let theGround:Ground = node as? Ground {
                 theGround.setUpGround()
             }
+            if let spikes:Spikes = node as? Spikes {
+                spikes.setUp()
+            }
         }
         
         let wait = SKAction.wait(forDuration: 10)
@@ -178,7 +181,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.spikes.rawValue) {
-            thePlayer.health = 0
+            thePlayer.bloodSplatter()
+            thePlayer.delayDeath()
         }
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
