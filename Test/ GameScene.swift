@@ -41,9 +41,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var theCamera:SKCameraNode = SKCameraNode()
     var playerJump = false
     var atlas:SKTextureAtlas?
- 
+    
     var atlasTextures = [SKTexture]()
-
+    
     var knife_count:SKLabelNode = SKLabelNode()
     
     
@@ -64,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let initialPlayerPosition = CGPoint(x: 150, y: 250)
     var playerProgress = CGFloat()
     
-
+    
     override func didMove(to view: SKView) {
         
         audio()
@@ -86,34 +86,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         atlasTextures.append(texture1)
         atlasTextures.append(texture2)
         atlasTextures.append(texture3)
-      
+        
         
         physicsWorld.contactDelegate = self
         
         
         theCamera = self.childNode(withName: "TheCamera") as! SKCameraNode
-        thePlayer = self.childNode(withName: "Player") as! Player
         button = self.childNode(withName: "button") as! SKSpriteNode
         shootButton = self.childNode(withName: "shootButton") as! SKSpriteNode
         leftButton = self.childNode(withName: "leftButton") as! SKSpriteNode
         rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
         theLifeBar = childNode(withName: "lifeBar") as! LifeBar
-        theHealthPack = self.childNode(withName: "health") as! HealthPack
         knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
+        thePlayer = self.childNode(withName: "Player") as! Player
         thePlayer.setUpPlayer()
         self.camera = theCamera
-        theHealthPack.setUp()
         
         if (self.childNode(withName: "Key") != nil) {
             theKey = self.childNode(withName: "Key") as! Key
             theKey.setUpKey()
         }
-
         
         for node in self.children {
+            
             if let theHealthPack:HealthPack = node as? HealthPack {
                 theHealthPack.setUp()
             }
+            
             if let theDoor:Door = node as? Door {
                 theDoor.setUpDoor()
             }
@@ -187,7 +186,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 hangingSpikes.hit = false
             }
         }
-
+        
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
             
@@ -241,10 +240,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.healthPack.rawValue) {
-            if (thePlayer.health < 100) {
-                thePlayer.health += 25
-                theHealthPack.removeFromParent()
-                theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+            if let theHealthPack = contact.bodyB.node as? HealthPack {
+                if (thePlayer.health < 100) {
+                    if theHealthPack.pickedUp == false {
+                        theHealthPack.pickedUp = true
+                        thePlayer.health += 25
+                        theHealthPack.removeFromParent()
+                        theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                    }
+                }
             }
         }
         
@@ -328,7 +332,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             xVelocity = 300
             let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
             let move = SKAction.repeatForever(atlasAnimation)
-           
+            
             thePlayer.run(move, withKey: "moveKey")
             
         } else if buttonLeft.contains(touchlocation){
@@ -389,14 +393,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             button.position = CGPoint(x: thePlayer.position.x + 260 ,y: thePlayer.position.y)
             shootButton.position = CGPoint(x: thePlayer.position.x + 180 ,y: theCamera.position.y)
             leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
-            rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
+            rightButton.position = CGPoint(x: thePlayer.position.x - 200 ,y: thePlayer.position.y)
             theLifeBar.position = CGPoint(x: thePlayer.position.x - 320 ,y: theCamera.position.y + 150)
             knife_count.position = CGPoint(x: thePlayer.position.x - 130 ,y: theCamera.position.y + 145)
             
         }
         
-
-    
+        
+        
         thePlayer.statusCheck()
         if thePlayer.isDead {
             restartLevel()
@@ -410,7 +414,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if isTouching && movingRight {
             thePlayer.walk(force: xVelocity)
-         
+            
         } else if isTouching && movingLeft {
             thePlayer.walk(force: xVelocity)
             
