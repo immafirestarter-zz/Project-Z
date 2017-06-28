@@ -18,6 +18,8 @@
 		2612507B1F014BEE006CF5CD /* oshi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 261250781F014BEE006CF5CD /* oshi.mp3 */; };
 		2612507D1F014CA6006CF5CD /* jungle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2612507C1F014CA6006CF5CD /* jungle.wav */; };
 		261527A11F03F682004E3DD4 /* EndGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261527A01F03F682004E3DD4 /* EndGame.swift */; };
+		261527A31F0424D5004E3DD4 /* monsterdeath.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 261527A21F0424D5004E3DD4 /* monsterdeath.m4a */; };
+		261527A41F0424D5004E3DD4 /* monsterdeath.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 261527A21F0424D5004E3DD4 /* monsterdeath.m4a */; };
 		2634A56E1F03E5F900783588 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634A56D1F03E5F900783588 /* Background.swift */; };
 		2634A56F1F03E5F900783588 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634A56D1F03E5F900783588 /* Background.swift */; };
 		2634A5701F03E5F900783588 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634A56D1F03E5F900783588 /* Background.swift */; };
@@ -121,6 +123,7 @@
 		261250781F014BEE006CF5CD /* oshi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = oshi.mp3; sourceTree = "<group>"; };
 		2612507C1F014CA6006CF5CD /* jungle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jungle.wav; sourceTree = "<group>"; };
 		261527A01F03F682004E3DD4 /* EndGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGame.swift; path = ../EndGame.swift; sourceTree = "<group>"; };
+		261527A21F0424D5004E3DD4 /* monsterdeath.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = monsterdeath.m4a; sourceTree = "<group>"; };
 		2634A56D1F03E5F900783588 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		2649D9561F00095800D935F9 /* LandingPage.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = LandingPage.sks; path = ../LandingPage.sks; sourceTree = "<group>"; };
 		2649D95A1F0009E500D935F9 /* landingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = landingPage.swift; sourceTree = "<group>"; };
@@ -193,6 +196,7 @@
 		2612506B1F014566006CF5CD /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				261527A21F0424D5004E3DD4 /* monsterdeath.m4a */,
 				261250701F014649006CF5CD /* bombpick.wav */,
 				2612506C1F014587006CF5CD /* key1.wav */,
 				261250781F014BEE006CF5CD /* oshi.mp3 */,
@@ -405,6 +409,7 @@
 				26BC2AC11EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				2649D9571F00095800D935F9 /* LandingPage.sks in Resources */,
 				50E7F7371EFACC52005B4513 /* Assets.xcassets in Resources */,
+				261527A31F0424D5004E3DD4 /* monsterdeath.m4a in Resources */,
 				261250711F014649006CF5CD /* bombpick.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +424,7 @@
 				26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */,
 				26C5C5021EFBF3CC00D50E42 /* EndGame.sks in Resources */,
 				2649D9641F00171300D935F9 /* EndPage.sks in Resources */,
+				261527A41F0424D5004E3DD4 /* monsterdeath.m4a in Resources */,
 				261250721F014649006CF5CD /* bombpick.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
