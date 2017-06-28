@@ -97,14 +97,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         shootButton = self.childNode(withName: "shootButton") as! SKSpriteNode
         leftButton = self.childNode(withName: "leftButton") as! SKSpriteNode
         rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
-        theKey = self.childNode(withName: "Key") as! Key
         theLifeBar = childNode(withName: "lifeBar") as! LifeBar
         theHealthPack = self.childNode(withName: "health") as! HealthPack
         knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
-        theKey.setUpKey()
         thePlayer.setUpPlayer()
         self.camera = theCamera
         theHealthPack.setUp()
+        
+        if (self.childNode(withName: "Key") != nil) {
+            theKey = self.childNode(withName: "Key") as! Key
+            theKey.setUpKey()
+        }
+
         
         for node in self.children {
             if let theHealthPack:HealthPack = node as? HealthPack {
@@ -129,7 +133,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-      Enemy.spawnEnemy(parent: self)
+        Enemy.spawnEnemy(parent: self, xPoint: 300, yPoint: 10)
+        Enemy.spawnEnemy(parent: self, xPoint: 2618, yPoint: 871)
     }
     
     func audio() {
@@ -421,11 +426,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         loadAnotherLevel (levelName: "EndPage")
         
     }
-    
-//    func winrar() {
-//        loadAnotherLevel (levelName: "EndGame")
-//        
-//    }
 }
 
 

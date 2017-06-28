@@ -68,12 +68,12 @@ class Enemy: SKSpriteNode {
         setUpEnemyWalk()
     }
     
-    class func spawnEnemy(parent: GameScene) {
+    class func spawnEnemy(parent: GameScene, xPoint: Int, yPoint: Int) {
         let wait = SKAction.wait(forDuration: 10)
         let spawn = SKAction.run {
             let theEnemy:Enemy = Enemy()
             theEnemy.xScale = fabs(theEnemy.xScale) * -1
-            theEnemy.position = CGPoint(x: 300, y: 10)
+            theEnemy.position = CGPoint(x: xPoint, y: yPoint)
         parent.addChild(theEnemy)
         parent.enemies.append(theEnemy)
         }
