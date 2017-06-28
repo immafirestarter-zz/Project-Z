@@ -17,6 +17,7 @@ enum BodyType:UInt32 {
     case projectile = 32
     case healthPack = 64
     case ground = 128
+    case spikes = 256
 }
 
 
@@ -174,6 +175,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 loadAnotherLevel (levelName: theDoor.goesWhere)
             }
             
+        }
+        
+        if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.spikes.rawValue) {
+            thePlayer.health = 0
         }
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
