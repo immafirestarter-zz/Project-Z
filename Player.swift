@@ -51,6 +51,7 @@ class Player: SKSpriteNode {
     func setUpIdle() {
         let ninjaTexture = SKTexture(imageNamed: "idle")
   
+
         let crouchingTiger = SKTexture(imageNamed: "idle1-1")
     
 
