@@ -162,7 +162,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theEnemy.position = CGPoint(x: 300, y: 10)
             self.addChild(theEnemy)
             self.enemies.append(theEnemy)
-            
+            print(self.enemies.count)
+            print(theEnemy.health)
         }
         let constantSpawn = SKAction.sequence([spawn, wait])
         self.run(SKAction.repeatForever(constantSpawn))
