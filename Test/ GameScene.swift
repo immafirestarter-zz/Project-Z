@@ -40,6 +40,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var rightButton:SKSpriteNode = SKSpriteNode()
     var theCamera:SKCameraNode = SKCameraNode()
     var playerJump = false
+    var atlas:SKTextureAtlas?
+ 
+    var atlasTextures = [SKTexture]()
 
     var knife_count:SKLabelNode = SKLabelNode()
     
@@ -59,12 +62,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backgroundMusic: SKAudioNode!
     
     
+  
+    
+    
     
     
     override func didMove(to view: SKView) {
         
         audio()
         
+        atlas = SKTextureAtlas(named: "Walk")
+        let texture1:SKTexture = atlas!.textureNamed("walk1")
+        let texture2:SKTexture = atlas!.textureNamed("walk2")
+        let texture3:SKTexture = atlas!.textureNamed("walk3")
+        atlasTextures.append(texture1)
+        atlasTextures.append(texture2)
+        atlasTextures.append(texture3)
+      
         
         physicsWorld.contactDelegate = self
         
@@ -325,13 +339,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             directionHandling = 1
             isTouching = true
             movingRight = true
-            xVelocity = 5555
+            xVelocity = 300
+            let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
+            let move = SKAction.repeatForever(atlasAnimation)
+           
+            thePlayer.run(move, withKey: "moveKey")
             
         } else if buttonLeft.contains(touchlocation){
             directionHandling = -1
             isTouching = true
             movingLeft = true
-            xVelocity = -5555
+            xVelocity = -300
+            let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
+            let move = SKAction.repeatForever(atlasAnimation)
+            
+            thePlayer.run(move, withKey: "moveKey")
             
         } else if shootButton.contains(touchlocation){
             if thePlayer.hasWeapon {
@@ -344,6 +366,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        thePlayer.removeAction(forKey: "moveKey")
         isTouching = false
         movingRight = false
         movingLeft = false
@@ -383,9 +406,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        if playerJump == false {
-            thePlayer.setUpIdle()
-        }
+
     
         thePlayer.statusCheck()
         if thePlayer.isDead {
@@ -398,13 +419,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         thePlayer.xScale = fabs(thePlayer.xScale)*directionHandling
         
-        if isTouching && movingRight && !thePlayer .hasActions(){
+        if isTouching && movingRight {
             thePlayer.walk(force: xVelocity)
          
-        } else if isTouching && movingLeft && !thePlayer .hasActions(){
+        } else if isTouching && movingLeft {
             thePlayer.walk(force: xVelocity)
             
         }
+        
+//        if isTouching && movingRight {
+//            atlas = SKTextureAtlas(named: "Walk")
+//            var atlasTextures = [SKTexture]()
+//            let texture1:SKTexture = atlas!.textureNamed("walk1")
+//            let texture2:SKTexture = atlas!.textureNamed("walk2")
+//            let texture3:SKTexture = atlas!.textureNamed("walk3")
+//            atlasTextures.append(texture1)
+//            atlasTextures.append(texture2)
+//            atlasTextures.append(texture3)
+//            let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
+//            let move = SKAction.repeat(atlasAnimation)
+//            thePlayer.run(move)
+//        }
     }
     
     

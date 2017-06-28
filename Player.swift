@@ -72,21 +72,7 @@ class Player: SKSpriteNode {
     }
     
     func walk(force: CGFloat) {
-        atlas = SKTextureAtlas(named: "Walk")
-        var atlasTextures = [SKTexture]()
-        let texture1:SKTexture = atlas!.textureNamed("walk1")
-        let texture2:SKTexture = atlas!.textureNamed("walk2")
-        let texture3:SKTexture = atlas!.textureNamed("walk3")
-        atlasTextures.append(texture1)
-        atlasTextures.append(texture2)
-        atlasTextures.append(texture3)
-        let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
-        
-        let move = SKAction.run {
             self.physicsBody?.applyForce(CGVector(dx: force, dy: 0.0))
-        }
-        let moveSeq = SKAction.group([move, atlasAnimation])
-        self.run(moveSeq)
     }
     
     func statusCheck(){
