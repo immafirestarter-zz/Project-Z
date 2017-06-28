@@ -61,12 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var directionHandling: CGFloat = 1
     var backgroundMusic: SKAudioNode!
     
-    
-  
-    
-    
-    
-    
+
     override func didMove(to view: SKView) {
         
         audio()
@@ -121,17 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        let wait = SKAction.wait(forDuration: 10)
-        let spawn = SKAction.run {
-            let theEnemy:Enemy = Enemy()
-            theEnemy.xScale = fabs(theEnemy.xScale) * -1
-            theEnemy.position = CGPoint(x: 300, y: 10)
-            self.addChild(theEnemy)
-            self.enemies.append(theEnemy)
-        }
-        
-        let constantSpawn = SKAction.sequence([spawn, wait])
-        self.run(SKAction.repeatForever(constantSpawn))
+      Enemy.spawnEnemy(parent: self)
     }
     
     func audio() {
