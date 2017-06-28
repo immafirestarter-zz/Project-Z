@@ -14,13 +14,13 @@ class Background: SKSpriteNode {
     // 0 = no movement, 1 = player speed
     var movementMultiplier = CGFloat(0)
     var jumpAdjustment = CGFloat(0)
-    let backgroundSize = CGSize(width: 1024, height:768)
+    let backgroundSize = CGSize(width: 1800, height:900)
     var textureAtlas = SKTextureAtlas(named: "Backgrounds")
     
     func spawn(parentNode:SKNode, imageName:String, zPosition:CGFloat, movementMultiplier:CGFloat) {
         
         self.anchorPoint = CGPoint.zero
-        self.position = CGPoint(x: 0,y: -300)
+        self.position = CGPoint(x: 0,y: -400)
         self.zPosition = zPosition
         self.movementMultiplier = movementMultiplier
         parentNode.addChild(self)

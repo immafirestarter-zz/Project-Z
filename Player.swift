@@ -57,7 +57,7 @@ class Player: SKSpriteNode {
     }
     
     func jump() {
-        self.run(SKAction.setTexture(SKTexture(imageNamed: "Image-1")))
+        self.run(SKAction.setTexture(SKTexture(imageNamed: "jump2-1")))
         self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 450))
     }
     

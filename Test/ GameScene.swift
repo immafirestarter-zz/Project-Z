@@ -81,7 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         backgrounds[0].spawn(parentNode: self, imageName: "Trees", zPosition: -5, movementMultiplier: 0.75)
-        backgrounds[1].spawn(parentNode: self, imageName: "background", zPosition: -10, movementMultiplier: 0.5)
+        backgrounds[1].spawn(parentNode: self, imageName: "Background", zPosition: -10, movementMultiplier: 0.5)
         
         
         atlas = SKTextureAtlas(named: "Walk")
@@ -405,9 +405,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         movingLeft = false
         xVelocity = 0
     }
-    
-    
-    
     
     override func update(_ currentTime: TimeInterval) {
         
