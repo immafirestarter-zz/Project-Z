@@ -41,7 +41,7 @@ class Player: SKSpriteNode {
         body.allowsRotation = false
         body.restitution = 0
         body.categoryBitMask = BodyType.player.rawValue
-        body.collisionBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue | BodyType.spikes.rawValue | BodyType.hangingSpikes.rawValue
+        body.collisionBitMask = BodyType.enemy.rawValue | BodyType.ground.rawValue | BodyType.spikes.rawValue | BodyType.hangingSpikes.rawValue
 
         body.contactTestBitMask = BodyType.door.rawValue | BodyType.enemy.rawValue | BodyType.ground.rawValue | BodyType.spikes.rawValue | BodyType.hangingSpikes.rawValue
     }
@@ -50,14 +50,14 @@ class Player: SKSpriteNode {
     func setUpIdle() {
         let ninjaTexture = SKTexture(imageNamed: "idle")
   
-        let crouchingTiger = SKTexture(imageNamed: "Image")
+        let crouchingTiger = SKTexture(imageNamed: "idle1-1")
     
 
         self.run(SKAction.animate(with: [ninjaTexture, crouchingTiger], timePerFrame: 2/10))
     }
     
     func jump() {
-        self.run(SKAction.setTexture(SKTexture(imageNamed: "Image-1")))
+        self.run(SKAction.setTexture(SKTexture(imageNamed: "jump2-1")))
         self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 450))
     }
     
