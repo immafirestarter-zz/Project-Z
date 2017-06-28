@@ -36,7 +36,6 @@
 		269E3B991EFA7D65006B919D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E3B981EFA7D65006B919D /* GameViewController.swift */; };
 		269E3B9C1EFA7D65006B919D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269E3B9A1EFA7D65006B919D /* Main.storyboard */; };
 		269E3BA11EFA7D65006B919D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269E3B9F1EFA7D65006B919D /* LaunchScreen.storyboard */; };
-		269E3BAC1EFA7D65006B919D /* TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E3BAB1EFA7D65006B919D /* TestTests.swift */; };
 		269E3BB71EFA7D66006B919D /* TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E3BB61EFA7D66006B919D /* TestUITests.swift */; };
 		26BC2AC11EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
 		26BC2AC21EFBD00A00C6066F /* GroundTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 26BC2AC01EFBD00A00C6066F /* GroundTile.sks */; };
@@ -66,6 +65,8 @@
 		5028E7331F03A50300C30686 /* HangingSpikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5028E7311F03A4FC00C30686 /* HangingSpikes.swift */; };
 		5028E7341F03A50400C30686 /* HangingSpikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5028E7311F03A4FC00C30686 /* HangingSpikes.swift */; };
 		5028E7361F03A80600C30686 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5028E7351F03A80600C30686 /* GameScene.sks */; };
+		5028E73E1F043AE200C30686 /* HealthPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5028E73D1F043AE200C30686 /* HealthPack.swift */; };
+		5028E7401F043B7D00C30686 /* GroundTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5028E73F1F043B7D00C30686 /* GroundTest.swift */; };
 		507190981EFFC7C2006C3CA9 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507190971EFFC7C2006C3CA9 /* Key.swift */; };
 		507190991EFFC7C2006C3CA9 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507190971EFFC7C2006C3CA9 /* Key.swift */; };
 		5071909A1EFFC7C2006C3CA9 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507190971EFFC7C2006C3CA9 /* Key.swift */; };
@@ -134,7 +135,6 @@
 		269E3BA01EFA7D65006B919D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		269E3BA21EFA7D65006B919D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		269E3BA71EFA7D65006B919D /* TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		269E3BAB1EFA7D65006B919D /* TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTests.swift; sourceTree = "<group>"; };
 		269E3BAD1EFA7D65006B919D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		269E3BB21EFA7D65006B919D /* TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E3BB61EFA7D66006B919D /* TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUITests.swift; sourceTree = "<group>"; };
@@ -149,6 +149,8 @@
 		502504BF1EFB209B005AA3D0 /* Walk.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Walk.atlas; sourceTree = "<group>"; };
 		5028E7311F03A4FC00C30686 /* HangingSpikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangingSpikes.swift; sourceTree = "<group>"; };
 		5028E7351F03A80600C30686 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		5028E73D1F043AE200C30686 /* HealthPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthPack.swift; sourceTree = "<group>"; };
+		5028E73F1F043B7D00C30686 /* GroundTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroundTest.swift; sourceTree = "<group>"; };
 		507190971EFFC7C2006C3CA9 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		508050241F00240F00E73F6B /* EndPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPage.swift; sourceTree = "<group>"; };
 		508C9E0B1EFFC6C1008AB64E /* KeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyTests.swift; sourceTree = "<group>"; };
@@ -262,7 +264,6 @@
 		269E3BAA1EFA7D65006B919D /* TestTests */ = {
 			isa = PBXGroup;
 			children = (
-				269E3BAB1EFA7D65006B919D /* TestTests.swift */,
 				269E3BAD1EFA7D65006B919D /* Info.plist */,
 				C14F43221F011BA6001AB82B /* WeaponTests.swift */,
 				57686A691EFD4F07002CB08E /* PlayerTests.swift */,
@@ -270,6 +271,8 @@
 				508C9E0B1EFFC6C1008AB64E /* KeyTests.swift */,
 				50DAA6C71F001576008643F0 /* TestEnemy.swift */,
 				50F3EACD1F00E47100601635 /* LifeBar.swift */,
+				5028E73D1F043AE200C30686 /* HealthPack.swift */,
+				5028E73F1F043B7D00C30686 /* GroundTest.swift */,
 			);
 			path = TestTests;
 			sourceTree = "<group>";
@@ -479,10 +482,11 @@
 				508C9E0C1EFFC6C1008AB64E /* KeyTests.swift in Sources */,
 				C14F43201F011343001AB82B /* Weapon.swift in Sources */,
 				50DAA6CF1F001649008643F0 /* TestEnemy.swift in Sources */,
+				5028E7401F043B7D00C30686 /* GroundTest.swift in Sources */,
 				57F885251F02C210004BD42C /* Ground.swift in Sources */,
 				2634A56F1F03E5F900783588 /* Background.swift in Sources */,
-				269E3BAC1EFA7D65006B919D /* TestTests.swift in Sources */,
 				500001831EFD4E2E00F089A2 /* DoorTests.swift in Sources */,
+				5028E73E1F043AE200C30686 /* HealthPack.swift in Sources */,
 				C14F43231F011BA6001AB82B /* WeaponTests.swift in Sources */,
 				57686A6A1EFD4F07002CB08E /* PlayerTests.swift in Sources */,
 				50D33A521F02D0DB00CB2935 /* Spikes.swift in Sources */,
