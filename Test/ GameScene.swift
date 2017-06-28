@@ -60,11 +60,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xVelocity: CGFloat = 0
     var directionHandling: CGFloat = 1
     var backgroundMusic: SKAudioNode!
+    var backgrounds:[Background] = []
+    let initialPlayerPosition = CGPoint(x: 150, y: 250)
+    var playerProgress = CGFloat()
     
 
     override func didMove(to view: SKView) {
         
         audio()
+        
+        thePlayer.position = initialPlayerPosition
+        
+        for _ in 0..<3 {
+            backgrounds.append(Background())
+        }
+        
+        backgrounds[0].spawn(parentNode: self, imageName: "Trees", zPosition: -5, movementMultiplier: 0.75)
+        backgrounds[1].spawn(parentNode: self, imageName: "Background", zPosition: -10, movementMultiplier: 0.5)
+        
         
         atlas = SKTextureAtlas(named: "Walk")
         let texture1:SKTexture = atlas!.textureNamed("walk1")
@@ -151,12 +164,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.hangingSpikes.rawValue) {
             if let hangingSpikes = contact.bodyB.node as? HangingSpikes {
                 if hangingSpikes.hit == false {
+                    thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
                     thePlayer.health -= 25
                     theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
                     hangingSpikes.hit = true
                 }
+                hangingSpikes.hit = false
+            }
+        } else if (contact.bodyA.categoryBitMask == BodyType.hangingSpikes.rawValue && contact.bodyB.categoryBitMask == BodyType.player.rawValue) {
+            if let hangingSpikes = contact.bodyA.node as? HangingSpikes {
+                if hangingSpikes.hit == false {
+                    thePlayer.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
+                    thePlayer.health -= 25
+                    theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                    hangingSpikes.hit = true
+                }
+                hangingSpikes.hit = false
             }
         }
+
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
             
@@ -328,10 +354,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         xVelocity = 0
     }
     
-    
-    
-    
     override func update(_ currentTime: TimeInterval) {
+        
+        let playerProgress = thePlayer.position.x - initialPlayerPosition.x
+        
+        for background in self.backgrounds {
+            background.updateBG(playerProgress:playerProgress)
+        }
         
         knife_count.text = String(thePlayer.weaponCount)
         
