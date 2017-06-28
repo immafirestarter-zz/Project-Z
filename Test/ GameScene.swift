@@ -187,6 +187,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.hangingSpikes.rawValue) {
             thePlayer.health -= 25
+            theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
         }
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
@@ -383,9 +384,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        if playerJump == false {
-            thePlayer.setUpIdle()
-        }
+//        if playerJump == false {
+//            thePlayer.setUpIdle()
+//        }
     
         thePlayer.statusCheck()
         if thePlayer.isDead {
