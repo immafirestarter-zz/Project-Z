@@ -131,12 +131,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let hangingSpikes:HangingSpikes = node as? HangingSpikes {
                 hangingSpikes.setUp()
             }
-//            if let theKey:Key = node as? Key {
-//                theKey.setUpKey()
-//            }
         }
         
-      Enemy.spawnEnemy(parent: self)
+        Enemy.spawnEnemy(parent: self, xPoint: 300, yPoint: 10)
     }
     
     func audio() {
