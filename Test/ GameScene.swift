@@ -113,10 +113,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             theKey = self.childNode(withName: "Key") as! Key
             theKey.setUpKey()
         }
-        if (self.childNode(withName: "lifeBar") != nil) {
-            theLifeBar = self.childNode(withName: "lifeBar") as! LifeBar
-            theLifeBar.setUp()
-        }
+
+        
+        theLifeBar = childNode(withName: "lifeBar") as! LifeBar
         
         if (self.childNode(withName: "health")) != nil {
             theHealthPack = self.childNode(withName: "health") as! HealthPack
