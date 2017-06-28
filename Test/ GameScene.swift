@@ -134,6 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         Enemy.spawnEnemy(parent: self, xPoint: 300, yPoint: 10)
+        Enemy.spawnEnemy(parent: self, xPoint: 2618, yPoint: 871)
     }
     
     func audio() {
