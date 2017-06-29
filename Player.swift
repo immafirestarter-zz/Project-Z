@@ -50,12 +50,8 @@ class Player: SKSpriteNode {
     
     func setUpIdle() {
         let ninjaTexture = SKTexture(imageNamed: "idle")
-  
-
-        let crouchingTiger = SKTexture(imageNamed: "idle1-1")
-    
-
-        self.run(SKAction.animate(with: [ninjaTexture, crouchingTiger], timePerFrame: 2/10))
+        
+        self.run(SKAction.setTexture(ninjaTexture))
     }
     
     func jump() {
