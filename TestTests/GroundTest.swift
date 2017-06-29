@@ -7,12 +7,19 @@
 //
 
 import XCTest
+import SpriteKit
+
+@testable import Test
+
 
 class GroundTest: XCTestCase {
     
+    let ground:Ground = Ground()
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        ground.setUpGround()
+
     }
     
     override func tearDown() {
@@ -20,9 +27,10 @@ class GroundTest: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGroundSetUp() {
+        print(ground.physicsBody?.contactTestBitMask)
+        XCTAssertEqual(ground.physicsBody?.categoryBitMask, BodyType.ground.rawValue)
+        XCTAssertEqual(ground.physicsBody?.collisionBitMask , BodyType.player.rawValue)
     }
     
     func testPerformanceExample() {

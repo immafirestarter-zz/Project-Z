@@ -65,7 +65,7 @@
 		5028E7331F03A50300C30686 /* HangingSpikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5028E7311F03A4FC00C30686 /* HangingSpikes.swift */; };
 		5028E7341F03A50400C30686 /* HangingSpikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5028E7311F03A4FC00C30686 /* HangingSpikes.swift */; };
 		5028E7361F03A80600C30686 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5028E7351F03A80600C30686 /* GameScene.sks */; };
-		5028E73E1F043AE200C30686 /* HealthPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5028E73D1F043AE200C30686 /* HealthPack.swift */; };
+		5028E73E1F043AE200C30686 /* HealthPackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5028E73D1F043AE200C30686 /* HealthPackTest.swift */; };
 		5028E7401F043B7D00C30686 /* GroundTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5028E73F1F043B7D00C30686 /* GroundTest.swift */; };
 		507190981EFFC7C2006C3CA9 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507190971EFFC7C2006C3CA9 /* Key.swift */; };
 		507190991EFFC7C2006C3CA9 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507190971EFFC7C2006C3CA9 /* Key.swift */; };
@@ -82,7 +82,7 @@
 		50DAA6CE1F001637008643F0 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8833D1EFD86280059A2E7 /* Enemy.swift */; };
 		50DAA6CF1F001649008643F0 /* TestEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DAA6C71F001576008643F0 /* TestEnemy.swift */; };
 		50E7F7371EFACC52005B4513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50E7F7361EFACC52005B4513 /* Assets.xcassets */; };
-		50F3EACE1F00E47100601635 /* LifeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3EACD1F00E47100601635 /* LifeBar.swift */; };
+		50F3EACE1F00E47100601635 /* LifeBarTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3EACD1F00E47100601635 /* LifeBarTest.swift */; };
 		50F3EAD01F00E4B000601635 /* LifeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3EACF1F00E4B000601635 /* LifeBar.swift */; };
 		50F3EAD11F00E4B000601635 /* LifeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3EACF1F00E4B000601635 /* LifeBar.swift */; };
 		50F3EAD21F00E4B000601635 /* LifeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3EACF1F00E4B000601635 /* LifeBar.swift */; };
@@ -149,7 +149,7 @@
 		502504BF1EFB209B005AA3D0 /* Walk.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Walk.atlas; sourceTree = "<group>"; };
 		5028E7311F03A4FC00C30686 /* HangingSpikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangingSpikes.swift; sourceTree = "<group>"; };
 		5028E7351F03A80600C30686 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		5028E73D1F043AE200C30686 /* HealthPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthPack.swift; sourceTree = "<group>"; };
+		5028E73D1F043AE200C30686 /* HealthPackTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthPackTest.swift; sourceTree = "<group>"; };
 		5028E73F1F043B7D00C30686 /* GroundTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroundTest.swift; sourceTree = "<group>"; };
 		507190971EFFC7C2006C3CA9 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		508050241F00240F00E73F6B /* EndPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPage.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 		50D33A501F02D0DB00CB2935 /* Spikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spikes.swift; sourceTree = "<group>"; };
 		50DAA6C71F001576008643F0 /* TestEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEnemy.swift; sourceTree = "<group>"; };
 		50E7F7361EFACC52005B4513 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		50F3EACD1F00E47100601635 /* LifeBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeBar.swift; sourceTree = "<group>"; };
+		50F3EACD1F00E47100601635 /* LifeBarTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeBarTest.swift; sourceTree = "<group>"; };
 		50F3EACF1F00E4B000601635 /* LifeBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeBar.swift; sourceTree = "<group>"; };
 		57686A691EFD4F07002CB08E /* PlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		576E0ACF1F0141A1001D1847 /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
@@ -270,8 +270,8 @@
 				500001821EFD4E2E00F089A2 /* DoorTests.swift */,
 				508C9E0B1EFFC6C1008AB64E /* KeyTests.swift */,
 				50DAA6C71F001576008643F0 /* TestEnemy.swift */,
-				50F3EACD1F00E47100601635 /* LifeBar.swift */,
-				5028E73D1F043AE200C30686 /* HealthPack.swift */,
+				50F3EACD1F00E47100601635 /* LifeBarTest.swift */,
+				5028E73D1F043AE200C30686 /* HealthPackTest.swift */,
 				5028E73F1F043B7D00C30686 /* GroundTest.swift */,
 			);
 			path = TestTests;
@@ -475,7 +475,7 @@
 				5000018A1EFD51B500F089A2 /* GameViewController.swift in Sources */,
 				2649D95C1F0009E500D935F9 /* landingPage.swift in Sources */,
 				507190991EFFC7C2006C3CA9 /* Key.swift in Sources */,
-				50F3EACE1F00E47100601635 /* LifeBar.swift in Sources */,
+				50F3EACE1F00E47100601635 /* LifeBarTest.swift in Sources */,
 				500667511F012FA9009B16A9 /* HealthPack.swift in Sources */,
 				500001881EFD51B000F089A2 /* AppDelegate.swift in Sources */,
 				5028E7331F03A50300C30686 /* HangingSpikes.swift in Sources */,
@@ -486,7 +486,7 @@
 				57F885251F02C210004BD42C /* Ground.swift in Sources */,
 				2634A56F1F03E5F900783588 /* Background.swift in Sources */,
 				500001831EFD4E2E00F089A2 /* DoorTests.swift in Sources */,
-				5028E73E1F043AE200C30686 /* HealthPack.swift in Sources */,
+				5028E73E1F043AE200C30686 /* HealthPackTest.swift in Sources */,
 				C14F43231F011BA6001AB82B /* WeaponTests.swift in Sources */,
 				57686A6A1EFD4F07002CB08E /* PlayerTests.swift in Sources */,
 				50D33A521F02D0DB00CB2935 /* Spikes.swift in Sources */,
