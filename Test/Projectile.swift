@@ -45,10 +45,10 @@ class Projectile: SKSpriteNode {
         newProjectile.position = player.position
         parent.addChild(newProjectile)
         if player.xScale > 0 {
-        self.shootProjectile(projectile: newProjectile, direction: 15.0)
+        self.shootProjectile(projectile: newProjectile, direction: 35.0)
         } else {
         newProjectile.xScale = fabs(newProjectile.xScale) * -1
-        self.shootProjectile(projectile: newProjectile, direction: -15.0)
+        self.shootProjectile(projectile: newProjectile, direction: -35.0)
         }
         
     }

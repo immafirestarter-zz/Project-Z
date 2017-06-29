@@ -36,6 +36,7 @@ class Player: SKSpriteNode {
         self.physicsBody = body
         
         body.mass = 0.51282
+        body.linearDamping = 0.2
         body.isDynamic = true
         body.affectedByGravity = true
         body.allowsRotation = false
@@ -50,6 +51,7 @@ class Player: SKSpriteNode {
     func setUpIdle() {
         let ninjaTexture = SKTexture(imageNamed: "idle")
   
+
         let crouchingTiger = SKTexture(imageNamed: "idle1-1")
     
 

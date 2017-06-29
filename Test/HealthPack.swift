@@ -11,6 +11,7 @@ import SpriteKit
 
 class HealthPack:SKSpriteNode {
     
+    var pickedUp = false 
     
     func setUp() {
         

@@ -41,9 +41,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var theCamera:SKCameraNode = SKCameraNode()
     var playerJump = false
     var atlas:SKTextureAtlas?
- 
+    
     var atlasTextures = [SKTexture]()
-
+    
     var knife_count:SKLabelNode = SKLabelNode()
     
     
@@ -63,11 +63,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backgrounds:[Background] = []
     let initialPlayerPosition = CGPoint(x: 150, y: 250)
     var playerProgress = CGFloat()
-    
-    
-  
-    
-    
     
     
     override func didMove(to view: SKView) {
@@ -91,72 +86,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         atlasTextures.append(texture1)
         atlasTextures.append(texture2)
         atlasTextures.append(texture3)
-      
+        
         
         physicsWorld.contactDelegate = self
         
         
-        if (self.childNode(withName: "Player") != nil){
-            thePlayer = self.childNode(withName: "Player") as! Player
-            thePlayer.setUpPlayer()
-        }
-        
-        if (self.childNode(withName: "TheCamera") != nil){
-            theCamera = self.childNode(withName: "TheCamera") as! SKCameraNode
-            self.camera = theCamera
-        }
-        
-        if (self.childNode(withName: "button") != nil){
-            button = self.childNode(withName: "button") as! SKSpriteNode
-        }
-        
-        if (self.childNode(withName: "shootButton") != nil){
-            shootButton = self.childNode(withName: "shootButton") as! SKSpriteNode
-        }
-        
-        if (self.childNode(withName: "leftButton") != nil){
-            leftButton = self.childNode(withName: "leftButton") as! SKSpriteNode
-        }
-        
-        if (self.childNode(withName: "rightButton") != nil){
-            rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
-        }
+        theCamera = self.childNode(withName: "TheCamera") as! SKCameraNode
+        button = self.childNode(withName: "button") as! SKSpriteNode
+        shootButton = self.childNode(withName: "shootButton") as! SKSpriteNode
+        leftButton = self.childNode(withName: "leftButton") as! SKSpriteNode
+        rightButton = self.childNode(withName: "rightButton") as! SKSpriteNode
+        theLifeBar = childNode(withName: "lifeBar") as! LifeBar
+        knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
+        thePlayer = self.childNode(withName: "Player") as! Player
+        thePlayer.setUpPlayer()
+        self.camera = theCamera
         
         if (self.childNode(withName: "Key") != nil) {
             theKey = self.childNode(withName: "Key") as! Key
             theKey.setUpKey()
         }
-        if (self.childNode(withName: "lifeBar") != nil) {
-            theLifeBar = self.childNode(withName: "lifeBar") as! LifeBar
-            theLifeBar.setUp()
-        }
-        
-        if (self.childNode(withName: "health")) != nil {
-            theHealthPack = self.childNode(withName: "health") as! HealthPack
-            theHealthPack.setUp()
-        }
-        
-        if (self.childNode(withName: "Weapon") != nil) {
-            theWeapon = self.childNode(withName: "Weapon") as! Weapon
-            theWeapon.setUpWeapon()
-        }
-        
-        if (self.childNode(withName: "Weapon2") != nil) {
-            theWeapon = self.childNode(withName: "Weapon2") as! Weapon
-            theWeapon.setUpWeapon()
-        }
-        
-        
-        if (self.childNode(withName: "knife_count") != nil) {
-            knife_count = self.childNode(withName: "knife_count") as! SKLabelNode
-        }
-        
-        
         
         for node in self.children {
+            
+            if let theHealthPack:HealthPack = node as? HealthPack {
+                theHealthPack.setUp()
+            }
+            
             if let theDoor:Door = node as? Door {
                 theDoor.setUpDoor()
             }
+            
+            if let theWeapon:Weapon = node as? Weapon {
+                theWeapon.setUpWeapon()
+            }
+            
             if let theGround:Ground = node as? Ground {
                 theGround.setUpGround()
             }
@@ -168,20 +132,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        let wait = SKAction.wait(forDuration: 10)
-        let spawn = SKAction.run {
-            let theEnemy:Enemy = Enemy()
-            theEnemy.xScale = fabs(theEnemy.xScale) * -1
-            theEnemy.position = CGPoint(x: 300, y: 10)
-            self.addChild(theEnemy)
-            self.enemies.append(theEnemy)
-            print(self.enemies.count)
-            print(theEnemy.health)
-        }
-        let constantSpawn = SKAction.sequence([spawn, wait])
-        self.run(SKAction.repeatForever(constantSpawn))
-        
-        
+        Enemy.spawnEnemy(parent: self, xPoint: 300, yPoint: 10)
+        Enemy.spawnEnemy(parent: self, xPoint: 2618, yPoint: 871)
     }
     
     func audio() {
@@ -234,7 +186,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 hangingSpikes.hit = false
             }
         }
-
+        
         
         if (contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
             
@@ -288,10 +240,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if ( contact.bodyA.categoryBitMask == BodyType.player.rawValue && contact.bodyB.categoryBitMask == BodyType.healthPack.rawValue) {
-            if (thePlayer.health < 100) {
-                thePlayer.health += 25
-                theHealthPack.removeFromParent()
-                theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+            if let theHealthPack = contact.bodyB.node as? HealthPack {
+                if (thePlayer.health < 100) {
+                    if theHealthPack.pickedUp == false {
+                        theHealthPack.pickedUp = true
+                        thePlayer.health += 25
+                        theHealthPack.removeFromParent()
+                        theLifeBar.updateBar(lifeWidth: CGFloat(thePlayer.health))
+                    }
+                }
             }
         }
         
@@ -324,12 +281,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if ( contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
             if let theProjectile = contact.bodyB.node as? Projectile, let theEnemy = contact.bodyA.node as? Enemy {
+                run(SKAction.playSoundFileNamed("monsterdeath.m4a", waitForCompletion: false))
                 if theProjectile.hit == false {
                     theEnemy.health -= 100
                     theProjectile.hit = true
                 }
             } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
                 if let theEnemy = contact.bodyB.node as? Enemy, let theProjectile = contact.bodyA.node as? Projectile {
+                    run(SKAction.playSoundFileNamed("monsterdeath.m4a", waitForCompletion: false))
                     if theProjectile.hit == false {
                         theEnemy.health -= 100
                         theProjectile.hit = true
@@ -375,7 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             xVelocity = 300
             let atlasAnimation = SKAction.animate(with: atlasTextures, timePerFrame: 1/10)
             let move = SKAction.repeatForever(atlasAnimation)
-           
+            
             thePlayer.run(move, withKey: "moveKey")
             
         } else if buttonLeft.contains(touchlocation){
@@ -425,6 +384,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if enemy.attacking == true && !enemy .hasActions() {
                 enemy.attack()
             } else if enemy.health <= 0 {
+                run(SKAction.playSoundFileNamed("monsterdeath.m4a", waitForCompletion: false))
                 enemy.removeFromParent()
                 enemies.remove(at: index)
             }
@@ -436,14 +396,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             button.position = CGPoint(x: thePlayer.position.x + 260 ,y: thePlayer.position.y)
             shootButton.position = CGPoint(x: thePlayer.position.x + 180 ,y: theCamera.position.y)
             leftButton.position = CGPoint(x: thePlayer.position.x - 280 ,y: thePlayer.position.y)
-            rightButton.position = CGPoint(x: thePlayer.position.x - 220 ,y: thePlayer.position.y)
+            rightButton.position = CGPoint(x: thePlayer.position.x - 200 ,y: thePlayer.position.y)
             theLifeBar.position = CGPoint(x: thePlayer.position.x - 320 ,y: theCamera.position.y + 150)
             knife_count.position = CGPoint(x: thePlayer.position.x - 130 ,y: theCamera.position.y + 145)
             
         }
         
-
-    
+        
+        
         thePlayer.statusCheck()
         if thePlayer.isDead {
             restartLevel()
@@ -457,7 +417,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if isTouching && movingRight {
             thePlayer.walk(force: xVelocity)
-         
+            
         } else if isTouching && movingLeft {
             thePlayer.walk(force: xVelocity)
             

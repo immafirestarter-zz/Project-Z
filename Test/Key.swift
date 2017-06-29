@@ -23,8 +23,9 @@ class Key:SKSpriteNode {
         body.isDynamic = false
         body.allowsRotation = false
         
-        body.collisionBitMask = 0
+        
         body.categoryBitMask = BodyType.key.rawValue
+        body.collisionBitMask = 0
         body.contactTestBitMask = BodyType.player.rawValue
     }
 }
