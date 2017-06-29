@@ -19,10 +19,10 @@ Spritekit
 XCtest
 
 ## The Team
--[Ahmed Shehab](https://github.com/hyper0009)
--[Nigel Said](https://github.com/ns-winter)
--[Sami Mason](https://github.com/immafirestarter)
--[Unai Motriko](https://github.com/motri)
+[Ahmed Shehab](https://github.com/hyper0009)
+[Nigel Said](https://github.com/ns-winter)
+[Sami Mason](https://github.com/immafirestarter)
+[Unai Motriko](https://github.com/motri)
 
 ## Run
 
