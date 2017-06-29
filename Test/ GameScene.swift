@@ -423,7 +423,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        if isTouching == false && playerJump == false && thePlayer.hasActions() == false {
+        if isTouching == false && playerJump == false {
             thePlayer.setUpIdle()
         }
     }
