@@ -75,8 +75,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             backgrounds.append(Background())
         }
         
-        backgrounds[0].spawn(parentNode: self, imageName: "Trees", zPosition: -5, movementMultiplier: 0.75)
-        backgrounds[1].spawn(parentNode: self, imageName: "Background", zPosition: -10, movementMultiplier: 0.5)
+        backgrounds[0].spawn(parentNode: self, imageName: "Trees-1", zPosition: -5, movementMultiplier: 0.7)
+        backgrounds[1].spawn(parentNode: self, imageName: "Background", zPosition: -10, movementMultiplier: 0.3)
         
         
         atlas = SKTextureAtlas(named: "Walk")
@@ -281,12 +281,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if ( contact.bodyA.categoryBitMask == BodyType.enemy.rawValue && contact.bodyB.categoryBitMask == BodyType.projectile.rawValue) {
             if let theProjectile = contact.bodyB.node as? Projectile, let theEnemy = contact.bodyA.node as? Enemy {
+                run(SKAction.playSoundFileNamed("monsterdeath.m4a", waitForCompletion: false))
                 if theProjectile.hit == false {
                     theEnemy.health -= 100
                     theProjectile.hit = true
                 }
             } else if ( contact.bodyA.categoryBitMask == BodyType.projectile.rawValue && contact.bodyB.categoryBitMask == BodyType.enemy.rawValue){
                 if let theEnemy = contact.bodyB.node as? Enemy, let theProjectile = contact.bodyA.node as? Projectile {
+                    run(SKAction.playSoundFileNamed("monsterdeath.m4a", waitForCompletion: false))
                     if theProjectile.hit == false {
                         theEnemy.health -= 100
                         theProjectile.hit = true
@@ -382,6 +384,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if enemy.attacking == true && !enemy .hasActions() {
                 enemy.attack()
             } else if enemy.health <= 0 {
+                run(SKAction.playSoundFileNamed("monsterdeath.m4a", waitForCompletion: false))
                 enemy.removeFromParent()
                 enemies.remove(at: index)
             }
