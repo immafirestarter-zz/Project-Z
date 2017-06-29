@@ -75,7 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             backgrounds.append(Background())
         }
         
-        backgrounds[0].spawn(parentNode: self, imageName: "Trees", zPosition: -5, movementMultiplier: 0.75)
+        backgrounds[0].spawn(parentNode: self, imageName: "Trees-1", zPosition: -5, movementMultiplier: 0.7)
         backgrounds[1].spawn(parentNode: self, imageName: "Background", zPosition: -10, movementMultiplier: 0.3)
         
         
@@ -433,7 +433,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         loadAnotherLevel (levelName: "EndPage")
         
     }
-    
 }
 
 

@@ -14,7 +14,7 @@ class Background: SKSpriteNode {
     // 0 = no movement, 1 = player speed
     var movementMultiplier = CGFloat(0)
     var jumpAdjustment = CGFloat(0)
-    let backgroundSize = CGSize(width: 1800, height:1200)
+    let backgroundSize = CGSize(width: 2300, height:1500)
     var textureAtlas = SKTextureAtlas(named: "Backgrounds")
     
     func spawn(parentNode:SKNode, imageName:String, zPosition:CGFloat, movementMultiplier:CGFloat) {
