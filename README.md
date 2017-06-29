@@ -26,6 +26,9 @@ XCtest
 [Sami Mason](https://github.com/immafirestarter) \
 [Unai Motriko](https://github.com/motri) 
 
+## The process 
+
+![Meeting images](https://www.imageupload.co.uk/image/DEvI)
 ## Run
 
 Download and install Xcode:
