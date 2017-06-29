@@ -7,7 +7,9 @@ An iphone side scroller game similar to Mario but in a ninjastic way. You play a
 - Utilise some fundemental programming principles to test drive a game from scratch.
 - Learn a new langauge.
 - Understand the major differences between game development and web development.
-- Experience a 
+- Experience a completley different development environment.
+
+
 
 
 
